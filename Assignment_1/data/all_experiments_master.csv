@@ -1,0 +1,6 @@
+timestamp,experiment_name,device,run_number,population_size,generations,crossover_rate,mutation_rate,tournament_size,total_runtime_minutes,problems_solved,avg_best_fitness,best_overall_fitness,total_valid_solutions,avg_generation_found,efficiency_score,problem_1.1_fitness,problem_1.2_fitness,problem_2.1_fitness,problem_2.2_fitness,problem_3.1_fitness,problem_3.2_fitness
+2025-10-13 01:09:49,odin_intensive_optimization,odin,1,100,150,0.8,0.008,5,1.86,0,0,0,0,0,0.0,0,0,0,0,0,0
+2025-10-13 01:28:57,odin_1000_individuals,odin,1,1000,10,0.8,0.08,10,5.45,0,0,0,0,0,0.0,0,0,0,0,0,0
+2025-10-13 05:02:17,odin_1000_individuals,odin,1,100,20,0.8,0.5,50,0.35,1,0.7821,0.7821,0,15.0,2.2491,0.782051282051282,0,0,0,0,0
+2025-10-13 05:08:11,odin_1000_individuals,odin,1,100,100,0.8,0.5,10,1.68,1,0.8205,0.8205,0,72.0,0.4875,0.8205128205128205,0,0,0,0,0
+2025-10-13 05:57:33,odin_pop_300_gen_100_mut_020,odin,1,300,100,0.8,0.02,8,0.2,0.95,25,True,2.2,1,1.0,1.0,5,22.0,0.4551,1.0,0,0,0,0,0

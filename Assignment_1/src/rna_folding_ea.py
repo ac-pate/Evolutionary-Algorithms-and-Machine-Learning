@@ -41,7 +41,13 @@ class RNAFoldingEA:
         self.crossover_rate = 0.8
         self.mutation_rate = 1.0 / self.sequence_length  # adaptive mutation rate
         self.tournament_size = 3
-        self.elitism_count = max(1, population_size // 10)  # Keep top 10%
+        self.elite_percentage = 0.1  # Keep top 10% by default
+        self.elitism_count = max(1, int(population_size * self.elite_percentage))
+        
+        # Early termination settings
+        self.early_termination_fitness = 0.95
+        self.high_fitness_streak_threshold = 25
+        self.high_fitness_streak = 0
         
         # iupac code mapping for constraint validation
         self.iupac_codes = {
@@ -63,7 +69,10 @@ class RNAFoldingEA:
         self.best_individuals = []
         self.population = []
         self.fitness_history = []
+        self.diversity_history = []
         self.callbacks = []  # For wandb or other external logging
+        self.early_terminated = False
+        self.termination_reason = None
         
     def add_callback(self, callback_func):
         """
@@ -368,8 +377,7 @@ class RNAFoldingEA:
         self.initialize_population()
         
         for generation in range(self.generations):
-            print(f"\nGeneration {generation + 1}/{self.generations}")
-            
+                        
             # Evaluate fitness
             fitness_scores = self.evaluate_fitness(self.population)
             
@@ -381,9 +389,18 @@ class RNAFoldingEA:
             # Calculate diversity
             diversity = self.calculate_diversity(self.population)
             
-            print(f"Max fitness: {max_fitness:.4f}, Avg fitness: {avg_fitness:.4f}, Diversity: {diversity:.4f}")
+            # Check early termination condition
+            if max_fitness >= self.early_termination_fitness:
+                self.high_fitness_streak += 1
+                if self.high_fitness_streak >= self.high_fitness_streak_threshold:
+                    self.early_terminated = True
+                    self.termination_reason = f"Early termination: fitness >={self.early_termination_fitness} for {self.high_fitness_streak} generations"
+                    print(f"\n{self.termination_reason}")
+                    break
+            else:
+                self.high_fitness_streak = 0
             
-            # Call external callbacks (e.g., wandb logging)
+            # Call external callbacks (e.g., wandb logging, progress monitoring)
             for callback in self.callbacks:
                 try:
                     callback(generation, max_fitness, avg_fitness, diversity)
@@ -398,7 +415,7 @@ class RNAFoldingEA:
             # Create next generation
             new_population = []
             
-            # Elitism: Keep best individuals
+            # Elitism: Keep best individuals (using configurable elite percentage)
             elite_indices = sorted(range(len(fitness_scores)), key=lambda i: fitness_scores[i], reverse=True)[:self.elitism_count]
             for idx in elite_indices:
                 new_population.append(self.population[idx])
@@ -425,7 +442,11 @@ class RNAFoldingEA:
             # Trim to exact population size
             self.population = new_population[:self.population_size]
         
-        print("\nEvolution completed!")
+        if self.early_terminated:
+            print(f"\nEvolution terminated early!")
+            print(f"Reason: {self.termination_reason}")
+        else:
+            print("\nEvolution completed!")
         self.analyze_results()
     
     def analyze_results(self):
@@ -433,6 +454,9 @@ class RNAFoldingEA:
         Analyze final results and prepare output
         """
         print("\n=== FINAL ANALYSIS ===")
+        
+        if self.early_terminated:
+            print(f"EARLY TERMINATION: {self.termination_reason}")
         
         # Remove duplicates and sort by fitness
         unique_individuals = list(set(seq for seq, _ in self.best_individuals))
@@ -444,6 +468,7 @@ class RNAFoldingEA:
         sorted_results = sorted(zip(unique_individuals, final_fitness), key=lambda x: x[1], reverse=True)
         
         print(f"Found {len(sorted_results)} unique high-quality sequences")
+        print(f"Elite percentage: {self.elite_percentage*100:.1f}% ({self.elitism_count} individuals)")
         
         if sorted_results:
             # Calculate diversity
