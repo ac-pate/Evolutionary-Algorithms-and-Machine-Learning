@@ -587,7 +587,7 @@ class RNAFoldingEA:
                 diversity = 0.0
             
             # Anti-stagnation: Check for stagnation
-            if max_fitness <= self.last_best_fitness + 1e-6:  # No significant improvement
+            if max_fitness > 0 and max_fitness <= self.last_best_fitness + 1e-6:  # No significant improvement
                 self.stagnation_counter += 1
             else:
                 self.stagnation_counter = 0
@@ -597,8 +597,8 @@ class RNAFoldingEA:
             self.mutation_rate = self.adaptive_mutation_rate(diversity)
             
             # Anti-stagnation: Population restart if severely stagnant
-            if (self.stagnation_counter >= self.stagnation_threshold or 
-                diversity < self.diversity_threshold):
+            if (max_fitness > 0 and 
+                (self.stagnation_counter >= self.stagnation_threshold or diversity < self.diversity_threshold)):
                 try:
                     self.restart_population(fitness_scores)
                     self.stagnation_counter = 0
@@ -646,8 +646,15 @@ class RNAFoldingEA:
             new_population = []
             
             # Anti-stagnation: Dynamic elitism (reduce when stagnating)
+            # Anti-stagnation: Much more aggressive dynamic elitism
             current_elite_percentage = self.elite_percentage
-            if self.stagnation_counter > 10:
+            if self.stagnation_counter > 20:
+                current_elite_percentage = 0.01  # Keep only 1% when severely stuck
+            elif self.stagnation_counter > 15:
+                current_elite_percentage = 0.02  # Keep only 2% when very stuck
+            elif self.stagnation_counter > 10:
+                current_elite_percentage = max(0.03, self.elite_percentage / 3)
+            elif self.stagnation_counter > 5:
                 current_elite_percentage = max(0.05, self.elite_percentage / 2)
                 
             elite_count = max(1, int(self.population_size * current_elite_percentage))
