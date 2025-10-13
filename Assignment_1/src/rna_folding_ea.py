@@ -50,12 +50,12 @@ class RNAFoldingEA:
         self.high_fitness_streak = 0
         
         # Anti-stagnation settings (using existing pattern)
-        self.stagnation_threshold = 15  # Generations without improvement
+        self.stagnation_threshold = 10  # Generations without improvement
         self.stagnation_counter = 0
         self.last_best_fitness = 0.0
         
-        self.diversity_threshold = 0.1  # Minimum diversity to maintain
-        self.restart_rate = 0.3  # Percentage of population to restart
+        self.diversity_threshold = 0.2  # Minimum diversity to maintain
+        self.restart_rate = 0.4  # Percentage of population to restart
         self.base_mutation_rate = self.mutation_rate  # Store original rate
         self.mutation_boost_factor = 3.0  # Boost factor when stagnant
         
@@ -461,7 +461,7 @@ class RNAFoldingEA:
                 return self.generate_random_sequence()
             
             # When not stagnating, use normal tournament selection
-            if self.stagnation_counter <= 5:
+            if self.stagnation_counter <= self.stagnation_threshold // 2:
                 return self.tournament_selection(fitness_scores)
             
             # When stagnating, add some randomness to encourage diversity
@@ -593,12 +593,30 @@ class RNAFoldingEA:
                 self.stagnation_counter = 0
                 self.last_best_fitness = max_fitness
             
+            # PRIORITY 1: Check early termination condition FIRST
+            if max_fitness >= self.early_termination_fitness:
+                self.high_fitness_streak += 1
+                if self.high_fitness_streak >= self.high_fitness_streak_threshold:
+                    self.early_terminated = True
+                    self.termination_reason = f"Early termination: fitness >={self.early_termination_fitness} for {self.high_fitness_streak} generations"
+                    print(f"\n{self.termination_reason}")
+                    break
+            else:
+                self.high_fitness_streak = 0
+            
+            # PRIORITY 2: Anti-stagnation measures (but NOT when close to early termination)
+            # Prevent anti-stagnation interference when we're close to early termination
+            near_termination_threshold = self.high_fitness_streak_threshold - 15  
+            should_apply_anti_stagnation = (
+                max_fitness > 0 and max_fitness < self.early_termination_fitness and
+                (self.stagnation_counter >= self.stagnation_threshold or diversity < self.diversity_threshold)
+            )
+            
             # Anti-stagnation: Adaptive mutation rate
             self.mutation_rate = self.adaptive_mutation_rate(diversity)
             
-            # Anti-stagnation: Population restart if severely stagnant
-            if (max_fitness > 0 and 
-                (self.stagnation_counter >= self.stagnation_threshold or diversity < self.diversity_threshold)):
+            # Anti-stagnation: Population restart if severely stagnant (but not near termination)
+            if should_apply_anti_stagnation:
                 try:
                     self.restart_population(fitness_scores)
                     self.stagnation_counter = 0
@@ -619,17 +637,6 @@ class RNAFoldingEA:
                     print(f"Warning: Population restart failed: {e}, continuing with current population")
                     self.stagnation_counter = 0
             
-            # Check early termination condition
-            if max_fitness >= self.early_termination_fitness:
-                self.high_fitness_streak += 1
-                if self.high_fitness_streak >= self.high_fitness_streak_threshold:
-                    self.early_terminated = True
-                    self.termination_reason = f"Early termination: fitness >={self.early_termination_fitness} for {self.high_fitness_streak} generations"
-                    print(f"\n{self.termination_reason}")
-                    break
-            else:
-                self.high_fitness_streak = 0
-            
             # Call external callbacks (e.g., wandb logging, progress monitoring)
             for callback in self.callbacks:
                 try:
@@ -644,9 +651,8 @@ class RNAFoldingEA:
             
             # Create next generation
             new_population = []
-            
+
             # Anti-stagnation: Dynamic elitism (reduce when stagnating)
-            # Anti-stagnation: Much more aggressive dynamic elitism
             current_elite_percentage = self.elite_percentage
             if self.stagnation_counter > 20:
                 current_elite_percentage = 0.01  # Keep only 1% when severely stuck
@@ -656,50 +662,64 @@ class RNAFoldingEA:
                 current_elite_percentage = max(0.03, self.elite_percentage / 3)
             elif self.stagnation_counter > 5:
                 current_elite_percentage = max(0.05, self.elite_percentage / 2)
-                
+
             elite_count = max(1, int(self.population_size * current_elite_percentage))
+
+            # MODIFIED: Elite-biased selection instead of direct copying
+            # Create a selection pool with higher probability for elites
             elite_indices = sorted(range(len(fitness_scores)), key=lambda i: fitness_scores[i], reverse=True)[:elite_count]
+            elite_bias_pool = []
+
+            # Add elites multiple times to increase their selection probability
             for idx in elite_indices:
-                new_population.append(self.population[idx])
-            
-            # Generate rest with diversity-aware selection when stagnating
+                elite_bias_pool.extend([self.population[idx]] * 3)  # 3x selection probability
+
+            # Add rest of population once
+            for i, individual in enumerate(self.population):
+                if i not in elite_indices:
+                    elite_bias_pool.append(individual)
+
+            # Now generate offspring using elite-biased selection
             while len(new_population) < self.population_size:
                 try:
                     if random.random() < self.crossover_rate:
-                        # Use diversity-aware selection when stagnating
-                        if self.stagnation_counter > 5:
-                            parent1 = self.diversity_aware_selection(fitness_scores)
-                            parent2 = self.diversity_aware_selection(fitness_scores)
-                        else:
-                            parent1 = self.tournament_selection(fitness_scores)
-                            parent2 = self.tournament_selection(fitness_scores)
+                        # RANDOMIZED PARENT SELECTION with multiple strategies
+                        selection_strategy = random.random()
+                        
+                        if selection_strategy < 0.6:  # 60% - Elite-biased selection (current method)
+                            parent1 = random.choice(elite_bias_pool)
+                            parent2 = random.choice(elite_bias_pool)
+                          
+                        else:  # 40% - Completely random selection (pure exploration)
+                            parent1 = random.choice(self.population)
+                            parent2 = random.choice(self.population)
                         
                         child1, child2 = self.two_point_crossover(parent1, parent2)
                         
-                        # Mutation with adaptive rate
+                        # Apply mutation to ALL offspring (including elite-derived)
                         child1 = self.mutate(child1)
                         child2 = self.mutate(child2)
                         
                         new_population.extend([child1, child2])
+                        
                     else:
-                        # Just mutation with diversity-aware selection
-                        if self.stagnation_counter > 5:
-                            parent = self.diversity_aware_selection(fitness_scores)
-                        else:
-                            parent = self.tournament_selection(fitness_scores)
+                        # RANDOMIZED MUTATION-ONLY PARENT SELECTION
+                        mutation_strategy = random.random()
+
+                        if mutation_strategy < 0.6:  # 60% - Elite-biased
+                            parent = random.choice(elite_bias_pool)
+                        else:  # 40% - Random
+                            parent = random.choice(self.population)
+                        
                         child = self.mutate(parent)
                         new_population.append(child)
                         
                 except Exception as e:
                     print(f"Warning: Error during offspring generation: {e}, using fallback")
-                    # Emergency fallback - add a random sequence
                     new_population.append(self.generate_random_sequence())
-            
-            # Trim to exact population size with safety check
-            if len(new_population) > self.population_size:
-                self.population = new_population[:self.population_size]
-            else:
-                self.population = new_population
+
+            # Trim to exact population size
+            self.population = new_population[:self.population_size]
         
         if self.early_terminated:
             print(f"\nEvolution terminated early!")
