@@ -74,8 +74,8 @@ EXPERIMENTS:
 
   # NYQUIST - AMD Ryzen 5 3600 (12 threads) - BALANCED PERFORMANCE CONFIGURATION
   # Moderate populations optimized for multi-threaded efficiency
-  - NAME: nyquist_pop_250_gen_1000_mut_010
-    POPULATION_SIZE: 250
+  - NAME: nyquist_pop_300_gen_1000_mut_010
+    POPULATION_SIZE: 300
     GENERATIONS: 1000
     CROSSOVER_RATE: 0.8
     MUTATION_RATE: 0.01
