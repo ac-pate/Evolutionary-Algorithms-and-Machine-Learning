@@ -54,8 +54,8 @@ class RNAFoldingEA:
         self.stagnation_counter = 0
         self.last_best_fitness = 0.0
         
-        self.diversity_threshold = 0.3  # Minimum diversity to maintain
-        self.restart_rate = 0.3  # Percentage of population to restart
+        self.diversity_threshold = 0.2  # Minimum diversity to maintain
+        self.restart_rate = 0.4  # Percentage of population to restart
         self.base_mutation_rate = self.mutation_rate  # Store original rate
         self.mutation_boost_factor = 3.0  # Boost factor when stagnant
         
@@ -672,7 +672,7 @@ class RNAFoldingEA:
 
             # Add elites multiple times to increase their selection probability
             for idx in elite_indices:
-                elite_bias_pool.extend([self.population[idx]] * 8)  # 8x selection probability
+                elite_bias_pool.extend([self.population[idx]] * 3)  # 3x selection probability
 
             # Add rest of population once
             for i, individual in enumerate(self.population):
@@ -683,9 +683,16 @@ class RNAFoldingEA:
             while len(new_population) < self.population_size:
                 try:
                     if random.random() < self.crossover_rate:
-                        # Select parents from elite-biased pool
-                        parent1 = random.choice(elite_bias_pool)
-                        parent2 = random.choice(elite_bias_pool)
+                        # RANDOMIZED PARENT SELECTION with multiple strategies
+                        selection_strategy = random.random()
+                        
+                        if selection_strategy < 0.6:  # 60% - Elite-biased selection (current method)
+                            parent1 = random.choice(elite_bias_pool)
+                            parent2 = random.choice(elite_bias_pool)
+                          
+                        else:  # 40% - Completely random selection (pure exploration)
+                            parent1 = random.choice(self.population)
+                            parent2 = random.choice(self.population)
                         
                         child1, child2 = self.two_point_crossover(parent1, parent2)
                         
@@ -694,9 +701,16 @@ class RNAFoldingEA:
                         child2 = self.mutate(child2)
                         
                         new_population.extend([child1, child2])
+                        
                     else:
-                        # Just mutation
-                        parent = random.choice(elite_bias_pool)
+                        # RANDOMIZED MUTATION-ONLY PARENT SELECTION
+                        mutation_strategy = random.random()
+
+                        if mutation_strategy < 0.6:  # 60% - Elite-biased
+                            parent = random.choice(elite_bias_pool)
+                        else:  # 40% - Random
+                            parent = random.choice(self.population)
+                        
                         child = self.mutate(parent)
                         new_population.append(child)
                         
