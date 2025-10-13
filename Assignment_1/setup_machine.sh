@@ -31,24 +31,17 @@ echo "Trying system packages first..."
 sudo apt install -y python3-numpy python3-matplotlib python3-seaborn python3-pandas python3-yaml
 
 # Check if packages are available, if not use pip with virtual environment
-if ! python3 -c "import numpy, matplotlib, seaborn, pandas, yaml" 2>/dev/null; then
-    echo "System packages not sufficient, setting up virtual environment..."
-    sudo apt install -y python3-venv python3-full
-    
-    if [ ! -d "venv" ]; then
-        python3 -m venv venv
-    fi
-    
-    source venv/bin/activate
-    pip install -r requirements.txt
-    deactivate
-    
-    echo "Virtual environment created. Use 'source venv/bin/activate' before running experiments."
-else
-    echo "Installing wandb via pip (not available in system packages)..."
-    pip3 install wandb weave --user
-    echo "✓ All Python dependencies installed"
+
+
+sudo apt install -y python3-venv python3-full
+
+if [ ! -d "venv" ]; then
+    python3 -m venv venv
 fi
+
+source venv/bin/activate
+pip install -r requirements.txt
+deactivate
 
 # Clone IPknot and build Docker image
 echo "Setting up IPknot..."
@@ -185,3 +178,7 @@ else
     echo "After fixing issues, test your setup with:"
     echo "python3 test_setup.py"
 fi
+echo "Virtual environment created. Use 'source venv/bin/activate' before running experiments."
+
+python3 -m venv venv
+source venv/bin/activate
