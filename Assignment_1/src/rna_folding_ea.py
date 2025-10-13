@@ -54,7 +54,7 @@ class RNAFoldingEA:
         self.stagnation_counter = 0
         self.last_best_fitness = 0.0
         
-        self.diversity_threshold = 0.1  # Minimum diversity to maintain
+        self.diversity_threshold = 0.3  # Minimum diversity to maintain
         self.restart_rate = 0.3  # Percentage of population to restart
         self.base_mutation_rate = self.mutation_rate  # Store original rate
         self.mutation_boost_factor = 3.0  # Boost factor when stagnant
