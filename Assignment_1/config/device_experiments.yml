@@ -45,6 +45,14 @@ EXPERIMENTS:
     MUTATION_RATE: 0.012
     TOURNAMENT_SIZE: 4
 
+  - NAME: odin_1000_individuals
+    POPULATION_SIZE: 100
+    GENERATIONS: 20
+    CROSSOVER_RATE: 0.8
+    MUTATION_RATE: 0.5
+    TOURNAMENT_SIZE: 50
+
+
   # NYQUIST - AMD Ryzen 5 3600 (12 threads) - BALANCED PERFORMANCE CONFIGURATION
   # Moderate populations optimized for multi-threaded efficiency
   - NAME: nyquist_standard_protocol
