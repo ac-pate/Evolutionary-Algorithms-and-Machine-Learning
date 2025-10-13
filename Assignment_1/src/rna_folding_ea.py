@@ -46,7 +46,7 @@ class RNAFoldingEA:
         
         # Early termination settings
         self.early_termination_fitness = 0.95
-        self.high_fitness_streak_threshold = 25
+        self.high_fitness_streak_threshold = 10
         self.high_fitness_streak = 0
         
         # Anti-stagnation settings (using existing pattern)
@@ -55,7 +55,7 @@ class RNAFoldingEA:
         self.last_best_fitness = 0.0
         
         self.diversity_threshold = 0.2  # Minimum diversity to maintain
-        self.restart_rate = 0.4  # Percentage of population to restart
+        self.restart_rate = 0.3  # Percentage of population to restart
         self.base_mutation_rate = self.mutation_rate  # Store original rate
         self.mutation_boost_factor = 3.0  # Boost factor when stagnant
         
@@ -672,7 +672,7 @@ class RNAFoldingEA:
 
             # Add elites multiple times to increase their selection probability
             for idx in elite_indices:
-                elite_bias_pool.extend([self.population[idx]] * 3)  # 3x selection probability
+                elite_bias_pool.extend([self.population[idx]] * 8)  # 8x selection probability
 
             # Add rest of population once
             for i, individual in enumerate(self.population):
@@ -685,12 +685,12 @@ class RNAFoldingEA:
                     if random.random() < self.crossover_rate:
                         # RANDOMIZED PARENT SELECTION with multiple strategies
                         selection_strategy = random.random()
-                        
-                        if selection_strategy < 0.6:  # 60% - Elite-biased selection (current method)
+
+                        if selection_strategy < 0.8:  # 80% - Elite-biased selection (current method)
                             parent1 = random.choice(elite_bias_pool)
                             parent2 = random.choice(elite_bias_pool)
-                          
-                        else:  # 40% - Completely random selection (pure exploration)
+
+                        else:  # 20% - Completely random selection (pure exploration)
                             parent1 = random.choice(self.population)
                             parent2 = random.choice(self.population)
                         
@@ -706,9 +706,9 @@ class RNAFoldingEA:
                         # RANDOMIZED MUTATION-ONLY PARENT SELECTION
                         mutation_strategy = random.random()
 
-                        if mutation_strategy < 0.6:  # 60% - Elite-biased
+                        if mutation_strategy < 0.8:  # 80% - Elite-biased
                             parent = random.choice(elite_bias_pool)
-                        else:  # 40% - Random
+                        else:  # 20% - Random
                             parent = random.choice(self.population)
                         
                         child = self.mutate(parent)
