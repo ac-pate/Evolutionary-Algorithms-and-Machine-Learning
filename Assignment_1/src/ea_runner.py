@@ -54,7 +54,7 @@ def initialize_wandb(experiment_name, device, config, problem_id, run_number=1, 
     Returns:
         wandb.run or None: wandb run object if initialized, None otherwise
     """
-    if not WANDB_AVAILABLE or not enable_wandb:
+    if not enable_wandb:
         return None
     
     try:

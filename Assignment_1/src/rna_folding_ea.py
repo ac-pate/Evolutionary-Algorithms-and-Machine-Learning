@@ -49,6 +49,16 @@ class RNAFoldingEA:
         self.high_fitness_streak_threshold = 25
         self.high_fitness_streak = 0
         
+        # Anti-stagnation settings (using existing pattern)
+        self.stagnation_threshold = 15  # Generations without improvement
+        self.stagnation_counter = 0
+        self.last_best_fitness = 0.0
+        
+        self.diversity_threshold = 0.1  # Minimum diversity to maintain
+        self.restart_rate = 0.3  # Percentage of population to restart
+        self.base_mutation_rate = self.mutation_rate  # Store original rate
+        self.mutation_boost_factor = 3.0  # Boost factor when stagnant
+        
         # iupac code mapping for constraint validation
         self.iupac_codes = {
             'N': ['A', 'U', 'C', 'G'],  # any nucleotide
@@ -248,10 +258,35 @@ class RNAFoldingEA:
         Returns:
             str: Selected parent sequence
         """
-        tournament_indices = random.sample(range(len(self.population)), self.tournament_size)
-        tournament_fitness = [fitness_scores[i] for i in tournament_indices]
-        winner_index = tournament_indices[tournament_fitness.index(max(tournament_fitness))]
-        return self.population[winner_index]
+        try:
+            # Validate inputs
+            if len(self.population) == 0 or len(fitness_scores) == 0:
+                raise ValueError("Empty population or fitness scores")
+            
+            if len(self.population) != len(fitness_scores):
+                raise ValueError(f"Population size ({len(self.population)}) != fitness scores size ({len(fitness_scores)})")
+            
+            # Ensure tournament size doesn't exceed population size
+            actual_tournament_size = min(self.tournament_size, len(self.population))
+            
+            tournament_indices = random.sample(range(len(self.population)), actual_tournament_size)
+            tournament_fitness = [fitness_scores[i] for i in tournament_indices]
+            winner_index = tournament_indices[tournament_fitness.index(max(tournament_fitness))]
+            
+            # Validate winner index
+            if 0 <= winner_index < len(self.population):
+                return self.population[winner_index]
+            else:
+                raise IndexError(f"Winner index {winner_index} out of bounds for population size {len(self.population)}")
+                
+        except Exception as e:
+            print(f"Warning: Tournament selection failed: {e}, using fallback")
+            # Safe fallback - return a random individual
+            if len(self.population) > 0:
+                return random.choice(self.population)
+            else:
+                # Emergency fallback - generate new sequence
+                return self.generate_random_sequence()
     
     def two_point_crossover(self, parent1, parent2):
         """
@@ -333,6 +368,7 @@ class RNAFoldingEA:
     def calculate_diversity(self, sequences):
         """
         Calculate average normalized Hamming distance for diversity measurement
+        PARALLELIZED VERSION - much faster than O(N²) single-threaded
         
         Args:
             sequences (list): List of sequences
@@ -343,17 +379,174 @@ class RNAFoldingEA:
         if len(sequences) < 2:
             return 0.0
         
-        total_distance = 0.0
-        comparisons = 0
+        def calculate_distances_chunk(chunk_indices):
+            """Calculate distances for a chunk of sequence pairs"""
+            total_distance = 0.0
+            comparisons = 0
+            
+            for i in chunk_indices:
+                if i >= len(sequences):  # Safety check
+                    continue
+                for j in range(i + 1, len(sequences)):
+                    if j >= len(sequences):  # Safety check
+                        continue
+                    hamming_dist = sum(1 for a, b in zip(sequences[i], sequences[j]) if a != b)
+                    normalized_dist = hamming_dist / len(sequences[i])
+                    total_distance += normalized_dist
+                    comparisons += 1
+            
+            return total_distance, comparisons
         
-        for i in range(len(sequences)):
-            for j in range(i + 1, len(sequences)):
-                hamming_dist = sum(1 for a, b in zip(sequences[i], sequences[j]) if a != b)
-                normalized_dist = hamming_dist / len(sequences[i])
-                total_distance += normalized_dist
-                comparisons += 1
+        # Split work into chunks for parallel processing - Fixed chunking
+        num_sequences = len(sequences)
+        chunk_size = max(1, num_sequences // self.max_workers)
+        chunks = []
         
-        return total_distance / comparisons if comparisons > 0 else 0.0
+        for i in range(0, num_sequences, chunk_size):
+            chunk_end = min(i + chunk_size, num_sequences)
+            chunk_indices = list(range(i, chunk_end))
+            if chunk_indices:  # Only add non-empty chunks
+                chunks.append(chunk_indices)
+        
+        if not chunks:  # Fallback for edge cases
+            return 0.0
+        
+        # Process chunks in parallel
+        with ThreadPoolExecutor(max_workers=min(self.max_workers, len(chunks))) as executor:
+            results = list(executor.map(calculate_distances_chunk, chunks))
+        
+        # Combine results
+        total_distance = sum(result[0] for result in results)
+        total_comparisons = sum(result[1] for result in results)
+        
+        return total_distance / total_comparisons if total_comparisons > 0 else 0.0
+    
+    def adaptive_mutation_rate(self, diversity):
+        """
+        Adapt mutation rate based on stagnation and diversity
+        
+        Args:
+            diversity (float): Current population diversity
+            
+        Returns:
+            float: Adjusted mutation rate
+        """
+        mutation_rate = self.base_mutation_rate
+        
+        # Increase mutation if stagnating
+        if self.stagnation_counter > self.stagnation_threshold // 2:
+            mutation_rate *= self.mutation_boost_factor
+        
+        # Increase mutation if diversity is too low
+        if diversity < self.diversity_threshold:
+            mutation_rate *= 2.0
+        
+        # Cap mutation rate to prevent chaos
+        return min(mutation_rate, 0.1)
+    
+    def diversity_aware_selection(self, fitness_scores):
+        """
+        Lightweight selection that adds randomness when stagnating
+        Much faster than calculating diversity for every parent selection
+        
+        Args:
+            fitness_scores (list): Fitness scores for population
+            
+        Returns:
+            str: Selected parent sequence
+        """
+        try:
+            # Validate inputs
+            if len(self.population) == 0:
+                return self.generate_random_sequence()
+            
+            # When not stagnating, use normal tournament selection
+            if self.stagnation_counter <= 5:
+                return self.tournament_selection(fitness_scores)
+            
+            # When stagnating, add some randomness to encourage diversity
+            # 30% random selection to inject diversity, 70% tournament selection
+            if random.random() < 0.3:
+                # Random selection for diversity
+                return random.choice(self.population)
+            else:
+                # Tournament selection for quality
+                return self.tournament_selection(fitness_scores)
+                
+        except Exception as e:
+            print(f"Warning: Diversity-aware selection failed: {e}, using fallback")
+            # Safe fallback
+            if len(self.population) > 0:
+                return random.choice(self.population)
+            else:
+                return self.generate_random_sequence()
+    
+    def restart_population(self, fitness_scores):
+        """
+        Restart portion of population when stagnating
+        PARALLELIZED VERSION - generates new sequences in parallel
+        
+        Args:
+            fitness_scores (list): Current fitness scores
+        """
+        if len(fitness_scores) != len(self.population):
+            print("Warning: Fitness scores and population size mismatch, skipping restart")
+            return
+            
+        num_to_restart = int(self.population_size * self.restart_rate)
+        if num_to_restart <= 0:
+            return
+        
+        # Keep the best individuals
+        elite_indices = sorted(range(len(fitness_scores)), 
+                              key=lambda i: fitness_scores[i], reverse=True)
+        keep_indices = set(elite_indices[:self.population_size - num_to_restart])
+        
+        # Generate new random individuals in parallel
+        def generate_sequences_chunk(count):
+            """Generate multiple random sequences"""
+            return [self.generate_random_sequence() for _ in range(count)]
+        
+        # Parallel generation of new sequences - Fixed chunking
+        if num_to_restart <= self.max_workers:
+            # If few sequences to generate, just do it directly
+            new_sequences = [self.generate_random_sequence() for _ in range(num_to_restart)]
+        else:
+            # Split into chunks for parallel generation
+            chunk_size = max(1, num_to_restart // self.max_workers)
+            chunks = []
+            remaining = num_to_restart
+            
+            while remaining > 0:
+                chunk = min(chunk_size, remaining)
+                chunks.append(chunk)
+                remaining -= chunk
+            
+            with ThreadPoolExecutor(max_workers=min(self.max_workers, len(chunks))) as executor:
+                new_sequences_chunks = list(executor.map(generate_sequences_chunk, chunks))
+            
+            # Flatten the results
+            new_sequences = [seq for chunk in new_sequences_chunks for seq in chunk]
+        
+        # Ensure we have exactly the right number of new sequences
+        new_sequences = new_sequences[:num_to_restart]
+        
+        # Build new population
+        new_population = []
+        new_seq_index = 0
+        for i in range(self.population_size):
+            if i in keep_indices and i < len(self.population):
+                new_population.append(self.population[i])
+            elif new_seq_index < len(new_sequences):
+                new_population.append(new_sequences[new_seq_index])
+                new_seq_index += 1
+            else:
+                # Fallback: generate a new sequence
+                new_population.append(self.generate_random_sequence())
+        
+        # Ensure population is exactly the right size
+        self.population = new_population[:self.population_size]
+        print(f"Anti-stagnation: Restarted {num_to_restart} individuals (parallelized)")
     
     def get_best_individuals(self):
         """
@@ -386,8 +579,45 @@ class RNAFoldingEA:
             avg_fitness = sum(fitness_scores) / len(fitness_scores)
             self.fitness_history.append((generation, max_fitness, avg_fitness))
             
-            # Calculate diversity
-            diversity = self.calculate_diversity(self.population)
+            # Calculate diversity with error handling
+            try:
+                diversity = self.calculate_diversity(self.population)
+            except Exception as e:
+                print(f"Warning: Diversity calculation failed: {e}, using fallback")
+                diversity = 0.0
+            
+            # Anti-stagnation: Check for stagnation
+            if max_fitness <= self.last_best_fitness + 1e-6:  # No significant improvement
+                self.stagnation_counter += 1
+            else:
+                self.stagnation_counter = 0
+                self.last_best_fitness = max_fitness
+            
+            # Anti-stagnation: Adaptive mutation rate
+            self.mutation_rate = self.adaptive_mutation_rate(diversity)
+            
+            # Anti-stagnation: Population restart if severely stagnant
+            if (self.stagnation_counter >= self.stagnation_threshold and 
+                diversity < self.diversity_threshold):
+                try:
+                    self.restart_population(fitness_scores)
+                    self.stagnation_counter = 0
+                    # Reset baseline after restart to prevent immediate re-triggering
+                    self.last_best_fitness = 0.0
+                    # Re-evaluate after restart
+                    fitness_scores = self.evaluate_fitness(self.population)
+                    max_fitness = max(fitness_scores)
+                    avg_fitness = sum(fitness_scores) / len(fitness_scores)
+                    # Update baseline to new best after restart
+                    self.last_best_fitness = max_fitness
+                    try:
+                        diversity = self.calculate_diversity(self.population)
+                    except Exception as e:
+                        print(f"Warning: Post-restart diversity calculation failed: {e}")
+                        diversity = 0.0
+                except Exception as e:
+                    print(f"Warning: Population restart failed: {e}, continuing with current population")
+                    self.stagnation_counter = 0
             
             # Check early termination condition
             if max_fitness >= self.early_termination_fitness:
@@ -415,32 +645,54 @@ class RNAFoldingEA:
             # Create next generation
             new_population = []
             
-            # Elitism: Keep best individuals (using configurable elite percentage)
-            elite_indices = sorted(range(len(fitness_scores)), key=lambda i: fitness_scores[i], reverse=True)[:self.elitism_count]
+            # Anti-stagnation: Dynamic elitism (reduce when stagnating)
+            current_elite_percentage = self.elite_percentage
+            if self.stagnation_counter > 10:
+                current_elite_percentage = max(0.05, self.elite_percentage / 2)
+                
+            elite_count = max(1, int(self.population_size * current_elite_percentage))
+            elite_indices = sorted(range(len(fitness_scores)), key=lambda i: fitness_scores[i], reverse=True)[:elite_count]
             for idx in elite_indices:
                 new_population.append(self.population[idx])
             
-            # Generate rest of population through crossover and mutation
+            # Generate rest with diversity-aware selection when stagnating
             while len(new_population) < self.population_size:
-                if random.random() < self.crossover_rate:
-                    # Crossover
-                    parent1 = self.tournament_selection(fitness_scores)
-                    parent2 = self.tournament_selection(fitness_scores)
-                    child1, child2 = self.two_point_crossover(parent1, parent2)
-                    
-                    # Mutation
-                    child1 = self.mutate(child1)
-                    child2 = self.mutate(child2)
-                    
-                    new_population.extend([child1, child2])
-                else:
-                    # Just mutation
-                    parent = self.tournament_selection(fitness_scores)
-                    child = self.mutate(parent)
-                    new_population.append(child)
+                try:
+                    if random.random() < self.crossover_rate:
+                        # Use diversity-aware selection when stagnating
+                        if self.stagnation_counter > 5:
+                            parent1 = self.diversity_aware_selection(fitness_scores)
+                            parent2 = self.diversity_aware_selection(fitness_scores)
+                        else:
+                            parent1 = self.tournament_selection(fitness_scores)
+                            parent2 = self.tournament_selection(fitness_scores)
+                        
+                        child1, child2 = self.two_point_crossover(parent1, parent2)
+                        
+                        # Mutation with adaptive rate
+                        child1 = self.mutate(child1)
+                        child2 = self.mutate(child2)
+                        
+                        new_population.extend([child1, child2])
+                    else:
+                        # Just mutation with diversity-aware selection
+                        if self.stagnation_counter > 5:
+                            parent = self.diversity_aware_selection(fitness_scores)
+                        else:
+                            parent = self.tournament_selection(fitness_scores)
+                        child = self.mutate(parent)
+                        new_population.append(child)
+                        
+                except Exception as e:
+                    print(f"Warning: Error during offspring generation: {e}, using fallback")
+                    # Emergency fallback - add a random sequence
+                    new_population.append(self.generate_random_sequence())
             
-            # Trim to exact population size
-            self.population = new_population[:self.population_size]
+            # Trim to exact population size with safety check
+            if len(new_population) > self.population_size:
+                self.population = new_population[:self.population_size]
+            else:
+                self.population = new_population
         
         if self.early_terminated:
             print(f"\nEvolution terminated early!")

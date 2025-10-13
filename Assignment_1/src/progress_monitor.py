@@ -53,12 +53,11 @@ class SimpleProgressMonitor:
         
         # enhanced console output
         diversity_str = f", Diversity: {diversity:.4f}" if diversity is not None else ""
+        streak_display = f" ({streak_info})" if streak_info else ""
         
         print(f"Gen {generation+1:3d}/{max_generations} ({progress:5.1f}%) | "
-              f"Best: {max_fitness:.4f}, Avg: {avg_fitness:.4f}{diversity_str}  "
-              f"(streak: {streak_info}) | "
-              f"Time: {elapsed/60:.1f}min, {eta_str}"
-              )
+              f"Best: {max_fitness:.4f}, Avg: {avg_fitness:.4f}{diversity_str}{streak_display} | "
+              f"Time: {elapsed/60:.1f}min, {eta_str}")
         
         # Show milestone achievements
         if max_fitness > 0.9 and len(self.best_fitness_progress) > 1 and self.best_fitness_progress[-2] <= 0.9:
@@ -106,10 +105,20 @@ def add_progress_monitoring(ea_instance):
     def monitoring_callback(generation, max_fitness, avg_fitness, diversity):
         """Callback function for progress monitoring with streak info"""
         # Get streak info from the EA instance
-        streak_info = f" (streak: {ea_instance.high_fitness_streak})" if hasattr(ea_instance, 'high_fitness_streak') and ea_instance.high_fitness_streak > 0 else ea_instance.high_fitness_streak
+        streak_info = ea_instance.high_fitness_streak if hasattr(ea_instance, 'high_fitness_streak') else 0
+        stagnation_info = ea_instance.stagnation_counter if hasattr(ea_instance, 'stagnation_counter') else 0
+        
+        # Combine info for display
+        info_parts = []
+        if streak_info > 0:
+            info_parts.append(f"streak: {streak_info}")
+        if stagnation_info > 5:
+            info_parts.append(f"stagnant: {stagnation_info}")
+        
+        combined_info = ", ".join(info_parts) if info_parts else ""
         
         ea_instance.progress_monitor.log_generation(
-            generation, ea_instance.generations, max_fitness, avg_fitness, diversity, streak_info
+            generation, ea_instance.generations, max_fitness, avg_fitness, diversity, combined_info
         )
     
     # Add the monitoring callback to the EA
