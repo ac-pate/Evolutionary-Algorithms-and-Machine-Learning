@@ -46,7 +46,7 @@ class RNAFoldingEA:
         
         # Early termination settings
         self.early_termination_fitness = 0.95
-        self.high_fitness_streak_threshold = 10
+        self.high_fitness_streak_threshold = 5
         self.high_fitness_streak = 0
         
         # Anti-stagnation settings (using existing pattern)
