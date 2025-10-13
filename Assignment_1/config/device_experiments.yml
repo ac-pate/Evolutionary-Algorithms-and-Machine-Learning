@@ -1,0 +1,80 @@
+EXPERIMENTS:
+  # ODIN - AMD Ryzen 9 9950X (32 threads) - POWERHOUSE CONFIGURATION
+  # Highest population sizes and generations for maximum exploration
+  - NAME: odin_high_intensity
+    POPULATION_SIZE: 500
+    GENERATIONS: 150
+    CROSSOVER_RATE: 0.8
+    MUTATION_RATE: 0.008
+    TOURNAMENT_SIZE: 5
+    SEQUENCE_CONSTRAINT: "GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYCNMNSCKCNCNCKUKKSWSAACSSSAMCN"
+    STRUCTURE_CONSTRAINT: "((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]..."
+
+  - NAME: odin_diversity_focus
+    POPULATION_SIZE: 400
+    GENERATIONS: 200
+    CROSSOVER_RATE: 0.75
+    MUTATION_RATE: 0.012
+    TOURNAMENT_SIZE: 4
+    SEQUENCE_CONSTRAINT: "UUAWUARWUAMAGSGCSNNUSNANWRUACNNMWAUAGNUAUNNAGUAUYAAAAGUNANRNURGUNNARSYUUUAURGAKAAYGNUUUGGRUNYUGUNGMCRNGGWNNRKAKWGAUCKMAYCAGAUCKRCGNAKGCURUNCSSSAUGYGRCACMUNCGNYRGCUUMUUAWGWARWKCAWURAGGUNACNUMRWGKMCNWRGWUWWUAAGAUCGCNAAAY"
+    STRUCTURE_CONSTRAINT: "...................((((((((..((((((.((((((......((((((((..........))))))))..)))))).))))))))))))))........((((((([[[((......]]]..))...)))))))((((((.[[[.))))))....((((((((.....((((((((....))))))))......))))))))...]]]....."
+
+  # NYQUIST - AMD Ryzen 5 3600 (12 threads) - BALANCED CONFIGURATION
+  # Medium-high population for good performance with available threads
+  - NAME: nyquist_balanced
+    POPULATION_SIZE: 250
+    GENERATIONS: 120
+    CROSSOVER_RATE: 0.8
+    MUTATION_RATE: 0.01
+    TOURNAMENT_SIZE: 4
+    SEQUENCE_CONSTRAINT: "GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYCNMNSCKCNCNCKUKKSWSAACSSSAMCN"
+    STRUCTURE_CONSTRAINT: "((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]..."
+
+  - NAME: nyquist_exploration
+    POPULATION_SIZE: 200
+    GENERATIONS: 150
+    CROSSOVER_RATE: 0.85
+    MUTATION_RATE: 0.015
+    TOURNAMENT_SIZE: 3
+    SEQUENCE_CONSTRAINT: "ARUUSNMUAGWAGCGCCNRMNNURRUUGGGNCRRAAAUNMNKNRNRNNSMANWCSCKSNAANGUMUCSAUYNKUKKACKMGGRNGAGRYYWAUCSAAGUUNNGSCSGRAGNYUYCCKGNYNKKNAUGCANYCKUKAARYNUUAMUYNCRANUYAYYUGGGNNAYCMWGNGGNCWNANNNGWAAUSAARMRUSCYY"
+    STRUCTURE_CONSTRAINT: "..............[[...((((((((((........(((((..(((.......)))...)))))))))))))))........(((((((...(((....)))]]...)))))))(((((((....)))))))..................((((((((....))))))))........................"
+
+  # LAPTOP - HP Spectre Intel i7-1260P (12 threads) - EFFICIENT CONFIGURATION 
+  # Optimized for laptop power management and thermal constraints
+  - NAME: laptop_efficient
+    POPULATION_SIZE: 150
+    GENERATIONS: 100
+    CROSSOVER_RATE: 0.75
+    MUTATION_RATE: 0.012
+    TOURNAMENT_SIZE: 3
+    SEQUENCE_CONSTRAINT: "GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYCNMNSCKCNCNCKUKKSWSAACSSSAMCN"
+    STRUCTURE_CONSTRAINT: "((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]..."
+
+  - NAME: laptop_focused
+    POPULATION_SIZE: 120
+    GENERATIONS: 130
+    CROSSOVER_RATE: 0.8
+    MUTATION_RATE: 0.018
+    TOURNAMENT_SIZE: 4
+    SEQUENCE_CONSTRAINT: "UUAWUARWUAMAGSGCSNNUSNANWRUACNNMWAUAGNUAUNNAGUAUYAAAAGUNANRNURGUNNARSYUUUAURGAKAAYGNUUUGGRUNYUGUNGMCRNGGWNNRKAKWGAUCKMAYCAGAUCKRCGNAKGCURUNCSSSAUGYGRCACMUNCGNYRGCUUMUUAWGWARWKCAWURAGGUNACNUMRWGKMCNWRGWUWWUAAGAUCGCNAAAY"
+    STRUCTURE_CONSTRAINT: "...................((((((((..((((((.((((((......((((((((..........))))))))..)))))).))))))))))))))........((((((([[[((......]]]..))...)))))))((((((.[[[.))))))....((((((((.....((((((((....))))))))......))))))))...]]]....."
+
+  # MINI-PC - Dell OptiPlex 7050 (estimated 8 threads) - CONSERVATIVE CONFIGURATION
+  # Smaller populations but longer runs for thorough search
+  - NAME: minipc_conservative
+    POPULATION_SIZE: 100
+    GENERATIONS: 120
+    CROSSOVER_RATE: 0.7
+    MUTATION_RATE: 0.015
+    TOURNAMENT_SIZE: 3
+    SEQUENCE_CONSTRAINT: "GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYCNMNSCKCNCNCKUKKSWSAACSSSAMCN"
+    STRUCTURE_CONSTRAINT: "((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]..."
+
+  - NAME: minipc_thorough
+    POPULATION_SIZE: 80
+    GENERATIONS: 160
+    CROSSOVER_RATE: 0.75
+    MUTATION_RATE: 0.02
+    TOURNAMENT_SIZE: 2
+    SEQUENCE_CONSTRAINT: "ARUUSNMUAGWAGCGCCNRMNNURRUUGGGNCRRAAAUNMNKNRNRNNSMANWCSCKSNAANGUMUCSAUYNKUKKACKMGGRNGAGRYYWAUCSAAGUUNNGSCSGRAGNYUYCCKGNYNKKNAUGCANYCKUKAARYNUUAMUYNCRANUYAYYUGGGNNAYCMWGNGGNCWNANNNGWAAUSAARMRUSCYY"
+    STRUCTURE_CONSTRAINT: "..............[[...((((((((((........(((((..(((.......)))...)))))))))))))))........(((((((...(((....)))]]...)))))))(((((((....)))))))..................((((((((....))))))))........................"
