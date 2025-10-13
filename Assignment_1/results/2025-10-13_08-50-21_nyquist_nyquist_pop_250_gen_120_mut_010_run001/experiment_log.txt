@@ -1,0 +1,15 @@
+RNA Folding EA Experiment Log
+Experiment: nyquist_pop_250_gen_120_mut_010 (Run #1)
+Device: nyquist
+Started: 2025-10-13 08:50:21
+Parameters: Pop=200, Gen=120
+Problems: 2.1
+Wandb tracking: enabled
+================================================================================
+
+Starting Problem 2.1 at 08:50:21
+Structure: ...................((((((((..((((((.((((((......((...
+Sequence:  UUAWUARWUAMAGSGCSNNUSNANWRUACNNMWAUAGNUAUNNAGUAUYA...
+Completed Problem 2.1 at 09:51:11
+Best fitness: 0.0000, Runtime: 3648.24s
+

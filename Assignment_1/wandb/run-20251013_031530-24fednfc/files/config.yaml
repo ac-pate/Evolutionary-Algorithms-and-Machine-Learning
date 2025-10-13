@@ -1,0 +1,94 @@
+_wandb:
+    value:
+        cli_version: 0.22.2
+        e:
+            n8snm6hl9b4x05grj8jourtyd9wxeo16:
+                args:
+                    - config/device_experiments.yml
+                    - --device
+                    - nyquist
+                    - --constraint
+                    - "3.2"
+                    - --experiment
+                    - nyquist_adaptive_search
+                codePath: Assignment_1/src/ea_runner.py
+                codePathLocal: src/ea_runner.py
+                cpu_count: 6
+                cpu_count_logical: 12
+                disk:
+                    /:
+                        total: "232969940992"
+                        used: "118189588480"
+                email: achalypatel3403@gmail.com
+                executable: /home/orenda/miniconda3/bin/python3
+                git:
+                    commit: d073caa645af96744b6d86302ea7129980966e64
+                    remote: https://github.com/ac-pate/Evolutionary-Algorithms-and-Machine-Learning.git
+                host: nyquist
+                memory:
+                    total: "33573376000"
+                os: Linux-6.8.0-85-generic-x86_64-with-glibc2.35
+                program: /home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py
+                python: CPython 3.13.2
+                root: /home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1
+                startedAt: "2025-10-13T07:15:30.220566Z"
+                writerId: n8snm6hl9b4x05grj8jourtyd9wxeo16
+        m: []
+        python_version: 3.13.2
+        t:
+            "3":
+                - 2
+                - 13
+                - 15
+                - 16
+            "4": 3.13.2
+            "5": 0.22.2
+            "12": 0.22.2
+            "13": linux-x86_64
+algorithm:
+    value: evolutionary_algorithm
+assignment:
+    value: COEN432_Assignment1
+crossover_rate:
+    value: 0.85
+device:
+    value: nyquist
+device_workers:
+    value: 8
+experiment_name:
+    value: nyquist_adaptive_search
+generations:
+    value: 100
+max_workers:
+    value: 8
+mutation_rate:
+    value: 0.1
+population_size:
+    value: 200
+problem_3.2_crossover_rate:
+    value: 0.85
+problem_3.2_generations:
+    value: 100
+problem_3.2_mutation_rate:
+    value: 0.1
+problem_3.2_population_size:
+    value: 200
+problem_3.2_sequence_constraint:
+    value: NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+problem_3.2_sequence_length:
+    value: 195
+problem_3.2_structure_constraint:
+    value: '..............[[...((((((((((........(((((..(((.......)))...)))))))))))))))........(((((((...(((....)))]]...)))))))(((((((....)))))))..................((((((((....))))))))........................'
+problem_3.2_tournament_size:
+    value: 10
+problem_type:
+    value: inverse_rna_folding
+problems:
+    value:
+        - "3.2"
+problems_count:
+    value: 1
+run_number:
+    value: 1
+tournament_size:
+    value: 10

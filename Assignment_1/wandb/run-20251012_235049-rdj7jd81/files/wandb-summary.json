@@ -1,0 +1,1 @@
+{"problem_1.1/tournament_size":4,"problem_1.1/sequence_length":78,"_step":0,"_runtime":113,"problem_1.1/population_size":250,"problem_1.1/generations":120,"_timestamp":1.760327450317193e+09,"_wandb":{"runtime":113},"problem_1.1/crossover_rate":0.8,"problem_1.1/mutation_rate":0.01}

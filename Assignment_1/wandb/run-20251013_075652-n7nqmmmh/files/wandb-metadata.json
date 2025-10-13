@@ -1,0 +1,37 @@
+{
+  "os": "Linux-6.8.0-85-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.13.2",
+  "startedAt": "2025-10-13T11:56:52.702382Z",
+  "args": [
+    "config/device_experiments.yml",
+    "--device",
+    "nyquist",
+    "--constraint",
+    "3.2",
+    "--experiment",
+    "nyquist_pop_250_gen_120_mut_010"
+  ],
+  "program": "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py",
+  "codePath": "Assignment_1/src/ea_runner.py",
+  "codePathLocal": "src/ea_runner.py",
+  "git": {
+    "remote": "https://github.com/ac-pate/Evolutionary-Algorithms-and-Machine-Learning.git",
+    "commit": "93665f7de4c8b52f41fcf82f547d18c9f2bf38a0"
+  },
+  "email": "achalypatel3403@gmail.com",
+  "root": "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1",
+  "host": "nyquist",
+  "executable": "/home/orenda/miniconda3/bin/python3",
+  "cpu_count": 6,
+  "cpu_count_logical": 12,
+  "disk": {
+    "/": {
+      "total": "232969940992",
+      "used": "119424667648"
+    }
+  },
+  "memory": {
+    "total": "33573376000"
+  },
+  "writerId": "759nm90kx6x3s4q996tzawwb79y5atu7"
+}

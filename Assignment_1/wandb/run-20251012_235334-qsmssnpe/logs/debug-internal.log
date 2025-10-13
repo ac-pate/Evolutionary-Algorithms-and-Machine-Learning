@@ -1,0 +1,12 @@
+{"time":"2025-10-12T23:53:34.396848318-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-12T23:53:34.577729489-04:00","level":"INFO","msg":"stream: created new stream","id":"qsmssnpe"}
+{"time":"2025-10-12T23:53:34.577797988-04:00","level":"INFO","msg":"handler: started","stream_id":"qsmssnpe"}
+{"time":"2025-10-12T23:53:34.57795838-04:00","level":"INFO","msg":"stream: started","id":"qsmssnpe"}
+{"time":"2025-10-12T23:53:34.577985381-04:00","level":"INFO","msg":"writer: started","stream_id":"qsmssnpe"}
+{"time":"2025-10-12T23:53:34.577987074-04:00","level":"INFO","msg":"sender: started","stream_id":"qsmssnpe"}
+{"time":"2025-10-13T00:18:28.142126754-04:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading artifact experiment_results_nyquist_standard_protocol_run001","runtime_seconds":0.125976538},{"desc":"updating run metadata","runtime_seconds":0.001429902}],"total_operations":2}}
+{"time":"2025-10-13T00:18:28.927899824-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T00:18:29.014674027-04:00","level":"INFO","msg":"stream: closing","id":"qsmssnpe"}
+{"time":"2025-10-13T00:18:29.014693684-04:00","level":"INFO","msg":"handler: closed","stream_id":"qsmssnpe"}
+{"time":"2025-10-13T00:18:29.014790877-04:00","level":"INFO","msg":"sender: closed","stream_id":"qsmssnpe"}
+{"time":"2025-10-13T00:18:29.014806276-04:00","level":"INFO","msg":"stream: closed","id":"qsmssnpe"}

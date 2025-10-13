@@ -1,0 +1,78 @@
+_wandb:
+    value:
+        cli_version: 0.22.2
+        e:
+            901tvyehe8asvkucgmo589heguke5lmw:
+                args:
+                    - config/device_experiments.yml
+                    - --device
+                    - nyquist
+                    - --constraint
+                    - "3.2"
+                    - --experiment
+                    - nyquist_pop_250_gen_120_mut_010
+                codePath: Assignment_1/src/ea_runner.py
+                codePathLocal: src/ea_runner.py
+                cpu_count: 6
+                cpu_count_logical: 12
+                disk:
+                    /:
+                        total: "232969940992"
+                        used: "119078699008"
+                email: achalypatel3403@gmail.com
+                executable: /home/orenda/miniconda3/bin/python3
+                git:
+                    commit: 93665f7de4c8b52f41fcf82f547d18c9f2bf38a0
+                    remote: https://github.com/ac-pate/Evolutionary-Algorithms-and-Machine-Learning.git
+                host: nyquist
+                memory:
+                    total: "33573376000"
+                os: Linux-6.8.0-85-generic-x86_64-with-glibc2.35
+                program: /home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py
+                python: CPython 3.13.2
+                root: /home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1
+                startedAt: "2025-10-13T11:24:48.121291Z"
+                writerId: 901tvyehe8asvkucgmo589heguke5lmw
+        m: []
+        python_version: 3.13.2
+        t:
+            "3":
+                - 2
+                - 13
+                - 15
+                - 16
+                - 61
+            "4": 3.13.2
+            "5": 0.22.2
+            "12": 0.22.2
+            "13": linux-x86_64
+crossover_rate:
+    value: 0.8
+device:
+    value: nyquist
+early_termination_fitness:
+    value: 0.95
+elite_percentage:
+    value: 0.15
+experiment_name:
+    value: nyquist_pop_250_gen_120_mut_010
+generations:
+    value: 120
+high_fitness_streak_threshold:
+    value: 25
+mutation_rate:
+    value: 0.01
+population_size:
+    value: 200
+problem_id:
+    value: "3.2"
+run_number:
+    value: 1
+sequence_length:
+    value: 195
+structure_length:
+    value: 195
+timestamp:
+    value: "20251013_072448"
+tournament_size:
+    value: 4

@@ -1,0 +1,59 @@
+Wandb tracking initialized: https://wandb.ai/rna-folding-ea-ml/RNA-Folding-EA/runs/rdj7jd81
+
+============================================================
+Running Problem 1.1
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYC...
+============================================================
+Enhanced progress monitoring enabled
+Starting evolution: 250 individuals, 120 generations
+Sequence constraint length: 78
+Structure constraint: ((((....))))....(((((.......)))))............(((((...
+EA Progress Monitoring Started
+==================================================
+Initializing population...
+Initialized population with 250 individuals
+Gen   1/120 (  0.8%) | Best: 0.6282, Avg: 0.3732, Diversity: 0.3300 | Time: 0.2min, ETA: calculating...
+Gen   2/120 (  1.7%) | Best: 0.6923, Avg: 0.4270, Diversity: 0.3263 | Time: 0.4min, ETA: 21.2min
+Gen   3/120 (  2.5%) | Best: 0.6923, Avg: 0.4860, Diversity: 0.3141 | Time: 0.5min, ETA: 20.3min
+Gen   4/120 (  3.3%) | Best: 0.7436, Avg: 0.5306, Diversity: 0.2942 | Time: 0.7min, ETA: 19.4min
+Gen   5/120 (  4.2%) | Best: 0.7436, Avg: 0.5585, Diversity: 0.2683 | Time: 0.8min, ETA: 19.1min
+Gen   6/120 (  5.0%) | Best: 0.7949, Avg: 0.5781, Diversity: 0.2574 | Time: 1.0min, ETA: 18.7min
+Gen   7/120 (  5.8%) | Best: 0.7949, Avg: 0.5956, Diversity: 0.2449 | Time: 1.1min, ETA: 18.4min
+Gen   8/120 (  6.7%) | Best: 0.8462, Avg: 0.6200, Diversity: 0.2236 | Time: 1.3min, ETA: 18.2min
+Gen   9/120 (  7.5%) | Best: 0.8462, Avg: 0.6427, Diversity: 0.2172 | Time: 1.5min, ETA: 17.9min
+Gen  10/120 (  8.3%) | Best: 0.8462, Avg: 0.6506, Diversity: 0.2057 | Time: 1.6min, ETA: 17.7min
+Gen  11/120 (  9.2%) | Best: 0.8462, Avg: 0.6825, Diversity: 0.1839 | Time: 1.8min, ETA: 17.5min
+Error folding sequence GAAAUUUAUUUCGGAUCCUCCAGCACACGGAGGACUAUGCGAUGCGCCUCACCCCUCUCGCGUGUGAGAACGCCACCA: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpkhi1ex78.fa']' returned non-zero exit status 130.
+Traceback (most recent call last):
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 471, in <module>
+    main()
+    ~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 434, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 343, in run_experiment
+    result = run_single_problem(
+        problem_id, problem_config, experiment_config,
+        device, max_workers, problem_dir, wandb_run, total_generation_count
+    )
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 213, in run_single_problem
+    ea.run_evolution()
+    ~~~~~~~~~~~~~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 119, in enhanced_run_evolution
+    fitness_scores = ea_instance.evaluate_fitness(ea_instance.population)
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 228, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/threading.py", line 359, in wait
+    waiter.acquire()
+    ~~~~~~~~~~~~~~^^
+KeyboardInterrupt

@@ -1,0 +1,11 @@
+{"time":"2025-10-13T08:43:04.734834767-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-13T08:43:04.909734166-04:00","level":"INFO","msg":"stream: created new stream","id":"tbibumfi"}
+{"time":"2025-10-13T08:43:04.909809308-04:00","level":"INFO","msg":"handler: started","stream_id":"tbibumfi"}
+{"time":"2025-10-13T08:43:04.909945765-04:00","level":"INFO","msg":"stream: started","id":"tbibumfi"}
+{"time":"2025-10-13T08:43:04.909982494-04:00","level":"INFO","msg":"sender: started","stream_id":"tbibumfi"}
+{"time":"2025-10-13T08:43:04.909982213-04:00","level":"INFO","msg":"writer: started","stream_id":"tbibumfi"}
+{"time":"2025-10-13T08:48:55.747424692-04:00","level":"INFO","msg":"stream: closing","id":"tbibumfi"}
+{"time":"2025-10-13T08:48:56.030038438-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T08:48:56.146393029-04:00","level":"INFO","msg":"handler: closed","stream_id":"tbibumfi"}
+{"time":"2025-10-13T08:48:56.146544354-04:00","level":"INFO","msg":"sender: closed","stream_id":"tbibumfi"}
+{"time":"2025-10-13T08:48:56.14655814-04:00","level":"INFO","msg":"stream: closed","id":"tbibumfi"}

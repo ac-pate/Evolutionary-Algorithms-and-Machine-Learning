@@ -1,0 +1,54 @@
+Wandb tracking initialized: https://wandb.ai/rna-folding-ea-ml/rna-folding-evolutionary-algorithms/runs/m8qeljgm
+Project: rna-folding-evolutionary-algorithms
+Group: nyquist_adaptive
+Experiment log: results/2025-10-13_00-55-01_nyquist_nyquist_adaptive_search_run001/experiment_log.txt
+
+============================================================
+Running Problem 2.2
+Structure: ...................((((((((..((((((.((((((......((...
+Sequence:  NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...
+============================================================
+Enhanced progress monitoring enabled
+Wandb callback registered for problem 2.2
+Starting evolution: 200 individuals, 150 generations
+Sequence constraint length: 218
+Structure constraint: ...................((((((((..((((((.((((((......((...
+EA Progress Monitoring Started
+==================================================
+Initializing population...
+Initialized population with 200 individuals
+Gen   1/150 (  0.7%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7501 | Time: 0.5min, ETA: calculating...
+Gen   2/150 (  1.3%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7460 | Time: 1.1min, ETA: 78.0min
+Gen   3/150 (  2.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7419 | Time: 1.6min, ETA: 77.2min
+Traceback (most recent call last):
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 633, in <module>
+    main()
+    ~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 577, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 430, in run_experiment
+    result = run_single_problem(
+        problem_id, problem_config, experiment_config,
+        device, max_workers, problem_dir, wandb_run, total_generation_count
+    )
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 238, in run_single_problem
+    ea.run_evolution()
+    ~~~~~~~~~~~~~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 119, in enhanced_run_evolution
+    fitness_scores = ea_instance.evaluate_fitness(ea_instance.population)
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 228, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/threading.py", line 359, in wait
+    waiter.acquire()
+    ~~~~~~~~~~~~~~^^
+KeyboardInterrupt

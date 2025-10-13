@@ -1,0 +1,56 @@
+Initialized wandb tracking: nyquist_pop_250_gen_120_mut_010_problem_2.1_run001_20251013_084304
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 250 individuals, 120 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 250 individuals, 120 generations
+Using 8 parallel workers for fitness evaluation
+Sequence constraint: UUAWUARWUAMAGSGCSNNUSNANWRUACNNMWAUAGNUAUNNAGUAUYAAAAGUNANRNURGUNNARSYUUUAURGAKAAYGNUUUGGRUNYUGUNGMCRNGGWNNRKAKWGAUCKMAYCAGAUCKRCGNAKGCURUNCSSSAUGYGRCACMUNCGNYRGCUUMUUAWGWARWKCAWURAGGUNACNUMRWGKMCNWRGWUWWUAAGAUCGCNAAAY
+Structure constraint: ...................((((((((..((((((.((((((......((((((((..........))))))))..)))))).))))))))))))))........((((((([[[((......]]]..))...)))))))((((((.[[[.))))))....((((((((.....((((((((....))))))))......))))))))...]]].....
+Initializing population...
+Initialized population with 250 individuals
+Gen   1/120 (  0.8%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 0.7min, ETA: calculating...
+Gen   2/120 (  1.7%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2397 | Time: 1.2min, ETA: 72.8min
+Gen   3/120 (  2.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2388 | Time: 1.8min, ETA: 70.7min
+Gen   4/120 (  3.3%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2384 | Time: 2.4min, ETA: 68.7min
+Gen   5/120 (  4.2%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2376 | Time: 2.9min, ETA: 67.4min
+Gen   6/120 (  5.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2371 (stagnant: 6) | Time: 3.5min, ETA: 66.3min
+Gen   7/120 (  5.8%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2364 (stagnant: 7) | Time: 4.1min, ETA: 65.9min
+Gen   8/120 (  6.7%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2352 (stagnant: 8) | Time: 4.7min, ETA: 65.5min
+Gen   9/120 (  7.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2347 (stagnant: 9) | Time: 5.3min, ETA: 65.1min
+Traceback (most recent call last):
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 734, in <module>
+    main()
+    ~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 678, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 579, in run_experiment
+    result = run_single_problem(
+        problem_id, problem_config, experiment_config,
+        device, max_workers, problem_dir, enable_wandb, run_number
+    )
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 411, in run_single_problem
+    ea.run_evolution()
+    ~~~~~~~~~~~~~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 138, in enhanced_run_evolution
+    original_run_evolution()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 575, in run_evolution
+    fitness_scores = self.evaluate_fitness(self.population)
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 247, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/threading.py", line 359, in wait
+    waiter.acquire()
+    ~~~~~~~~~~~~~~^^
+KeyboardInterrupt

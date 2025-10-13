@@ -1,0 +1,68 @@
+_wandb:
+    value:
+        cli_version: 0.22.2
+        e:
+            6bh6vc8dv909auaahiczzr90c7x5359l:
+                args:
+                    - config/device_experiments.yml
+                    - --device
+                    - nyquist
+                codePath: Assignment_1/src/ea_runner.py
+                codePathLocal: src/ea_runner.py
+                cpu_count: 6
+                cpu_count_logical: 12
+                disk:
+                    /:
+                        total: "232969940992"
+                        used: "116432396288"
+                email: achalypatel3403@gmail.com
+                executable: /home/orenda/miniconda3/bin/python3
+                git:
+                    commit: 0c91762a7ccb88971d0a4209baa8603b204f4673
+                    remote: https://github.com/ac-pate/Evolutionary-Algorithms-and-Machine-Learning.git
+                host: nyquist
+                memory:
+                    total: "33573376000"
+                os: Linux-6.8.0-85-generic-x86_64-with-glibc2.35
+                program: /home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py
+                python: CPython 3.13.2
+                root: /home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1
+                startedAt: "2025-10-13T03:50:49.648579Z"
+                writerId: 6bh6vc8dv909auaahiczzr90c7x5359l
+        m: []
+        python_version: 3.13.2
+        t:
+            "3":
+                - 13
+                - 15
+                - 16
+            "4": 3.13.2
+            "5": 0.22.2
+            "12": 0.22.2
+            "13": linux-x86_64
+crossover_rate:
+    value: 0.8
+device:
+    value: nyquist
+experiment_name:
+    value: nyquist_standard_protocol
+generations:
+    value: 120
+max_workers:
+    value: 8
+mutation_rate:
+    value: 0.01
+population_size:
+    value: 250
+problems:
+    value:
+        - "1.1"
+        - "1.2"
+        - "2.1"
+        - "2.2"
+        - "3.1"
+        - "3.2"
+run_number:
+    value: 1
+tournament_size:
+    value: 4

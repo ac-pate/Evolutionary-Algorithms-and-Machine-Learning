@@ -597,7 +597,7 @@ class RNAFoldingEA:
             self.mutation_rate = self.adaptive_mutation_rate(diversity)
             
             # Anti-stagnation: Population restart if severely stagnant
-            if (self.stagnation_counter >= self.stagnation_threshold and 
+            if (self.stagnation_counter >= self.stagnation_threshold or 
                 diversity < self.diversity_threshold):
                 try:
                     self.restart_population(fitness_scores)

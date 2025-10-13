@@ -1,0 +1,14 @@
+{"time":"2025-10-13T03:15:30.431509356-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-13T03:15:30.603959802-04:00","level":"INFO","msg":"stream: created new stream","id":"24fednfc"}
+{"time":"2025-10-13T03:15:30.604029343-04:00","level":"INFO","msg":"handler: started","stream_id":"24fednfc"}
+{"time":"2025-10-13T03:15:30.604161412-04:00","level":"INFO","msg":"stream: started","id":"24fednfc"}
+{"time":"2025-10-13T03:15:30.604185177-04:00","level":"INFO","msg":"writer: started","stream_id":"24fednfc"}
+{"time":"2025-10-13T03:15:30.604213431-04:00","level":"INFO","msg":"sender: started","stream_id":"24fednfc"}
+{"time":"2025-10-13T03:15:30.858516124-04:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":38}
+{"time":"2025-10-13T03:15:30.978197575-04:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":6}
+{"time":"2025-10-13T03:51:35.134718087-04:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading artifact run-24fednfc-experiment_summary_table","runtime_seconds":0.50356598},{"desc":"uploading artifact experiment_results_nyquist_adaptive_search_run001","runtime_seconds":0.110127049},{"desc":"updating run metadata","runtime_seconds":0.001192004}],"total_operations":3}}
+{"time":"2025-10-13T03:51:36.02062483-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T03:51:36.129560733-04:00","level":"INFO","msg":"stream: closing","id":"24fednfc"}
+{"time":"2025-10-13T03:51:36.129584909-04:00","level":"INFO","msg":"handler: closed","stream_id":"24fednfc"}
+{"time":"2025-10-13T03:51:36.129689368-04:00","level":"INFO","msg":"sender: closed","stream_id":"24fednfc"}
+{"time":"2025-10-13T03:51:36.129717382-04:00","level":"INFO","msg":"stream: closed","id":"24fednfc"}

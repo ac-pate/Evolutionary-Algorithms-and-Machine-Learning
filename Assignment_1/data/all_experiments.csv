@@ -1,2 +1,0 @@
-timestamp,experiment_name,device,population_size,generations,crossover_rate,mutation_rate,tournament_size,total_runtime_minutes,problems_solved,avg_best_fitness,best_overall_fitness
-2025-10-13 00:58:01,odin_intensive_optimization,odin,500,150,0.8,0.008,5,44.47,0,0,0

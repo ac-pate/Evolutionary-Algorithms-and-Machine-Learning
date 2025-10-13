@@ -1,0 +1,1 @@
+{"avg_best_fitness":0.9282051282051282,"_runtime":0,"_timestamp":1.760354040922483e+09,"_step":0,"success_rate":1,"total_runtime_minutes":37.687714572747545,"problems_solved":1,"device":"nyquist","_wandb":{"runtime":0},"max_fitness_achieved":0.9282051282051282,"experiment_name":"nyquist_pop_250_gen_120_mut_010"}
