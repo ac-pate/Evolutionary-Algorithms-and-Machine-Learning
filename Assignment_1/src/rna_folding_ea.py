@@ -63,6 +63,16 @@ class RNAFoldingEA:
         self.best_individuals = []
         self.population = []
         self.fitness_history = []
+        self.callbacks = []  # For wandb or other external logging
+        
+    def add_callback(self, callback_func):
+        """
+        Add a callback function that will be called each generation
+        
+        Args:
+            callback_func: Function with signature (generation, best_fitness, avg_fitness, diversity)
+        """
+        self.callbacks.append(callback_func)
         
     def is_valid_sequence(self, sequence):
         """
@@ -147,10 +157,10 @@ class RNAFoldingEA:
                 temp_file = f.name
             
             # run ipknot via docker
-            cmd = ["docker", "exec", "ipknot_runner", "ipknot", f"/work/{os.path.basename(temp_file)}"]
+            cmd = ["sudo", "docker", "exec", "ipknot_runner", "ipknot", f"/work/{os.path.basename(temp_file)}"]
             
             # copy file to Docker container working directory
-            copy_cmd = ["docker", "cp", temp_file, f"ipknot_runner:/work/{os.path.basename(temp_file)}"]
+            copy_cmd = ["sudo", "docker", "cp", temp_file, f"ipknot_runner:/work/{os.path.basename(temp_file)}"]
             subprocess.run(copy_cmd, check=True, capture_output=True)
             
             # Run IPknot
@@ -336,6 +346,15 @@ class RNAFoldingEA:
         
         return total_distance / comparisons if comparisons > 0 else 0.0
     
+    def get_best_individuals(self):
+        """
+        Get best individuals as list of dictionaries for compatibility
+        
+        Returns:
+            list: List of dicts with 'sequence' and 'fitness' keys
+        """
+        return [{'sequence': seq, 'fitness': fitness} for seq, fitness in self.best_individuals]
+    
     def run_evolution(self):
         """
         Main evolutionary algorithm loop
@@ -359,7 +378,17 @@ class RNAFoldingEA:
             avg_fitness = sum(fitness_scores) / len(fitness_scores)
             self.fitness_history.append((generation, max_fitness, avg_fitness))
             
-            print(f"Max fitness: {max_fitness:.4f}, Avg fitness: {avg_fitness:.4f}")
+            # Calculate diversity
+            diversity = self.calculate_diversity(self.population)
+            
+            print(f"Max fitness: {max_fitness:.4f}, Avg fitness: {avg_fitness:.4f}, Diversity: {diversity:.4f}")
+            
+            # Call external callbacks (e.g., wandb logging)
+            for callback in self.callbacks:
+                try:
+                    callback(generation, max_fitness, avg_fitness, diversity)
+                except Exception as e:
+                    print(f"Warning: Callback failed: {e}")
             
             # Store best individuals
             for i, (seq, fitness) in enumerate(zip(self.population, fitness_scores)):
