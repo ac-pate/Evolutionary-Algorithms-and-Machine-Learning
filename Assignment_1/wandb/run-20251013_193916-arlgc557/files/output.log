@@ -1,0 +1,238 @@
+Initialized wandb tracking: nyquist_pop_500_gen_200_mut_015_problem_2.2_run001_20251013_193916
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 500 individuals, 200 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 500 individuals, 200 generations
+Using 10 parallel workers for fitness evaluation
+Sequence constraint: NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+Structure constraint: ...................((((((((..((((((.((((((......((((((((..........))))))))..)))))).))))))))))))))........((((((([[[((......]]]..))...)))))))((((((.[[[.))))))....((((((((.....((((((((....))))))))......))))))))...]]].....
+Initializing population...
+Initialized population with 500 individuals
+Gen   1/200 (  0.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7500 | Time: 1.3min, ETA: calculating...
+Gen   2/200 (  1.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7477 | Time: 2.6min, ETA: 254.4min
+Gen   3/200 (  1.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7460 | Time: 3.9min, ETA: 256.1min
+Gen   4/200 (  2.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7439 | Time: 5.2min, ETA: 253.3min
+Gen   5/200 (  2.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7425 | Time: 6.4min, ETA: 250.2min
+Gen   6/200 (  3.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7405 | Time: 7.7min, ETA: 248.1min
+Gen   7/200 (  3.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7385 | Time: 9.0min, ETA: 247.6min
+Gen   8/200 (  4.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7370 | Time: 10.3min, ETA: 246.6min
+Gen   9/200 (  4.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7356 | Time: 11.6min, ETA: 246.3min
+Gen  10/200 (  5.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7350 | Time: 12.9min, ETA: 245.8min
+Gen  11/200 (  5.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7330 | Time: 14.3min, ETA: 245.1min
+Gen  12/200 (  6.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7317 | Time: 15.7min, ETA: 245.4min
+Gen  13/200 (  6.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7298 | Time: 16.9min, ETA: 243.6min
+Gen  14/200 (  7.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7268 | Time: 18.2min, ETA: 241.7min
+Gen  15/200 (  7.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7252 | Time: 19.5min, ETA: 241.0min
+Gen  16/200 (  8.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7214 | Time: 20.8min, ETA: 239.7min
+Gen  17/200 (  8.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7190 | Time: 22.2min, ETA: 238.6min
+Error folding sequence CUAGUUGGGGCGAUAGACUAACCUUGCAUGGUCUUACCUUCCACGAUAGUCACGUGGCCACCGCAGGAUCUCUGCACACGGUUAACAGGACUUUGCACGUCCAACUAGCUCCUCUUAUAAAGUGAUCCCUCAUUUCGGCUAUAGCAACUAUUGCCUGCCUAGUCAUAGCCCUGACAGGCAAUCGUGACUAUUAAUCCUGUCACGAAGAAUUAUGAGAU: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpxfve2dou.fa']' timed out after 30 seconds
+Gen  18/200 (  9.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7153 | Time: 23.5min, ETA: 237.5min
+Gen  19/200 (  9.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7148 | Time: 24.7min, ETA: 235.4min
+Gen  20/200 ( 10.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7161 | Time: 26.0min, ETA: 233.8min
+Gen  21/200 ( 10.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7145 | Time: 27.3min, ETA: 232.5min
+Gen  22/200 ( 11.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7139 | Time: 28.6min, ETA: 231.1min
+Gen  23/200 ( 11.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7136 | Time: 29.8min, ETA: 229.3min
+Gen  24/200 ( 12.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7099 | Time: 31.0min, ETA: 227.4min
+Gen  25/200 ( 12.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7100 | Time: 32.2min, ETA: 225.5min
+Gen  26/200 ( 13.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7090 | Time: 33.6min, ETA: 224.6min
+Gen  27/200 ( 13.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7073 | Time: 35.0min, ETA: 224.5min
+Gen  28/200 ( 14.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7064 | Time: 36.4min, ETA: 223.4min
+Gen  29/200 ( 14.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7038 | Time: 37.8min, ETA: 223.0min
+Gen  30/200 ( 15.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7014 | Time: 39.2min, ETA: 222.0min
+Gen  31/200 ( 15.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7004 | Time: 40.5min, ETA: 220.8min
+Gen  32/200 ( 16.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7002 | Time: 41.8min, ETA: 219.5min
+Gen  33/200 ( 16.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6975 | Time: 43.0min, ETA: 217.8min
+Gen  34/200 ( 17.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6970 | Time: 44.2min, ETA: 215.8min
+Gen  35/200 ( 17.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6966 | Time: 45.5min, ETA: 214.3min
+Gen  36/200 ( 18.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6952 | Time: 46.7min, ETA: 212.7min
+Gen  37/200 ( 18.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6926 | Time: 48.0min, ETA: 211.3min
+Gen  38/200 ( 19.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6908 | Time: 49.2min, ETA: 209.9min
+Gen  39/200 ( 19.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6890 | Time: 50.6min, ETA: 208.8min
+Gen  40/200 ( 20.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6889 | Time: 51.9min, ETA: 207.7min
+Gen  41/200 ( 20.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6881 | Time: 53.3min, ETA: 206.7min
+Gen  42/200 ( 21.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6888 | Time: 54.6min, ETA: 205.6min
+Gen  43/200 ( 21.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6871 | Time: 56.0min, ETA: 204.4min
+Gen  44/200 ( 22.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6850 | Time: 57.3min, ETA: 203.2min
+Gen  45/200 ( 22.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6827 | Time: 58.6min, ETA: 201.7min
+Gen  46/200 ( 23.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6829 | Time: 59.8min, ETA: 200.3min
+Gen  47/200 ( 23.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6831 | Time: 61.1min, ETA: 198.8min
+Gen  48/200 ( 24.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6800 | Time: 62.4min, ETA: 197.7min
+Gen  49/200 ( 24.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6799 | Time: 63.8min, ETA: 196.7min
+Gen  50/200 ( 25.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6787 | Time: 65.1min, ETA: 195.3min
+Gen  51/200 ( 25.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6779 | Time: 66.4min, ETA: 194.0min
+Gen  52/200 ( 26.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6770 | Time: 67.9min, ETA: 193.1min
+Gen  53/200 ( 26.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6757 | Time: 69.2min, ETA: 191.8min
+Gen  54/200 ( 27.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6772 | Time: 70.5min, ETA: 190.5min
+Gen  55/200 ( 27.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6754 | Time: 71.7min, ETA: 189.0min
+Error folding sequence CCAUACGGAAGGGUACAGGGUAUACAAAAGCCUGCGUUGCACUAAGUUCGAGGCGGAGCCUGAAUCUGUCCGUGGACCAGAGAGUACUGUACUUCCAUCGUUCCCAUGCACUUCGGCGCAGGUCGCUCGGCCACCACUAGGCUUGUUAGGGCUGGUCUCAUCGGUACAUAUCCCAGGCGGAGUCCGCUUGCCAACCGUUGUUGGGGUCGGAACGUUAC: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmppbt9o3r3.fa']' timed out after 30 seconds
+Gen  56/200 ( 28.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6741 | Time: 73.2min, ETA: 188.2min
+Gen  57/200 ( 28.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6734 | Time: 74.5min, ETA: 186.8min
+Gen  58/200 ( 29.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6713 | Time: 75.7min, ETA: 185.2min
+Gen  59/200 ( 29.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6711 | Time: 76.9min, ETA: 183.8min
+Gen  60/200 ( 30.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6710 | Time: 78.2min, ETA: 182.4min
+Gen  61/200 ( 30.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6687 | Time: 79.4min, ETA: 181.0min
+Gen  62/200 ( 31.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6692 | Time: 80.8min, ETA: 179.9min
+Gen  63/200 ( 31.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6671 | Time: 82.1min, ETA: 178.4min
+Gen  64/200 ( 32.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6678 | Time: 83.3min, ETA: 177.0min
+Gen  65/200 ( 32.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6672 | Time: 84.6min, ETA: 175.6min
+Gen  66/200 ( 33.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6664 | Time: 85.8min, ETA: 174.2min
+Gen  67/200 ( 33.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6687 | Time: 87.1min, ETA: 173.0min
+Error folding sequence UAUAGAGUACAGUAUCAGCUGGAAGUAAAGUCUACGAUUCCAUAAACCAUGCUAUGCCCGUGAAACUGUCCCUGAGAGUACGCCUGAGUGGAACGGUCGCAACUAUUCUGUUUGUCAGCAGCAAUGCGUCAGUUACGAGGGCUGCAUUAUUUAGUACGCGUCGCUGGACACCGCACGCAUAGUCCGCUUGCCGACCGUUAUUAGGGAGCGAUGACUGG: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpjx1ayxju.fa']' timed out after 30 seconds
+Gen  68/200 ( 34.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6668 | Time: 88.4min, ETA: 171.7min
+Gen  69/200 ( 34.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6671 | Time: 89.9min, ETA: 170.7min
+Gen  70/200 ( 35.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6662 | Time: 91.2min, ETA: 169.3min
+Gen  71/200 ( 35.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6645 | Time: 92.6min, ETA: 168.3min
+Gen  72/200 ( 36.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6620 | Time: 93.9min, ETA: 166.9min
+Gen  73/200 ( 36.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6612 | Time: 95.1min, ETA: 165.5min
+Gen  74/200 ( 37.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6599 | Time: 96.4min, ETA: 164.2min
+Gen  75/200 ( 37.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6574 | Time: 97.9min, ETA: 163.2min
+Gen  76/200 ( 38.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6545 | Time: 99.2min, ETA: 161.9min
+Gen  77/200 ( 38.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6551 | Time: 100.4min, ETA: 160.4min
+Gen  78/200 ( 39.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6544 | Time: 101.7min, ETA: 159.1min
+Gen  79/200 ( 39.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6539 | Time: 103.1min, ETA: 158.0min
+Gen  80/200 ( 40.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6543 | Time: 104.5min, ETA: 156.7min
+Gen  81/200 ( 40.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6523 | Time: 105.8min, ETA: 155.4min
+Gen  82/200 ( 41.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6506 | Time: 107.1min, ETA: 154.1min
+Gen  83/200 ( 41.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6474 | Time: 108.3min, ETA: 152.6min
+Gen  84/200 ( 42.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6475 | Time: 109.6min, ETA: 151.4min
+Gen  85/200 ( 42.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6439 | Time: 110.9min, ETA: 150.0min
+Gen  86/200 ( 43.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6444 | Time: 112.1min, ETA: 148.6min
+Gen  87/200 ( 43.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6423 | Time: 113.3min, ETA: 147.1min
+Gen  88/200 ( 44.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6413 | Time: 114.5min, ETA: 145.8min
+Gen  89/200 ( 44.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6401 | Time: 115.8min, ETA: 144.5min
+Gen  90/200 ( 45.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6388 | Time: 117.1min, ETA: 143.1min
+Gen  91/200 ( 45.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6371 | Time: 118.4min, ETA: 141.9min
+Gen  92/200 ( 46.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6366 | Time: 119.8min, ETA: 140.6min
+Gen  93/200 ( 46.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6375 | Time: 121.1min, ETA: 139.3min
+Gen  94/200 ( 47.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6329 | Time: 122.3min, ETA: 138.0min
+Gen  95/200 ( 47.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6324 | Time: 123.7min, ETA: 136.7min
+Gen  96/200 ( 48.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6326 | Time: 125.0min, ETA: 135.4min
+Gen  97/200 ( 48.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6309 | Time: 126.2min, ETA: 134.1min
+Gen  98/200 ( 49.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6316 | Time: 127.5min, ETA: 132.7min
+Gen  99/200 ( 49.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6299 | Time: 128.8min, ETA: 131.4min
+Gen 100/200 ( 50.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6274 | Time: 130.0min, ETA: 130.0min
+Gen 101/200 ( 50.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6268 | Time: 131.3min, ETA: 128.7min
+Gen 102/200 ( 51.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6268 | Time: 132.6min, ETA: 127.4min
+Gen 103/200 ( 51.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6288 | Time: 133.8min, ETA: 126.0min
+Error folding sequence GAGCUUUGUUGGGUUUAUCUAGGGGAGUAUCCCCGCCCUCGGAACUCGUGAAGCCAUGGUAUGGGUUGGGAGCGGUUAUGCUCGACCUUGACCUUCUGAACAAGGUAAAUGAACUGUUGAGAACUCGGUCUCCGCACUUUACGUUGAGGGCUACGAAGGAUUCUGUCAAUAUGUUCUCAAAUAUCUUCUGGCAUCAAGAGACCCAUUGCUCACCUUUG: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpp8zun0q9.fa']' timed out after 30 seconds
+Gen 104/200 ( 52.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6251 | Time: 135.2min, ETA: 124.8min
+Gen 105/200 ( 52.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6226 | Time: 136.5min, ETA: 123.5min
+Gen 106/200 ( 53.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6241 | Time: 138.0min, ETA: 122.3min
+Gen 107/200 ( 53.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6268 | Time: 139.2min, ETA: 121.0min
+Gen 108/200 ( 54.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6285 | Time: 140.4min, ETA: 119.6min
+Gen 109/200 ( 54.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6291 | Time: 141.7min, ETA: 118.3min
+Gen 110/200 ( 55.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6283 | Time: 143.1min, ETA: 117.1min
+Gen 111/200 ( 55.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6277 | Time: 144.3min, ETA: 115.7min
+Gen 112/200 ( 56.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6301 | Time: 145.6min, ETA: 114.4min
+Gen 113/200 ( 56.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6322 | Time: 147.0min, ETA: 113.2min
+Gen 114/200 ( 57.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6332 | Time: 148.2min, ETA: 111.8min
+Gen 115/200 ( 57.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6327 | Time: 149.5min, ETA: 110.5min
+Gen 116/200 ( 58.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6335 | Time: 150.9min, ETA: 109.2min
+Gen 117/200 ( 58.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6319 | Time: 152.2min, ETA: 108.0min
+Gen 118/200 ( 59.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6355 | Time: 153.7min, ETA: 106.8min
+Gen 119/200 ( 59.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6375 | Time: 155.0min, ETA: 105.5min
+Gen 120/200 ( 60.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6369 | Time: 156.4min, ETA: 104.2min
+Gen 121/200 ( 60.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6368 | Time: 157.8min, ETA: 103.0min
+Gen 122/200 ( 61.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6361 | Time: 159.1min, ETA: 101.7min
+Error folding sequence ACGCAUCUGGUCCUUGAGGCGUGGAUUGAAGGGUUGGUCCCAAAUGUAUGGUACUUCCGGCCAACAUUUUCGUGAGAUCCCUCAUCGGAGGCGAUCAUGUGGUGGGAUACUUACUUGCGGUGUCCGUUCGGGCUACGUGCUUGCACCGAUCUCGGAAACAUGACUGCUGCAACAACCACGAUGUCUUGGGACAACACUUAGCUCAGACGUCACUUGCG: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmprcrv1ht6.fa']' timed out after 30 seconds
+Gen 123/200 ( 61.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6337 | Time: 160.6min, ETA: 100.5min
+Gen 124/200 ( 62.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6331 | Time: 161.9min, ETA: 99.2min
+Gen 125/200 ( 62.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6348 | Time: 163.4min, ETA: 98.0min
+Error folding sequence AGGCAUUUGGGGUUCUGCGCGUGGAUAUGUGAAUGACUUCGGUGCUCUGUGAGGUUAGUGUCGAUGAUGGAAGAUAGAUGCGCAUGCGUCCUAAGCCGGUGGAGGGAUAGAAGUUGUUAUCUCAACCAUAUCUCUAGCGCUGUCUGUAUCCUUUUAAACUCAUCACGAACUAGGACCGGCUUCGCCAUAAUCGUGAAGAAAACUCUUUGUAGCGGGCG: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmp9l8savgy.fa']' timed out after 30 seconds
+Gen 126/200 ( 63.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6364 | Time: 164.9min, ETA: 96.8min
+Error folding sequence UCGCACUCGGUACUCAGCAUAUAGCCAAACGAAUCAUUGCCUAAUUUGAUAUCACGCUCCUGACAGGAGGCGUGCAGCAAUUCGUCGGAGGCAUGGUGGACAGCUUAGUUUCUCUGUCGGUGAAACGGGAGUAAGUAUUCAAUGACCGAUGAUUGGCCCGCCACUGCUGCAACGAGUCACUUAUCCCUAUUCAUACCUUUGAUUUGUCUGGAAUUUAU: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmp0tit14y8.fa']' timed out after 30 seconds
+Gen 127/200 ( 63.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6359 | Time: 166.3min, ETA: 95.6min
+Gen 128/200 ( 64.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6326 | Time: 167.7min, ETA: 94.3min
+Gen 129/200 ( 64.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6337 | Time: 169.2min, ETA: 93.1min
+Gen 130/200 ( 65.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6343 | Time: 170.5min, ETA: 91.8min
+Gen 131/200 ( 65.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6348 | Time: 171.9min, ETA: 90.5min
+Gen 132/200 ( 66.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6356 | Time: 173.2min, ETA: 89.2min
+Gen 133/200 ( 66.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6359 | Time: 174.6min, ETA: 88.0min
+Gen 134/200 ( 67.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6356 | Time: 176.1min, ETA: 86.7min
+Gen 135/200 ( 67.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6343 | Time: 177.5min, ETA: 85.4min
+Gen 136/200 ( 68.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6333 | Time: 178.8min, ETA: 84.1min
+Gen 137/200 ( 68.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6338 | Time: 180.1min, ETA: 82.8min
+Gen 138/200 ( 69.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6343 | Time: 181.5min, ETA: 81.6min
+Gen 139/200 ( 69.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6319 | Time: 182.9min, ETA: 80.3min
+Error folding sequence CGCCAGCUGGCACUCAGCCUUAGAAAGGAUCACUUGCCUCGGAACAAGGUAAGCUCUAUCGAAUUGGAGGUUCGAGAUUAGACAGGCGUAGCGUUGUGGACAGCACGUACCAGAGCUAGGGGUCGGCGCAUUGUUAGAGUGUCCAUUGCAUCUCGAGGCAGUUGGAUAACACCCACUAGCCCCGAUACACUUAUAACUGGACGGACGGUUGGGCGUUA: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpj79h2rsr.fa']' timed out after 30 seconds
+Gen 140/200 ( 70.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6261 | Time: 184.3min, ETA: 79.0min
+Gen 141/200 ( 70.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6277 | Time: 185.7min, ETA: 77.7min
+Gen 142/200 ( 71.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6284 | Time: 187.1min, ETA: 76.4min
+Gen 143/200 ( 71.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6278 | Time: 188.5min, ETA: 75.1min
+Gen 144/200 ( 72.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6263 | Time: 190.0min, ETA: 73.9min
+Gen 145/200 ( 72.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6277 | Time: 191.5min, ETA: 72.7min
+Gen 146/200 ( 73.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6272 | Time: 192.8min, ETA: 71.3min
+Gen 147/200 ( 73.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6245 | Time: 194.1min, ETA: 70.0min
+Gen 148/200 ( 74.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6271 | Time: 195.5min, ETA: 68.7min
+Gen 149/200 ( 74.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6287 | Time: 196.9min, ETA: 67.4min
+Gen 150/200 ( 75.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6275 | Time: 198.4min, ETA: 66.1min
+Gen 151/200 ( 75.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6267 | Time: 199.9min, ETA: 64.9min
+Gen 152/200 ( 76.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6278 | Time: 201.4min, ETA: 63.6min
+Gen 153/200 ( 76.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6291 | Time: 202.8min, ETA: 62.3min
+Gen 154/200 ( 77.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6288 | Time: 204.2min, ETA: 61.0min
+Gen 155/200 ( 77.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6289 | Time: 205.7min, ETA: 59.7min
+Gen 156/200 ( 78.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6304 | Time: 207.0min, ETA: 58.4min
+Gen 157/200 ( 78.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6318 | Time: 208.5min, ETA: 57.1min
+Gen 158/200 ( 79.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6278 | Time: 209.9min, ETA: 55.8min
+Gen 159/200 ( 79.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6293 | Time: 211.3min, ETA: 54.5min
+Gen 160/200 ( 80.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6281 | Time: 212.5min, ETA: 53.1min
+Gen 161/200 ( 80.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6270 | Time: 213.9min, ETA: 51.8min
+Gen 162/200 ( 81.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6276 | Time: 215.4min, ETA: 50.5min
+Gen 163/200 ( 81.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6277 | Time: 216.8min, ETA: 49.2min
+Gen 164/200 ( 82.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6274 | Time: 218.4min, ETA: 47.9min
+Gen 165/200 ( 82.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6283 | Time: 219.7min, ETA: 46.6min
+Gen 166/200 ( 83.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6290 | Time: 221.1min, ETA: 45.3min
+Gen 167/200 ( 83.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6297 | Time: 222.5min, ETA: 44.0min
+Error folding sequence AGGCAUGUGGGGGUACAAAUCGCACCUCAUCCCCACAUUCCUAGUUUAGUAAUAGGCAGUAUUUCAUUUCCGUCUUAUCAAUCCACCGAGGCCUGCAUCGGGAGGGAUAGGCCCAUUUUAGGUCACCAUAACUUCCCUUCUGUUUACGAACUGGGGGUCUUAUUUGGCCGUUUAACGCCCAUAGCGGGUCUGGUGAGAGAUUAUAGGCCUCGAGGGCG: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmp937cqxx0.fa']' timed out after 30 seconds
+Gen 168/200 ( 84.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6309 | Time: 224.0min, ETA: 42.7min
+Gen 169/200 ( 84.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6293 | Time: 225.6min, ETA: 41.4min
+Gen 170/200 ( 85.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6281 | Time: 227.1min, ETA: 40.1min
+Gen 171/200 ( 85.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6293 | Time: 228.5min, ETA: 38.8min
+Gen 172/200 ( 86.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6285 | Time: 229.9min, ETA: 37.4min
+Gen 173/200 ( 86.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6293 | Time: 231.3min, ETA: 36.1min
+Gen 174/200 ( 87.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6267 | Time: 232.6min, ETA: 34.8min
+Gen 175/200 ( 87.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6269 | Time: 234.1min, ETA: 33.4min
+Gen 176/200 ( 88.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6280 | Time: 235.4min, ETA: 32.1min
+Gen 177/200 ( 88.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6270 | Time: 236.9min, ETA: 30.8min
+Gen 178/200 ( 89.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6244 | Time: 238.3min, ETA: 29.5min
+Gen 179/200 ( 89.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6229 | Time: 239.7min, ETA: 28.1min
+Gen 180/200 ( 90.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6240 | Time: 241.0min, ETA: 26.8min
+Gen 181/200 ( 90.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6238 | Time: 242.3min, ETA: 25.4min
+Gen 182/200 ( 91.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6256 | Time: 243.8min, ETA: 24.1min
+Gen 183/200 ( 91.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6272 | Time: 245.1min, ETA: 22.8min
+Gen 184/200 ( 92.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6264 | Time: 246.5min, ETA: 21.4min
+Error folding sequence UGCUAUCUGUUAGUCUAUAGGUGGAUAAGCGGGUCCGAGCAUUGGUCAUCCCGCCUCGGGUGAAGUGUACCGUGGGAUUCGUUACCUGAUGCUAUCAUGCAAAAAUCGAUGUUCUUUUUAGGUCAGUGGUGCUCCCGCUCGUCGCUCGAUGCCUGGAGAGGGUACACAGCUACGUUACAAAUCGGUUUUCCGUCCACUGAAACUAGGCCUAAAUGGCA: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmptp69ffxe.fa']' timed out after 30 seconds
+Gen 185/200 ( 92.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6251 | Time: 247.9min, ETA: 20.1min
+Gen 186/200 ( 93.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6276 | Time: 249.4min, ETA: 18.8min
+Gen 187/200 ( 93.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6275 | Time: 250.9min, ETA: 17.4min
+Gen 188/200 ( 94.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6274 | Time: 252.3min, ETA: 16.1min
+Gen 189/200 ( 94.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6268 | Time: 253.7min, ETA: 14.8min
+Gen 190/200 ( 95.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6264 | Time: 255.0min, ETA: 13.4min
+Gen 191/200 ( 95.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6267 | Time: 256.3min, ETA: 12.1min
+Gen 192/200 ( 96.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6265 | Time: 257.8min, ETA: 10.7min
+Gen 193/200 ( 96.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6279 | Time: 259.4min, ETA: 9.4min
+Gen 194/200 ( 97.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6279 | Time: 260.9min, ETA: 8.1min
+Gen 195/200 ( 97.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6294 | Time: 262.2min, ETA: 6.7min
+Gen 196/200 ( 98.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6273 | Time: 263.7min, ETA: 5.4min
+Gen 197/200 ( 98.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6265 | Time: 265.1min, ETA: 4.0min
+Gen 198/200 ( 99.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6290 | Time: 266.6min, ETA: 2.7min
+Gen 199/200 ( 99.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6270 | Time: 268.0min, ETA: 1.3min
+Gen 200/200 (100.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.6257 | Time: 269.4min, ETA: 0s
+
+Evolution completed!
+
+=== FINAL ANALYSIS ===
+Found 0 unique high-quality sequences
+Elite percentage: 50.0% (250 individuals)
+
+==================================================
+EA Execution Completed!
+Total Runtime: 269.44 minutes
+Final Best Fitness: 0.0000
+Total Improvement: 0.0000
+Solutions Found: 0
+Generate plots with: ./generate_plots.sh
+==================================================
+Logged essential results to wandb for problem 2.2

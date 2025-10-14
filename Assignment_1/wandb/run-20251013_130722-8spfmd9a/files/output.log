@@ -1,0 +1,119 @@
+Initialized wandb tracking: nyquist_pop_500_gen_500_mut_015_problem_1.2_run001_20251013_130722
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 500 individuals, 500 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 500 individuals, 500 generations
+Using 10 parallel workers for fitness evaluation
+Sequence constraint: NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+Structure constraint: ((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]...
+Initializing population...
+Initialized population with 500 individuals
+Gen   1/500 (  0.2%) | Best: 0.5769, Avg: 0.3523, Diversity: 0.7502 | Time: 0.3min, ETA: calculating...
+Gen   2/500 (  0.4%) | Best: 0.6923, Avg: 0.3745, Diversity: 0.7473 | Time: 0.7min, ETA: 165.8min
+Gen   3/500 (  0.6%) | Best: 0.6282, Avg: 0.3919, Diversity: 0.7430 | Time: 1.0min, ETA: 163.8min
+Gen   4/500 (  0.8%) | Best: 0.6282, Avg: 0.3941, Diversity: 0.7364 | Time: 1.3min, ETA: 162.4min
+Gen   5/500 (  1.0%) | Best: 0.6410, Avg: 0.3996, Diversity: 0.7267 | Time: 1.6min, ETA: 160.7min
+Gen   6/500 (  1.2%) | Best: 0.6667, Avg: 0.4091, Diversity: 0.7185 | Time: 1.9min, ETA: 159.3min
+Gen   7/500 (  1.4%) | Best: 0.6538, Avg: 0.4116, Diversity: 0.7175 | Time: 2.2min, ETA: 158.4min
+Gen   8/500 (  1.6%) | Best: 0.6795, Avg: 0.4192, Diversity: 0.7130 (stagnant: 6) | Time: 2.6min, ETA: 156.9min
+Gen   9/500 (  1.8%) | Best: 0.6923, Avg: 0.4027, Diversity: 0.7127 (stagnant: 7) | Time: 2.9min, ETA: 156.4min
+Gen  10/500 (  2.0%) | Best: 0.6667, Avg: 0.4005, Diversity: 0.7094 (stagnant: 8) | Time: 3.2min, ETA: 155.7min
+Gen  11/500 (  2.2%) | Best: 0.6538, Avg: 0.4046, Diversity: 0.7080 (stagnant: 9) | Time: 3.5min, ETA: 154.8min
+Anti-stagnation: Restarted 150 individuals (parallelized)
+Gen  12/500 (  2.4%) | Best: 0.6923, Avg: 0.4232, Diversity: 0.7282 | Time: 4.1min, ETA: 166.0min
+Gen  13/500 (  2.6%) | Best: 0.6667, Avg: 0.4104, Diversity: 0.7166 | Time: 4.4min, ETA: 164.2min
+Gen  14/500 (  2.8%) | Best: 0.6667, Avg: 0.4261, Diversity: 0.6965 | Time: 4.7min, ETA: 162.8min
+Gen  15/500 (  3.0%) | Best: 0.6538, Avg: 0.4281, Diversity: 0.6876 | Time: 5.0min, ETA: 161.2min
+Gen  16/500 (  3.2%) | Best: 0.6795, Avg: 0.4348, Diversity: 0.6813 | Time: 5.3min, ETA: 159.9min
+Gen  17/500 (  3.4%) | Best: 0.7692, Avg: 0.4559, Diversity: 0.6661 | Time: 5.6min, ETA: 158.2min
+Gen  18/500 (  3.6%) | Best: 0.7949, Avg: 0.4654, Diversity: 0.6524 | Time: 5.8min, ETA: 156.5min
+Gen  19/500 (  3.8%) | Best: 0.7564, Avg: 0.4694, Diversity: 0.6357 | Time: 6.1min, ETA: 155.0min
+Gen  20/500 (  4.0%) | Best: 0.7564, Avg: 0.4879, Diversity: 0.6085 | Time: 6.4min, ETA: 153.9min
+Gen  21/500 (  4.2%) | Best: 0.7564, Avg: 0.5021, Diversity: 0.5815 | Time: 6.7min, ETA: 152.8min
+Gen  22/500 (  4.4%) | Best: 0.7821, Avg: 0.5044, Diversity: 0.5626 | Time: 7.0min, ETA: 152.0min
+Gen  23/500 (  4.6%) | Best: 0.7949, Avg: 0.5012, Diversity: 0.5464 | Time: 7.3min, ETA: 151.1min
+Gen  24/500 (  4.8%) | Best: 0.7821, Avg: 0.4956, Diversity: 0.5442 (stagnant: 6) | Time: 7.6min, ETA: 150.3min
+Gen  25/500 (  5.0%) | Best: 0.7564, Avg: 0.4676, Diversity: 0.5502 (stagnant: 7) | Time: 7.9min, ETA: 149.8min
+Gen  26/500 (  5.2%) | Best: 0.7179, Avg: 0.4483, Diversity: 0.5664 (stagnant: 8) | Time: 8.2min, ETA: 149.4min
+Gen  27/500 (  5.4%) | Best: 0.7436, Avg: 0.4423, Diversity: 0.5609 (stagnant: 9) | Time: 8.5min, ETA: 149.0min
+Anti-stagnation: Restarted 150 individuals (parallelized)
+Gen  28/500 (  5.6%) | Best: 0.7179, Avg: 0.4538, Diversity: 0.6474 | Time: 9.1min, ETA: 153.8min
+Gen  29/500 (  5.8%) | Best: 0.7051, Avg: 0.4428, Diversity: 0.6224 | Time: 9.4min, ETA: 153.3min
+Gen  30/500 (  6.0%) | Best: 0.7564, Avg: 0.4631, Diversity: 0.5907 | Time: 9.8min, ETA: 152.8min
+Gen  31/500 (  6.2%) | Best: 0.7308, Avg: 0.4898, Diversity: 0.5542 | Time: 10.1min, ETA: 152.2min
+Gen  32/500 (  6.4%) | Best: 0.7949, Avg: 0.4972, Diversity: 0.5287 | Time: 10.4min, ETA: 151.6min
+Gen  33/500 (  6.6%) | Best: 0.7564, Avg: 0.4932, Diversity: 0.5155 | Time: 10.7min, ETA: 150.9min
+Gen  34/500 (  6.8%) | Best: 0.8205, Avg: 0.5044, Diversity: 0.4972 | Time: 11.0min, ETA: 150.2min
+Gen  35/500 (  7.0%) | Best: 0.7949, Avg: 0.5176, Diversity: 0.4906 | Time: 11.3min, ETA: 149.6min
+Gen  36/500 (  7.2%) | Best: 0.8077, Avg: 0.5187, Diversity: 0.4873 | Time: 11.6min, ETA: 148.9min
+Gen  37/500 (  7.4%) | Best: 0.7949, Avg: 0.5279, Diversity: 0.4761 | Time: 11.8min, ETA: 148.3min
+Gen  38/500 (  7.6%) | Best: 0.8077, Avg: 0.5282, Diversity: 0.4672 | Time: 12.2min, ETA: 147.8min
+Gen  39/500 (  7.8%) | Best: 0.8077, Avg: 0.5422, Diversity: 0.4527 | Time: 12.5min, ETA: 147.2min
+Gen  40/500 (  8.0%) | Best: 0.8333, Avg: 0.5462, Diversity: 0.4383 | Time: 12.8min, ETA: 146.6min
+Gen  41/500 (  8.2%) | Best: 0.8462, Avg: 0.5498, Diversity: 0.4306 | Time: 13.1min, ETA: 146.1min
+Gen  42/500 (  8.4%) | Best: 0.8205, Avg: 0.5558, Diversity: 0.4155 | Time: 13.3min, ETA: 145.5min
+Gen  43/500 (  8.6%) | Best: 0.8205, Avg: 0.5726, Diversity: 0.4052 | Time: 13.6min, ETA: 145.1min
+Gen  44/500 (  8.8%) | Best: 0.8077, Avg: 0.5745, Diversity: 0.3992 | Time: 14.0min, ETA: 144.7min
+Gen  45/500 (  9.0%) | Best: 0.8077, Avg: 0.5873, Diversity: 0.3849 | Time: 14.2min, ETA: 143.9min
+Gen  46/500 (  9.2%) | Best: 0.8077, Avg: 0.5964, Diversity: 0.3773 | Time: 14.5min, ETA: 143.2min
+Gen  47/500 (  9.4%) | Best: 0.8205, Avg: 0.5994, Diversity: 0.3800 (stagnant: 6) | Time: 14.8min, ETA: 142.4min
+Gen  48/500 (  9.6%) | Best: 0.8590, Avg: 0.5435, Diversity: 0.4139 | Time: 15.1min, ETA: 142.0min
+Gen  49/500 (  9.8%) | Best: 0.7949, Avg: 0.5623, Diversity: 0.4084 | Time: 15.4min, ETA: 142.0min
+Gen  50/500 ( 10.0%) | Best: 0.8333, Avg: 0.5806, Diversity: 0.4014 | Time: 15.8min, ETA: 141.8min
+Gen  51/500 ( 10.2%) | Best: 0.8462, Avg: 0.5913, Diversity: 0.3942 | Time: 16.0min, ETA: 141.3min
+Gen  52/500 ( 10.4%) | Best: 0.8590, Avg: 0.6076, Diversity: 0.3814 | Time: 16.3min, ETA: 140.7min
+Gen  53/500 ( 10.6%) | Best: 0.8462, Avg: 0.6076, Diversity: 0.3745 | Time: 16.6min, ETA: 140.2min
+Gen  54/500 ( 10.8%) | Best: 0.8846, Avg: 0.6052, Diversity: 0.3704 | Time: 16.9min, ETA: 139.7min
+Gen  55/500 ( 11.0%) | Best: 0.8974, Avg: 0.6081, Diversity: 0.3694 | Time: 17.2min, ETA: 139.1min
+Gen  56/500 ( 11.2%) | Best: 0.8846, Avg: 0.6263, Diversity: 0.3588 | Time: 17.5min, ETA: 138.6min
+Gen  57/500 ( 11.4%) | Best: 0.8846, Avg: 0.6194, Diversity: 0.3483 | Time: 17.8min, ETA: 138.3min
+Gen  58/500 ( 11.6%) | Best: 0.8846, Avg: 0.6194, Diversity: 0.3316 | Time: 18.1min, ETA: 137.9min
+Gen  59/500 ( 11.8%) | Best: 0.8718, Avg: 0.6276, Diversity: 0.3228 | Time: 18.4min, ETA: 137.4min
+Gen  60/500 ( 12.0%) | Best: 0.8718, Avg: 0.6328, Diversity: 0.3060 | Time: 18.7min, ETA: 137.0min
+Gen  61/500 ( 12.2%) | Best: 0.8718, Avg: 0.6278, Diversity: 0.2979 (stagnant: 6) | Time: 19.0min, ETA: 136.7min
+Gen  62/500 ( 12.4%) | Best: 0.8590, Avg: 0.5792, Diversity: 0.3257 (stagnant: 7) | Time: 19.3min, ETA: 136.3min
+Gen  63/500 ( 12.6%) | Best: 0.8333, Avg: 0.5440, Diversity: 0.3466 (stagnant: 8) | Time: 19.6min, ETA: 136.0min
+Gen  64/500 ( 12.8%) | Best: 0.8333, Avg: 0.5246, Diversity: 0.3701 (stagnant: 9) | Time: 19.9min, ETA: 135.7min
+Anti-stagnation: Restarted 150 individuals (parallelized)
+Gen  65/500 ( 13.0%) | Best: 0.7949, Avg: 0.5094, Diversity: 0.5614 | Time: 20.6min, ETA: 137.6min
+Gen  66/500 ( 13.2%) | Best: 0.8590, Avg: 0.4993, Diversity: 0.5224 | Time: 20.9min, ETA: 137.3min
+Gen  67/500 ( 13.4%) | Best: 0.8718, Avg: 0.5452, Diversity: 0.4768 | Time: 21.2min, ETA: 136.9min
+Gen  68/500 ( 13.6%) | Best: 0.8718, Avg: 0.5526, Diversity: 0.4558 | Time: 21.5min, ETA: 136.6min
+Error folding sequence GGCCGUCUGGCCCCCUACAGGGUUCUCUUCCUGUUCUCCGGCUCCUCAUGACUCAAAUUUAUGUGCUGAAAAGACACC: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpw6w8n6_u.fa']' died with <Signals.SIGINT: 2>.
+Traceback (most recent call last):
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 734, in <module>
+    main()
+    ~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 678, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 579, in run_experiment
+    result = run_single_problem(
+        problem_id, problem_config, experiment_config,
+        device, max_workers, problem_dir, enable_wandb, run_number
+    )
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 411, in run_single_problem
+    ea.run_evolution()
+    ~~~~~~~~~~~~~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 138, in enhanced_run_evolution
+    original_run_evolution()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 575, in run_evolution
+    fitness_scores = self.evaluate_fitness(self.population)
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 247, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/threading.py", line 359, in wait
+    waiter.acquire()
+    ~~~~~~~~~~~~~~^^
+KeyboardInterrupt

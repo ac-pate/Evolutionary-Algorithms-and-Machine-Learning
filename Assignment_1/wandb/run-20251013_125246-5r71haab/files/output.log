@@ -1,0 +1,87 @@
+Initialized wandb tracking: nyquist_pop_500_gen_500_mut_015_problem_1.1_run001_20251013_125246
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 500 individuals, 500 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 500 individuals, 500 generations
+Using 10 parallel workers for fitness evaluation
+Sequence constraint: GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYCNMNSCKCNCNCKUKKSWSAACSSSAMCN
+Structure constraint: ((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]...
+Initializing population...
+Initialized population with 500 individuals
+Gen   1/500 (  0.2%) | Best: 0.6410, Avg: 0.3685, Diversity: 0.3301 | Time: 0.3min, ETA: calculating...
+Gen   2/500 (  0.4%) | Best: 0.6795, Avg: 0.3945, Diversity: 0.3280 | Time: 0.7min, ETA: 172.2min
+Gen   3/500 (  0.6%) | Best: 0.6923, Avg: 0.4233, Diversity: 0.3234 | Time: 1.0min, ETA: 170.7min
+Gen   4/500 (  0.8%) | Best: 0.7179, Avg: 0.4477, Diversity: 0.3196 | Time: 1.4min, ETA: 169.0min
+Gen   5/500 (  1.0%) | Best: 0.7436, Avg: 0.4735, Diversity: 0.3133 | Time: 1.7min, ETA: 167.0min
+Gen   6/500 (  1.2%) | Best: 0.8205, Avg: 0.4951, Diversity: 0.3079 | Time: 2.0min, ETA: 165.3min
+Gen   7/500 (  1.4%) | Best: 0.7949, Avg: 0.5121, Diversity: 0.3002 | Time: 2.3min, ETA: 163.8min
+Gen   8/500 (  1.6%) | Best: 0.8462, Avg: 0.5342, Diversity: 0.2908 | Time: 2.6min, ETA: 162.0min
+Gen   9/500 (  1.8%) | Best: 0.8462, Avg: 0.5378, Diversity: 0.2837 | Time: 2.9min, ETA: 160.4min
+Gen  10/500 (  2.0%) | Best: 0.8462, Avg: 0.5582, Diversity: 0.2772 | Time: 3.2min, ETA: 158.9min
+Gen  11/500 (  2.2%) | Best: 0.8462, Avg: 0.5597, Diversity: 0.2700 | Time: 3.5min, ETA: 157.6min
+Gen  12/500 (  2.4%) | Best: 0.8462, Avg: 0.5707, Diversity: 0.2664 | Time: 3.9min, ETA: 156.6min
+Gen  13/500 (  2.6%) | Best: 0.9359, Avg: 0.5868, Diversity: 0.2635 | Time: 4.2min, ETA: 155.7min
+Milestone: First high-quality solution (fitness > 0.9) at generation 13!
+Gen  14/500 (  2.8%) | Best: 0.9359, Avg: 0.5935, Diversity: 0.2613 | Time: 4.5min, ETA: 155.2min
+Gen  15/500 (  3.0%) | Best: 0.9231, Avg: 0.5975, Diversity: 0.2552 | Time: 4.8min, ETA: 154.9min
+Gen  16/500 (  3.2%) | Best: 0.9487, Avg: 0.6003, Diversity: 0.2493 | Time: 5.1min, ETA: 154.8min
+Gen  17/500 (  3.4%) | Best: 0.9744, Avg: 0.6276, Diversity: 0.2417 (streak: 1) | Time: 5.4min, ETA: 154.7min
+Excellent: Near-perfect solution (fitness > 0.95) at generation 17!
+Gen  18/500 (  3.6%) | Best: 0.9744, Avg: 0.6448, Diversity: 0.2264 (streak: 2) | Time: 5.8min, ETA: 154.4min
+Gen  19/500 (  3.8%) | Best: 0.9744, Avg: 0.6684, Diversity: 0.2093 (streak: 3) | Time: 6.1min, ETA: 154.3min
+Gen  20/500 (  4.0%) | Best: 0.9744, Avg: 0.6944, Diversity: 0.1871 (streak: 4) | Time: 6.4min, ETA: 154.2min
+Gen  21/500 (  4.2%) | Best: 0.9744, Avg: 0.6931, Diversity: 0.1889 (streak: 5) | Time: 6.7min, ETA: 153.9min
+Gen  22/500 (  4.4%) | Best: 0.9744, Avg: 0.6761, Diversity: 0.1948 (streak: 6) | Time: 7.1min, ETA: 153.6min
+Gen  23/500 (  4.6%) | Best: 1.0000, Avg: 0.6593, Diversity: 0.1988 (streak: 7) | Time: 7.4min, ETA: 153.4min
+Gen  24/500 (  4.8%) | Best: 0.9744, Avg: 0.6454, Diversity: 0.2034 (streak: 8) | Time: 7.7min, ETA: 153.2min
+Gen  25/500 (  5.0%) | Best: 1.0000, Avg: 0.6678, Diversity: 0.1985 (streak: 9) | Time: 8.1min, ETA: 153.1min
+Gen  26/500 (  5.2%) | Best: 1.0000, Avg: 0.6712, Diversity: 0.1981 (streak: 10) | Time: 8.4min, ETA: 152.9min
+Gen  27/500 (  5.4%) | Best: 1.0000, Avg: 0.6843, Diversity: 0.1916 (streak: 11) | Time: 8.7min, ETA: 152.8min
+Gen  28/500 (  5.6%) | Best: 1.0000, Avg: 0.6860, Diversity: 0.1896 (streak: 12) | Time: 9.1min, ETA: 152.6min
+Gen  29/500 (  5.8%) | Best: 1.0000, Avg: 0.7072, Diversity: 0.1866 (streak: 13, stagnant: 6) | Time: 9.4min, ETA: 152.3min
+Gen  30/500 (  6.0%) | Best: 1.0000, Avg: 0.6001, Diversity: 0.2101 (streak: 14, stagnant: 7) | Time: 9.7min, ETA: 152.2min
+Gen  31/500 (  6.2%) | Best: 1.0000, Avg: 0.6065, Diversity: 0.2134 (streak: 15, stagnant: 8) | Time: 10.1min, ETA: 152.1min
+Gen  32/500 (  6.4%) | Best: 1.0000, Avg: 0.5949, Diversity: 0.2166 (streak: 16, stagnant: 9) | Time: 10.4min, ETA: 152.0min
+Gen  33/500 (  6.6%) | Best: 1.0000, Avg: 0.5819, Diversity: 0.2211 (streak: 17, stagnant: 10) | Time: 10.7min, ETA: 151.9min
+Gen  34/500 (  6.8%) | Best: 1.0000, Avg: 0.5984, Diversity: 0.2212 (streak: 18, stagnant: 11) | Time: 11.1min, ETA: 151.9min
+Gen  35/500 (  7.0%) | Best: 1.0000, Avg: 0.5681, Diversity: 0.2268 (streak: 19, stagnant: 12) | Time: 11.4min, ETA: 151.8min
+Gen  36/500 (  7.2%) | Best: 1.0000, Avg: 0.5616, Diversity: 0.2294 (streak: 20, stagnant: 13) | Time: 11.8min, ETA: 151.8min
+Gen  37/500 (  7.4%) | Best: 1.0000, Avg: 0.5619, Diversity: 0.2299 (streak: 21, stagnant: 14) | Time: 12.1min, ETA: 151.8min
+Gen  38/500 (  7.6%) | Best: 1.0000, Avg: 0.5596, Diversity: 0.2301 (streak: 22, stagnant: 15) | Time: 12.5min, ETA: 151.9min
+Gen  39/500 (  7.8%) | Best: 1.0000, Avg: 0.5413, Diversity: 0.2348 (streak: 23, stagnant: 16) | Time: 12.8min, ETA: 151.8min
+Gen  40/500 (  8.0%) | Best: 1.0000, Avg: 0.5491, Diversity: 0.2364 (streak: 24, stagnant: 17) | Time: 13.2min, ETA: 151.7min
+
+Early termination: fitness >=0.95 for 25 generations
+
+Evolution terminated early!
+Reason: Early termination: fitness >=0.95 for 25 generations
+
+=== FINAL ANALYSIS ===
+EARLY TERMINATION: Early termination: fitness >=0.95 for 25 generations
+Found 781 unique high-quality sequences
+Elite percentage: 10.0% (50 individuals)
+Average sequence diversity: 0.1588
+
+Top 10 sequences:
+ 1. GAACUUCCGUUCCGCUCCUCCAGCCCCAGGAGGCCUAUGCUGUACGUCCCCAUCCGCUCGCGUGGGACAACGCGACCA (fitness: 1.0000)
+ 2. GAACUACCGUUCCGCUCCUCUAGCCCCAGGAGGCCAAUUCUGUCCGUCCCUAACCUCUCGCGUGGGACAACGCGAACU (fitness: 1.0000)
+ 3. GAACUACCGUUCCGAUCCUCCAGCUCCCGGAGGCCUAUGCUGUACGUCCCCAACCGCUCGCGUGGGACAACGCGACCA (fitness: 1.0000)
+ 4. GAACUACCGUUCCGAUCCUCUAGCUCCAGGAGGCCUAUGCUGUACGUCCCCAACCGCUCGCGUGGGACAACGCGACCA (fitness: 1.0000)
+ 5. GAACUACCGUUCCGCUCCUCCAGCCCCAGGAGGCCUAUGCUGUACGUCCCCAACCUCUCGCGUGGGACAACGCGACCA (fitness: 1.0000)
+ 6. GAACUACCGUUCCGCUCCUCUAGCUCAAGGAGGCCUAUGCUAUACGUCCCCAACCUCUCGCGUGGGACAACGCGACCA (fitness: 1.0000)
+ 7. GAACUACCGUUCGGAUCCUCCAGCUCACGGAGGCCAAUGCUAUACGUCCCCCCCCUCUCGCGUGGGACAACGCGAACA (fitness: 1.0000)
+ 8. GAACUACCGUUCCGCUCCUCCAGCCCCCGGAGGCCUAUUCUGUACGUCCCCAACCGCUCGCGUGGGACAACGCGACCA (fitness: 1.0000)
+ 9. GAACUACCGUUCCGCUCCUCCAGCCCCAGGAGGCCAAUGCUGUACGUCCCUAACCUCUCGCGUGGGACAACGCGACCA (fitness: 1.0000)
+10. GAACUAUCGUUCGGAUCCUCCAGCUCACGGAGGCCAAUGCUAUUCGUCCCCAACCUCUCGCGUGGGACAACGCGACCA (fitness: 1.0000)
+
+==================================================
+EA Execution Completed!
+Total Runtime: 14.06 minutes
+Final Best Fitness: 1.0000
+Total Improvement: 0.3590
+Solutions Found: 1132
+Generate plots with: ./generate_plots.sh
+==================================================
+Logged essential results to wandb for problem 1.1

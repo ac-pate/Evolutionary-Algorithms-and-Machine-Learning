@@ -1,0 +1,14 @@
+{"time":"2025-10-13T15:10:23.68676943-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-13T15:10:23.849757027-04:00","level":"INFO","msg":"stream: created new stream","id":"nh67lng9"}
+{"time":"2025-10-13T15:10:23.849922239-04:00","level":"INFO","msg":"handler: started","stream_id":"nh67lng9"}
+{"time":"2025-10-13T15:10:23.850339045-04:00","level":"INFO","msg":"stream: started","id":"nh67lng9"}
+{"time":"2025-10-13T15:10:23.850343814-04:00","level":"INFO","msg":"writer: started","stream_id":"nh67lng9"}
+{"time":"2025-10-13T15:10:23.850362961-04:00","level":"INFO","msg":"sender: started","stream_id":"nh67lng9"}
+{"time":"2025-10-13T16:01:54.666141708-04:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-10-13T16:04:27.222586759-04:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/rna-folding-ea-ml/RNA-Folding-EA/nh67lng9/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-10-13T16:06:13.592042776-04:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.000880061}],"total_operations":1}}
+{"time":"2025-10-13T16:06:14.01954454-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T16:06:14.227264495-04:00","level":"INFO","msg":"stream: closing","id":"nh67lng9"}
+{"time":"2025-10-13T16:06:14.227282279-04:00","level":"INFO","msg":"handler: closed","stream_id":"nh67lng9"}
+{"time":"2025-10-13T16:06:14.227359615-04:00","level":"INFO","msg":"sender: closed","stream_id":"nh67lng9"}
+{"time":"2025-10-13T16:06:14.227373952-04:00","level":"INFO","msg":"stream: closed","id":"nh67lng9"}

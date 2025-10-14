@@ -1,0 +1,12 @@
+{"time":"2025-10-13T10:03:09.703060337-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-13T10:03:09.874031888-04:00","level":"INFO","msg":"stream: created new stream","id":"nv9rhmro"}
+{"time":"2025-10-13T10:03:09.874096139-04:00","level":"INFO","msg":"handler: started","stream_id":"nv9rhmro"}
+{"time":"2025-10-13T10:03:09.874249608-04:00","level":"INFO","msg":"stream: started","id":"nv9rhmro"}
+{"time":"2025-10-13T10:03:09.874274194-04:00","level":"INFO","msg":"writer: started","stream_id":"nv9rhmro"}
+{"time":"2025-10-13T10:03:09.874297498-04:00","level":"INFO","msg":"sender: started","stream_id":"nv9rhmro"}
+{"time":"2025-10-13T10:23:50.710904656-04:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.001286115}],"total_operations":1}}
+{"time":"2025-10-13T10:23:51.05070689-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T10:23:51.142044495-04:00","level":"INFO","msg":"stream: closing","id":"nv9rhmro"}
+{"time":"2025-10-13T10:23:51.14206289-04:00","level":"INFO","msg":"handler: closed","stream_id":"nv9rhmro"}
+{"time":"2025-10-13T10:23:51.142143612-04:00","level":"INFO","msg":"sender: closed","stream_id":"nv9rhmro"}
+{"time":"2025-10-13T10:23:51.14216889-04:00","level":"INFO","msg":"stream: closed","id":"nv9rhmro"}

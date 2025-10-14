@@ -1,0 +1,12 @@
+{"time":"2025-10-13T13:36:12.8455864-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-13T13:36:13.024101913-04:00","level":"INFO","msg":"stream: created new stream","id":"8qg235gi"}
+{"time":"2025-10-13T13:36:13.024225658-04:00","level":"INFO","msg":"handler: started","stream_id":"8qg235gi"}
+{"time":"2025-10-13T13:36:13.024346899-04:00","level":"INFO","msg":"stream: started","id":"8qg235gi"}
+{"time":"2025-10-13T13:36:13.024374782-04:00","level":"INFO","msg":"sender: started","stream_id":"8qg235gi"}
+{"time":"2025-10-13T13:36:13.024376425-04:00","level":"INFO","msg":"writer: started","stream_id":"8qg235gi"}
+{"time":"2025-10-13T13:39:58.531479263-04:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/rna-folding-ea-ml/RNA-Folding-EA/8qg235gi/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-10-13T14:04:25.45857876-04:00","level":"INFO","msg":"stream: closing","id":"8qg235gi"}
+{"time":"2025-10-13T14:04:25.798691883-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T14:04:25.940172805-04:00","level":"INFO","msg":"handler: closed","stream_id":"8qg235gi"}
+{"time":"2025-10-13T14:04:25.940316416-04:00","level":"INFO","msg":"sender: closed","stream_id":"8qg235gi"}
+{"time":"2025-10-13T14:04:25.940333689-04:00","level":"INFO","msg":"stream: closed","id":"8qg235gi"}

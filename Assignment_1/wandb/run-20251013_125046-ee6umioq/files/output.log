@@ -1,0 +1,49 @@
+Initialized wandb tracking: nyquist_pop_500_gen_500_mut_015_problem_1.1_run001_20251013_125046
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 500 individuals, 500 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 500 individuals, 500 generations
+Using 8 parallel workers for fitness evaluation
+Sequence constraint: GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYCNMNSCKCNCNCKUKKSWSAACSSSAMCN
+Structure constraint: ((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]...
+Initializing population...
+Initialized population with 500 individuals
+Error folding sequence GAAAUUUCCUUGCGCUCCGCCAGCCCCAGGAGUCCUAUUCUAUGCGAACCCAUGCUCGCCCGUUGCACAACCCCACCC: Command '['sudo', 'docker', 'cp', '/tmp/tmpct91zaxq.fa', 'ipknot_runner:/work/tmpct91zaxq.fa']' died with <Signals.SIGINT: 2>.Error folding sequence GAACUACACUUGGGAUCCGCCAGCCCCAUGAGUUCUAUUCUGUUCGACUCUAUGCGCUCACUUUUGUGAACGCGAACU: Command '['sudo', 'docker', 'cp', '/tmp/tmpfh1qmqif.fa', 'ipknot_runner:/work/tmpfh1qmqif.fa']' died with <Signals.SIGINT: 2>.
+Error folding sequence GAGCUACAAGUCGGCUCCGCUAGCGCCCUGAGGGCAAUUGGAUGCGCCCCAACCCUCCCGCUUGUGUGAACCCGAACC: Command '['sudo', 'docker', 'cp', '/tmp/tmpqcsxmczo.fa', 'ipknot_runner:/work/tmpqcsxmczo.fa']' died with <Signals.SIGINT: 2>.
+Traceback (most recent call last):
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 734, in <module>
+    main()
+    ~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 678, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 579, in run_experiment
+    result = run_single_problem(
+        problem_id, problem_config, experiment_config,
+        device, max_workers, problem_dir, enable_wandb, run_number
+    )
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 411, in run_single_problem
+    ea.run_evolution()
+    ~~~~~~~~~~~~~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 138, in enhanced_run_evolution
+    original_run_evolution()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 575, in run_evolution
+    fitness_scores = self.evaluate_fitness(self.population)
+  File "/home/orenda/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 247, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/orenda/miniconda3/lib/python3.13/threading.py", line 359, in wait
+    waiter.acquire()
+    ~~~~~~~~~~~~~~^^
+KeyboardInterrupt
