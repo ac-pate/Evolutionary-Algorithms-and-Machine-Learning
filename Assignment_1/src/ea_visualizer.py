@@ -1,4 +1,3 @@
-# Achal Patel - 40227663
 # EA Visualization and Analysis Tools
 
 import matplotlib.pyplot as plt
@@ -11,24 +10,13 @@ from collections import defaultdict
 import re
 
 class EAVisualizer:
-    """
-    comprehensive visualization toolkit for rna folding ea
-    creates publication-ready plots for analysis and reports
-    """
+    """Comprehensive visualization toolkit for RNA folding EA"""
     
     def __init__(self, stats_files=None, output_dir="plots"):
-        """
-        Initialize visualizer
-        
-        Args:
-            stats_files (list): List of stats JSON files from experiments
-            output_dir (str): Directory to save plots
-        """
         self.stats_files = stats_files or []
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
         
-        # set up plotting style
         plt.style.use('seaborn-v0_8')
         sns.set_palette("husl")
         
@@ -37,7 +25,7 @@ class EAVisualizer:
             self.load_data()
     
     def load_data(self):
-        """load data from stats files"""
+        """Load data from stats files"""
         print("Loading experiment data...")
         
         for stats_file in self.stats_files:
@@ -51,12 +39,9 @@ class EAVisualizer:
                 print(f"✗ Failed to load {stats_file}: {e}")
     
     def plot_fitness_evolution(self, save=True, show=True):
-        """
-        Plot fitness evolution over generations for all experiments
-        """
+        """Plot fitness evolution over generations for all experiments"""
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
         
-        # plot 1: Max Fitness Evolution
         for exp_name, data in self.data.items():
             if 'fitness_history' in data:
                 fitness_history = data['fitness_history']
@@ -67,7 +52,6 @@ class EAVisualizer:
                 ax1.plot(generations, max_fitness, label=f'{exp_name} (Max)', linewidth=2, marker='o', markersize=3)
                 ax2.plot(generations, avg_fitness, label=f'{exp_name} (Avg)', linewidth=2, marker='s', markersize=3)
         
-        # customize Plot 1 (Max Fitness)
         ax1.set_xlabel('Generation')
         ax1.set_ylabel('Maximum Fitness')
         ax1.set_title('Evolution of Best Solutions', fontsize=14, fontweight='bold')
@@ -75,7 +59,6 @@ class EAVisualizer:
         ax1.legend()
         ax1.set_ylim(0, 1.05)
         
-        # Customize Plot 2 (Average Fitness)  
         ax2.set_xlabel('Generation')
         ax2.set_ylabel('Average Fitness')
         ax2.set_title('Population Average Fitness', fontsize=14, fontweight='bold')
@@ -576,21 +559,73 @@ class EAVisualizer:
         print("Ready for report integration!")
 
 
-def load_and_visualize(stats_pattern="stats_*.json", results_pattern="results_*.txt"):
-    """
-    Convenience function to load all experiment data and create visualizations
-    
-    Args:
-        stats_pattern (str): Glob pattern for stats files
-        results_pattern (str): Glob pattern for results files
-    """
+    def plot_six_constraint_grid(self, problem_results, save=True, show=True):
+        """Create 2x3 grid showing results for all 6 constraint problems"""
+        fig, axes = plt.subplots(2, 3, figsize=(18, 12))
+        axes = axes.flatten()
+        
+        problem_ids = ['1.1', '1.2', '2.1', '2.2', '3.1', '3.2']
+        
+        for i, problem_id in enumerate(problem_ids):
+            ax = axes[i]
+            
+            if problem_id in problem_results:
+                data = problem_results[problem_id]
+                fitness_history = data.get('fitness_history', [])
+                
+                if fitness_history:
+                    generations = [entry[0] for entry in fitness_history]
+                    max_fitness = [entry[1] for entry in fitness_history]
+                    avg_fitness = [entry[2] for entry in fitness_history]
+                    
+                    ax.plot(generations, max_fitness, 'b-', linewidth=2, label='Max Fitness')
+                    ax.plot(generations, avg_fitness, 'r--', linewidth=1.5, label='Avg Fitness')
+                    
+                    ax.set_title(f'Problem {problem_id}', fontsize=12, fontweight='bold')
+                    ax.set_xlabel('Generation')
+                    ax.set_ylabel('Fitness')
+                    ax.grid(True, alpha=0.3)
+                    ax.set_ylim(0, 1.05)
+                    ax.legend()
+                    
+                    # Add final fitness annotation
+                    final_fitness = max_fitness[-1] if max_fitness else 0
+                    ax.text(0.02, 0.95, f'Final: {final_fitness:.3f}', 
+                           transform=ax.transAxes, fontsize=10, 
+                           bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
+                else:
+                    ax.text(0.5, 0.5, 'No Data', ha='center', va='center', 
+                           transform=ax.transAxes, fontsize=14)
+                    ax.set_title(f'Problem {problem_id}', fontsize=12, fontweight='bold')
+            else:
+                ax.text(0.5, 0.5, 'No Data', ha='center', va='center', 
+                       transform=ax.transAxes, fontsize=14)
+                ax.set_title(f'Problem {problem_id}', fontsize=12, fontweight='bold')
+        
+        plt.tight_layout()
+        
+        if save:
+            plt.savefig(self.output_dir / 'six_constraint_grid.png', dpi=300, bbox_inches='tight')
+            print(f"✓ Saved: {self.output_dir}/six_constraint_grid.png")
+        
+        if show:
+            plt.show()
+        else:
+            plt.close()
+
+def load_and_visualize(results_dir="results", stats_pattern="**/*stats.json"):
+    """Convenience function to load experiment data and create visualizations"""
     from glob import glob
+    import os
     
-    # Find all stats and results files
-    stats_files = glob(stats_pattern)
-    results_files = glob(results_pattern)
+    # Find all stats files
+    if os.path.isdir(results_dir):
+        full_pattern = os.path.join(results_dir, stats_pattern)
+        stats_files = glob(full_pattern, recursive=True)
+    else:
+        stats_files = glob(stats_pattern, recursive=True)
     
-    print(f"Found {len(stats_files)} stats files and {len(results_files)} results files")
+    print(f"Found {len(stats_files)} stats files")
     
     if not stats_files:
         print("No stats files found! Make sure to run experiments first.")
@@ -598,7 +633,11 @@ def load_and_visualize(stats_pattern="stats_*.json", results_pattern="results_*.
     
     # Create visualizer and generate plots
     visualizer = EAVisualizer(stats_files)
-    visualizer.generate_report_plots(results_files)
+    visualizer.plot_fitness_evolution()
+    visualizer.plot_parameter_comparison()
+    visualizer.plot_convergence_analysis()
+    visualizer.plot_sequence_diversity()
+    visualizer.plot_performance_summary()
     
     return visualizer
 

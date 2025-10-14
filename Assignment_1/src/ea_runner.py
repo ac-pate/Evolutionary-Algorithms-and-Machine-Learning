@@ -168,22 +168,27 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
     print(f"Sequence:  {problem_config['SEQUENCE_CONSTRAINT'][:50]}...")
     print(f"{'='*60}")
     
-    # Create EA instance
+    # Create EA instance with 1% elitism
     ea = RNAFoldingEA(
         population_size=experiment_config['POPULATION_SIZE'],
         generations=experiment_config['GENERATIONS'],
         sequence_constraint=problem_config['SEQUENCE_CONSTRAINT'],
         structure_constraint=problem_config['STRUCTURE_CONSTRAINT'],
-        max_workers=max_workers
+        max_workers=max_workers,
+        elite_percentage=0.01  # Force 1% elitism
     )
     
-    # Override default parameters if specified
+    # Override default parameters if specified (except elite_percentage)
     if 'CROSSOVER_RATE' in experiment_config:
         ea.crossover_rate = experiment_config['CROSSOVER_RATE']
     if 'MUTATION_RATE' in experiment_config:
         ea.mutation_rate = experiment_config['MUTATION_RATE']
     if 'TOURNAMENT_SIZE' in experiment_config:
         ea.tournament_size = experiment_config['TOURNAMENT_SIZE']
+    if 'EARLY_TERMINATION_FITNESS' in experiment_config:
+        ea.early_termination_fitness = experiment_config['EARLY_TERMINATION_FITNESS']
+    if 'HIGH_FITNESS_STREAK_THRESHOLD' in experiment_config:
+        ea.high_fitness_streak_threshold = experiment_config['HIGH_FITNESS_STREAK_THRESHOLD']
     
     # Add progress monitoring
     try:
@@ -193,7 +198,7 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
     except ImportError:
         print("Progress monitoring not available, running standard EA...")
     
-    # Log experiment configuration as metadata (not time-series data)
+    # Log experiment configuration
     if wandb_run:
         wandb_run.config.update({
             f"problem_{problem_id}": {
@@ -202,23 +207,21 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
                 "crossover_rate": experiment_config.get('CROSSOVER_RATE', 0.8),
                 "mutation_rate": experiment_config.get('MUTATION_RATE', 0.01),
                 "tournament_size": experiment_config.get('TOURNAMENT_SIZE', 3),
+                "elite_percentage": 0.01,  # Always 1%
                 "sequence_length": len(problem_config['SEQUENCE_CONSTRAINT']),
                 "sequence_constraint": problem_config['SEQUENCE_CONSTRAINT'],
                 "structure_constraint": problem_config['STRUCTURE_CONSTRAINT']
             }
         })
     
-    # Track start time
     import time
     start_time = time.time()
     
-    # Simple real-time wandb callback - no throttling
     history = None
     metric_prefix = None
 
     if wandb_run:
         metric_prefix = f"problem_{problem_id}"
-
         history = {
             "global_step": [],
             "problem_generation": [],
@@ -228,9 +231,7 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
         }
 
         def wandb_callback(generation, best_fitness, avg_fitness, diversity):
-            # Track history for combined visualizations and log metrics in real-time
             global_step = generation_offset + generation
-
             history["global_step"].append(global_step)
             history["problem_generation"].append(generation)
             history["fitness_max"].append(best_fitness)
@@ -306,13 +307,26 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
     generation_found = next((entry[0] for entry in fitness_history if entry[1] == best_fitness), 0) if fitness_history else 0
     
     # Get top 5 valid sequences above fitness threshold
-    valid_sequences = [ind for ind in best_individuals if ind['fitness'] > 0.5]  # threshold
+    valid_sequences = [ind for ind in best_individuals if ind['fitness'] > 0.5]
     valid_sequences.sort(key=lambda x: x['fitness'], reverse=True)
     top_sequences = [seq['sequence'] for seq in valid_sequences[:5]]
     
-    # Save problem-specific results
-    problem_results_file = problem_dir / f"problem_{problem_id}_results.txt"
-    ea.save_results(str(problem_results_file))
+    # Save problem-specific results with improved naming
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    problem_results_file = problem_dir / f"problem_{problem_id}_{timestamp}_sequences.txt"
+    
+    # Custom save for individual problem
+    with open(problem_results_file, 'w') as f:
+        f.write(f"# Problem {problem_id} Results\n")
+        f.write(f"# Best Fitness: {best_fitness:.4f}\n")
+        f.write(f"# Generation Found: {generation_found}\n")
+        f.write(f"# Runtime: {runtime:.2f}s\n")
+        f.write(f"# Valid Sequences: {len(valid_sequences)}\n\n")
+        for i, seq_data in enumerate(valid_sequences[:10]):  # Top 10
+            f.write(f"# Rank {i+1}: Fitness {seq_data['fitness']:.4f}\n")
+            f.write(f"{seq_data['sequence']}\n\n")
+    
+    print(f"Problem {problem_id} sequences saved to: {problem_results_file.name}")
     
     # Save problem-specific stats
     if fitness_history:
