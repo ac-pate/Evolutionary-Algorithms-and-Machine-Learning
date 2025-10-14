@@ -525,10 +525,12 @@ class RNAFoldingEA:
                 self.high_fitness_streak = 0
             
             # Anti-stagnation measures
-            should_apply_anti_stagnation = (max_fitness == 0.0 or max_fitness < self.early_termination_fitness) and
-                                            (self.fitness_stagnation_counter >= self.fitness_stagnation_threshold or 
-                                            self.diversity_stagnation_counter >= self.diversity_stagnation_threshold)
-            
+            should_apply_anti_stagnation = (
+                (max_fitness == 0.0 or max_fitness < self.early_termination_fitness) and
+                (self.fitness_stagnation_counter >= self.fitness_stagnation_threshold or 
+                self.diversity_stagnation_counter >= self.diversity_stagnation_threshold)
+            )
+
             
             # Adaptive mutation
             self.mutation_rate = self.adaptive_mutation_rate(diversity)
