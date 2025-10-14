@@ -673,7 +673,7 @@ class RNAFoldingEA:
         
         # Always start with the best fitness sequence
         selected = [all_results[0]]
-        print(f"1. {all_results[0][0][:30]}... (fitness: {all_results[0][1]:.4f}) [Best fitness]")
+        print(f"\n1. {all_results[0][0][:30]}... (fitness: {all_results[0][1]:.4f}) [Best fitness]")
         
         # For remaining sequences, enforce strong diversity requirement
         remaining_candidates = all_results[1:]
