@@ -160,7 +160,7 @@ def update_master_data_file(data_dir, experiment_name, device, config, all_resul
     
     return master_file
 
-def run_single_problem(problem_id, problem_config, experiment_config, device, max_workers, problem_dir, wandb_run, generation_offset):
+def run_single_problem(problem_id, problem_config, experiment_config, device, max_workers, problem_dir, wandb_run, generation_offset, enable_cache_preloading=False):
     """Run EA for a single problem and return results"""
     print(f"\n{'='*60}")
     print(f"Running Problem {problem_id}")
@@ -175,7 +175,8 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
         sequence_constraint=problem_config['SEQUENCE_CONSTRAINT'],
         structure_constraint=problem_config['STRUCTURE_CONSTRAINT'],
         max_workers=max_workers,
-        elite_percentage=experiment_config.get('ELITE_PERCENTAGE', 0.01)  # Default to 1% if not specified
+        elite_percentage=experiment_config.get('ELITE_PERCENTAGE', 0.01),  # Default to 1% if not specified
+        enable_cache_preloading=enable_cache_preloading
     )
     
     # Override default parameters if specified
@@ -282,7 +283,9 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
             ys=[history["fitness_max"], history["fitness_avg"], history["diversity"]],
             keys=["fitness_max", "fitness_avg", "diversity"],
             title=f"Problem {problem_id} Fitness & Diversity",
-            xname="global_step"
+            xname="generation (global step)",
+            stroke_colors=["#27ae60", "#3498db", "#f39c12"],  # Green, Blue, Orange
+            stroke_widths=[3, 3, 3]  # Bold lines
         )
 
         wandb_run.log({
@@ -373,7 +376,7 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
     print(f"Valid sequences found: {len(valid_sequences)}")
     
     return problem_stats
-def run_experiment(experiment_config, device=None, problems_to_run=None, run_number=1, enable_wandb=True):
+def run_experiment(experiment_config, device=None, problems_to_run=None, run_number=1, enable_wandb=True, enable_cache_preloading=False):
     """Run experiment for all problems or specific problems with wandb tracking"""
     print(f"\n{'='*80}")
     print(f"Starting experiment: {experiment_config['NAME']} (Run #{run_number})")
@@ -493,7 +496,7 @@ def run_experiment(experiment_config, device=None, problems_to_run=None, run_num
             
             result = run_single_problem(
                 problem_id, problem_config, experiment_config,
-                device, max_workers, problem_dir, wandb_run, generation_offset
+                device, max_workers, problem_dir, wandb_run, generation_offset, enable_cache_preloading
             )
             all_results[problem_id] = result
 
@@ -559,6 +562,8 @@ def main():
     parser.add_argument('--run', type=int, default=1, help='Run number for experiment tracking (default: 1)')
     parser.add_argument('--wandb', type=str, choices=['true', 'false'], default='true', 
                        help='Enable wandb tracking (default: true)')
+    parser.add_argument('--cache-preloading', action='store_true', 
+                       help='Enable fitness cache preloading from previous runs (default: false)')
     
     args = parser.parse_args()
     
@@ -585,7 +590,7 @@ def main():
                          if exp['NAME'] == args.experiment and exp['NAME'].startswith(args.device)), None)
         if experiment:
             print(f"Running specific experiment: {args.experiment} on device: {args.device} (Run #{args.run})")
-            run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+            run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb, enable_cache_preloading=args.cache_preloading)
         else:
             print(f"Experiment '{args.experiment}' not found for device '{args.device}'!")
             device_experiments = [exp['NAME'] for exp in config_data['EXPERIMENTS'] 
@@ -604,7 +609,7 @@ def main():
         
         print(f"Running {len(device_experiments)} experiments for device: {args.device} (Run #{args.run})")
         for experiment in device_experiments:
-            run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+            run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb, enable_cache_preloading=args.cache_preloading)
             
     elif args.experiment:
         # Run specific experiment
@@ -616,7 +621,7 @@ def main():
                 if experiment['NAME'].startswith(dev):
                     device = dev
                     break
-            run_experiment(experiment, device=device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+            run_experiment(experiment, device=device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb, enable_cache_preloading=args.cache_preloading)
         else:
             print(f"Experiment '{args.experiment}' not found!")
             available_experiments = [exp['NAME'] for exp in config_data['EXPERIMENTS']]
@@ -638,7 +643,7 @@ def main():
                 if experiment['NAME'].startswith(dev):
                     device = dev
                     break
-            run_experiment(experiment, device=device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+            run_experiment(experiment, device=device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb, enable_cache_preloading=args.cache_preloading)
 
 if __name__ == "__main__":
     main()

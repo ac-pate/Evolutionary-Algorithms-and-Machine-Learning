@@ -65,6 +65,17 @@ class WandbTracker:
                 job_type="evolutionary_algorithm"
             )
             
+            # Configure metrics to prevent auto-chart generation
+            # Only log to custom charts, not individual metric charts
+            self.wandb_run.define_metric("generation")
+            self.wandb_run.define_metric("fitness_max", step_metric="generation", summary="max")
+            self.wandb_run.define_metric("fitness_avg", step_metric="generation", summary="last")  
+            self.wandb_run.define_metric("diversity", step_metric="generation", summary="last")
+            
+            # Disable auto-chart creation for cleaner dashboard
+            if hasattr(self.wandb_run, 'config'):
+                self.wandb_run.config.update({"_wandb": {"chart_view": "custom_only"}}, allow_val_change=True)
+            
             print(f"Initialized wandb tracking: {run_name}")
             
         except Exception as e:
@@ -73,17 +84,18 @@ class WandbTracker:
             self.enabled = False
     
     def log_generation(self, generation, max_fitness, avg_fitness, diversity):
-        """Log generation data to wandb"""
+        """Log generation data to wandb with simplified metric names"""
         if not self.enabled or not self.wandb_run:
             return
         
         try:
+            # Use simple metric names that group well in custom charts
             self.wandb_run.log({
                 "generation": generation,
-                "max_fitness": max_fitness,
-                "avg_fitness": avg_fitness,
-                "diversity": diversity,
-                "problem_id": self.problem_id
+                "fitness_max": max_fitness,
+                "fitness_avg": avg_fitness,
+                "diversity": diversity
+                # Remove problem_id from metrics to prevent chart proliferation
             })
         except Exception as e:
             print(f"Warning: Failed to log to wandb: {e}")

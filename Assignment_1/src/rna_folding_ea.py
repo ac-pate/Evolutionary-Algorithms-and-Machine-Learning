@@ -19,7 +19,7 @@ class RNAFoldingEA:
     3. maximize diversity of solutions
     """
     
-    def __init__(self, population_size, generations, sequence_constraint, structure_constraint, max_workers=8, elite_percentage=0.01):
+    def __init__(self, population_size, generations, sequence_constraint, structure_constraint, max_workers=8, elite_percentage=0.01, enable_cache_preloading=False):
         """
         Initialize the Evolutionary Algorithm
         
@@ -30,6 +30,7 @@ class RNAFoldingEA:
             structure_constraint (str): Dot-bracket notation string
             max_workers (int): Number of parallel workers for fitness evaluation
             elite_percentage (float): Percentage of population to keep as elites (default: 0.01 = 1%)
+            enable_cache_preloading (bool): Whether to load fitness cache from previous runs (default: False)
         """
         self.population_size = population_size
         self.generations = generations
@@ -37,6 +38,7 @@ class RNAFoldingEA:
         self.structure_constraint = structure_constraint
         self.sequence_length = len(sequence_constraint)
         self.max_workers = max_workers
+        self.enable_cache_preloading = enable_cache_preloading
         
         # evolutionary params (will be optimized based on hardware)
         self.crossover_rate = 0.8
@@ -52,6 +54,10 @@ class RNAFoldingEA:
         
         # Fitness cache for optimization
         self.fitness_cache = {}
+        
+        # Load previous cache if enabled
+        if self.enable_cache_preloading:
+            self.preload_cache_from_previous_runs()
         
         # Stagnation settings - separated fitness and diversity
         self.fitness_stagnation_threshold = 10
@@ -148,8 +154,70 @@ class RNAFoldingEA:
         self.population = population
         print(f"Initialized population with {len(population)} individuals")
     
-    def fold_rna_ipknot(self, sequence):
-        """Use IPknot via Docker to predict RNA secondary structure"""
+    def fold_rna_ipknot(self, sequence_or_list):
+        """Use IPknot via Docker to predict RNA secondary structure - supports both single and batch"""
+        # Handle single sequence (backward compatibility)
+        if isinstance(sequence_or_list, str):
+            return self._fold_single_sequence(sequence_or_list)
+        
+        # Handle batch of sequences
+        sequences = sequence_or_list
+        if not sequences:
+            return []
+        
+        try:
+            # Create single batch file
+            with tempfile.NamedTemporaryFile(mode='w', suffix='.fa', delete=False) as f:
+                for i, seq in enumerate(sequences):
+                    f.write(f">seq_{i}\n{seq}\n")
+                batch_file = f.name
+            
+            # Copy to container and execute
+            base_name = os.path.basename(batch_file)
+            copy_cmd = ["sudo", "docker", "cp", batch_file, f"ipknot_runner:/work/{base_name}"]
+            subprocess.run(copy_cmd, check=True, capture_output=True)
+            
+            cmd = ["sudo", "docker", "exec", "ipknot_runner", "ipknot", f"/work/{base_name}"]
+            result = subprocess.run(cmd, capture_output=True, text=True, check=True, timeout=30*len(sequences))
+
+            # Parse batch results
+            structures = []
+            lines = result.stdout.strip().split('\n')
+            current_structure = None
+            skip_next = False
+            
+            for line in lines:
+                if line.startswith('>'):
+                    if current_structure:
+                        structures.append(current_structure)
+                    current_structure = None
+                    skip_next = True
+                elif skip_next and line.strip():
+                    # Skip sequence line
+                    skip_next = False
+                    continue
+                elif not skip_next and line.strip():
+                    current_structure = line.strip()
+            
+            if current_structure:
+                structures.append(current_structure)
+            
+            os.unlink(batch_file)
+            
+            # Ensure we return exactly the right number of structures
+            while len(structures) < len(sequences):
+                structures.append('.' * len(sequences[len(structures)]))
+                
+            return structures[:len(sequences)]
+            
+        except Exception as e:
+            print(f"Batch folding failed: {e}")
+            if 'batch_file' in locals() and os.path.exists(batch_file):
+                os.unlink(batch_file)
+            return ['.' * len(seq) for seq in sequences]
+    
+    def _fold_single_sequence(self, sequence):
+        """Original single sequence folding logic"""
         try:
             with tempfile.NamedTemporaryFile(mode='w', suffix='.fa', delete=False) as f:
                 f.write(f">sequence\n{sequence}\n")
@@ -187,7 +255,7 @@ class RNAFoldingEA:
         return matches / len(target_structure)
     
     def evaluate_fitness(self, sequences):
-        """Evaluate fitness for batch of sequences with caching"""
+        """Evaluate fitness for batch of sequences with caching and parallel processing"""
         def evaluate_single(sequence):
             if not self.is_valid_sequence(sequence):
                 return 0.0
@@ -196,6 +264,7 @@ class RNAFoldingEA:
             if sequence in self.fitness_cache:
                 return self.fitness_cache[sequence]
             
+            # Use single sequence folding for parallel processing
             predicted_structure = self.fold_rna_ipknot(sequence)
             fitness = self.calculate_structure_fitness(predicted_structure, self.structure_constraint)
             
@@ -203,10 +272,30 @@ class RNAFoldingEA:
             self.fitness_cache[sequence] = fitness
             return fitness
         
-        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-            fitness_scores = list(executor.map(evaluate_single, sequences))
+        # Separate cached vs uncached for potential future batch optimization
+        cached_results = {}
+        uncached_sequences = []
+        uncached_indices = []
         
-        return fitness_scores
+        for i, seq in enumerate(sequences):
+            if not self.is_valid_sequence(seq):
+                cached_results[i] = 0.0
+            elif seq in self.fitness_cache:
+                cached_results[i] = self.fitness_cache[seq]
+            else:
+                uncached_sequences.append(seq)
+                uncached_indices.append(i)
+        
+        # Process uncached sequences in parallel (restore original threading)
+        if uncached_sequences:
+            with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+                uncached_fitness = list(executor.map(evaluate_single, uncached_sequences))
+            
+            for fitness, idx in zip(uncached_fitness, uncached_indices):
+                cached_results[idx] = fitness
+        
+        # Return results in original order
+        return [cached_results[i] for i in range(len(sequences))]
     
     def tournament_selection(self, fitness_scores):
         """Tournament selection for parent selection"""
@@ -306,6 +395,34 @@ class RNAFoldingEA:
         
         return ''.join(sequence_list)
     
+    def preload_cache_from_previous_runs(self):
+        """Load fitness cache from previous experiments (if enabled)"""
+        cache_file = "cache/fitness_cache.json"
+        try:
+            if os.path.exists(cache_file):
+                with open(cache_file, 'r') as f:
+                    cached_data = json.load(f)
+                    self.fitness_cache.update(cached_data)
+                    print(f"[CACHE] Loaded {len(cached_data)} cached fitness evaluations")
+            else:
+                print("[CACHE] No previous cache found, starting fresh")
+        except Exception as e:
+            print(f"[CACHE] Warning: Failed to load cache - {e}")
+            
+    def save_cache(self):
+        """Save fitness cache for future runs (if cache preloading enabled)"""
+        if not self.enable_cache_preloading:
+            return
+            
+        try:
+            os.makedirs("cache", exist_ok=True)
+            cache_file = "cache/fitness_cache.json"
+            with open(cache_file, 'w') as f:
+                json.dump(self.fitness_cache, f)
+            print(f"[CACHE] Saved {len(self.fitness_cache)} fitness evaluations to cache")
+        except Exception as e:
+            print(f"[CACHE] Warning: Failed to save cache - {e}")
+    
     def calculate_diversity(self, sequences, sample_size=None):
         """Calculate diversity with optional sampling for large populations"""
         if len(sequences) < 2:
@@ -373,22 +490,29 @@ class RNAFoldingEA:
         return min(mutation_rate, 0.1)
 
     def crowding_selection(self, fitness_scores, offspring, offspring_fitness):
-        """Crowding selection to maintain diversity"""
+        """Crowding selection to maintain diversity - optimized with parallel processing"""
         new_population = self.population[:]
         
-        for i, (child, child_fitness) in enumerate(zip(offspring, offspring_fitness)):
-            # Find most similar individual in current population
-            similarities = []
+        def find_most_similar(child):
+            """Find most similar individual to child in current population"""
+            best_similarity = -1
+            best_idx = 0
             for j, individual in enumerate(self.population):
+                # Fast Hamming distance calculation
                 hamming_dist = sum(1 for a, b in zip(child, individual) if a != b)
                 similarity = 1.0 - (hamming_dist / len(child))
-                similarities.append((similarity, j))
-            
-            # Sort by similarity (most similar first)
-            similarities.sort(reverse=True)
-            
-            # Replace most similar individual if child is better
-            most_similar_idx = similarities[0][1]
+                if similarity > best_similarity:
+                    best_similarity = similarity
+                    best_idx = j
+            return best_similarity, best_idx
+        
+        # Parallel similarity computation for all offspring
+        with ThreadPoolExecutor(max_workers=min(self.max_workers, len(offspring))) as executor:
+            most_similar_results = list(executor.map(find_most_similar, offspring))
+        
+        # Apply replacements
+        for i, (child, child_fitness) in enumerate(zip(offspring, offspring_fitness)):
+            similarity, most_similar_idx = most_similar_results[i]
             if child_fitness > fitness_scores[most_similar_idx]:
                 new_population[most_similar_idx] = child
                 fitness_scores[most_similar_idx] = child_fitness
@@ -629,6 +753,10 @@ class RNAFoldingEA:
             print(f"Reason: {self.termination_reason}")
         else:
             print("\nEvolution completed!")
+            
+        # Save cache for future runs
+        self.save_cache()
+        
         self.analyze_results()
     
     def analyze_results(self):
@@ -648,7 +776,7 @@ class RNAFoldingEA:
         sorted_results = sorted(zip(unique_individuals, final_fitness), key=lambda x: x[1], reverse=True)
         
         print(f"Found {len(sorted_results)} unique high-quality sequences")
-        print(f"Elite percentage: 1.0% (fixed)")
+        print(f"Elite percentage: 1.0% ({self.elitism_count} individuals)")
         
         if sorted_results:
             # Calculate diversity
