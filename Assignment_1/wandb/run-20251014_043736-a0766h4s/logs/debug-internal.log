@@ -1,0 +1,14 @@
+{"time":"2025-10-14T04:37:36.363763549-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-14T04:37:36.540785779-04:00","level":"INFO","msg":"stream: created new stream","id":"a0766h4s"}
+{"time":"2025-10-14T04:37:36.540846353-04:00","level":"INFO","msg":"handler: started","stream_id":"a0766h4s"}
+{"time":"2025-10-14T04:37:36.541035429-04:00","level":"INFO","msg":"stream: started","id":"a0766h4s"}
+{"time":"2025-10-14T04:37:36.541052521-04:00","level":"INFO","msg":"sender: started","stream_id":"a0766h4s"}
+{"time":"2025-10-14T04:37:36.541033655-04:00","level":"INFO","msg":"writer: started","stream_id":"a0766h4s"}
+{"time":"2025-10-14T04:37:36.842495977-04:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":38}
+{"time":"2025-10-14T04:37:36.853667856-04:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.143892588},{"desc":"uploading wandb-metadata.json","runtime_seconds":0.035995885,"progress":"1.1KB/1.1KB"}],"total_operations":2}}
+{"time":"2025-10-14T04:37:36.922815125-04:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":79}
+{"time":"2025-10-14T04:37:37.257782034-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-14T04:37:37.443590056-04:00","level":"INFO","msg":"stream: closing","id":"a0766h4s"}
+{"time":"2025-10-14T04:37:37.443605335-04:00","level":"INFO","msg":"handler: closed","stream_id":"a0766h4s"}
+{"time":"2025-10-14T04:37:37.443636413-04:00","level":"INFO","msg":"sender: closed","stream_id":"a0766h4s"}
+{"time":"2025-10-14T04:37:37.44364541-04:00","level":"INFO","msg":"stream: closed","id":"a0766h4s"}

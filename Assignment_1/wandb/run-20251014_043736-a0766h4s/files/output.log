@@ -1,0 +1,46 @@
+Wandb tracking initialized: https://wandb.ai/rna-folding-ea-ml/RNA-Folding-EA/runs/a0766h4s
+Project: RNA-Folding-EA
+Group: nyquist_pop
+Experiment log: results/2025-10-14_04-37-36_nyquist_nyquist_pop_200_gen_150_mut_015_run001/experiment_log.txt
+
+============================================================
+Running Problem 1.1
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYC...
+============================================================
+Error running problem 1.1: RNAFoldingEA.__init__() got an unexpected keyword argument 'elite_percentage'
+
+============================================================
+Running Problem 1.2
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...
+============================================================
+Error running problem 1.2: RNAFoldingEA.__init__() got an unexpected keyword argument 'elite_percentage'
+
+============================================================
+Running Problem 2.1
+Structure: ...................((((((((..((((((.((((((......((...
+Sequence:  UUAWUARWUAMAGSGCSNNUSNANWRUACNNMWAUAGNUAUNNAGUAUYA...
+============================================================
+Error running problem 2.1: RNAFoldingEA.__init__() got an unexpected keyword argument 'elite_percentage'
+
+============================================================
+Running Problem 2.2
+Structure: ...................((((((((..((((((.((((((......((...
+Sequence:  NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...
+============================================================
+Error running problem 2.2: RNAFoldingEA.__init__() got an unexpected keyword argument 'elite_percentage'
+
+============================================================
+Running Problem 3.1
+Structure: ..............[[...((((((((((........(((((..(((......
+Sequence:  ARUUSNMUAGWAGCGCCNRMNNURRUUGGGNCRRAAAUNMNKNRNRNNSM...
+============================================================
+Error running problem 3.1: RNAFoldingEA.__init__() got an unexpected keyword argument 'elite_percentage'
+
+============================================================
+Running Problem 3.2
+Structure: ..............[[...((((((((((........(((((..(((......
+Sequence:  NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...
+============================================================
+Error running problem 3.2: RNAFoldingEA.__init__() got an unexpected keyword argument 'elite_percentage'

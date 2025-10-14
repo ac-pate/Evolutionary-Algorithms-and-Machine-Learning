@@ -168,17 +168,17 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
     print(f"Sequence:  {problem_config['SEQUENCE_CONSTRAINT'][:50]}...")
     print(f"{'='*60}")
     
-    # Create EA instance with 1% elitism
+    # Create EA instance with configurable elitism
     ea = RNAFoldingEA(
         population_size=experiment_config['POPULATION_SIZE'],
         generations=experiment_config['GENERATIONS'],
         sequence_constraint=problem_config['SEQUENCE_CONSTRAINT'],
         structure_constraint=problem_config['STRUCTURE_CONSTRAINT'],
         max_workers=max_workers,
-        elite_percentage=0.01  # Force 1% elitism
+        elite_percentage=experiment_config.get('ELITE_PERCENTAGE', 0.01)  # Default to 1% if not specified
     )
     
-    # Override default parameters if specified (except elite_percentage)
+    # Override default parameters if specified
     if 'CROSSOVER_RATE' in experiment_config:
         ea.crossover_rate = experiment_config['CROSSOVER_RATE']
     if 'MUTATION_RATE' in experiment_config:
@@ -207,7 +207,7 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
                 "crossover_rate": experiment_config.get('CROSSOVER_RATE', 0.8),
                 "mutation_rate": experiment_config.get('MUTATION_RATE', 0.01),
                 "tournament_size": experiment_config.get('TOURNAMENT_SIZE', 3),
-                "elite_percentage": 0.01,  # Always 1%
+                "elite_percentage": experiment_config.get('ELITE_PERCENTAGE', 0.01),  # From config
                 "sequence_length": len(problem_config['SEQUENCE_CONSTRAINT']),
                 "sequence_constraint": problem_config['SEQUENCE_CONSTRAINT'],
                 "structure_constraint": problem_config['STRUCTURE_CONSTRAINT']
@@ -421,6 +421,7 @@ def run_experiment(experiment_config, device=None, problems_to_run=None, run_num
                     "crossover_rate": experiment_config.get('CROSSOVER_RATE', 0.8),
                     "mutation_rate": experiment_config.get('MUTATION_RATE', 0.01),
                     "tournament_size": experiment_config.get('TOURNAMENT_SIZE', 3),
+                    "elite_percentage": experiment_config.get('ELITE_PERCENTAGE', 0.01),
                     "problems": problems_to_run,
                 },
                 tags=[

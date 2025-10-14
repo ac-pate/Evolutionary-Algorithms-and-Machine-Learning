@@ -19,7 +19,7 @@ class RNAFoldingEA:
     3. maximize diversity of solutions
     """
     
-    def __init__(self, population_size, generations, sequence_constraint, structure_constraint, max_workers=8):
+    def __init__(self, population_size, generations, sequence_constraint, structure_constraint, max_workers=8, elite_percentage=0.01):
         """
         Initialize the Evolutionary Algorithm
         
@@ -29,6 +29,7 @@ class RNAFoldingEA:
             sequence_constraint (str): IUPAC notation string
             structure_constraint (str): Dot-bracket notation string
             max_workers (int): Number of parallel workers for fitness evaluation
+            elite_percentage (float): Percentage of population to keep as elites (default: 0.01 = 1%)
         """
         self.population_size = population_size
         self.generations = generations
@@ -41,7 +42,7 @@ class RNAFoldingEA:
         self.crossover_rate = 0.8
         self.mutation_rate = 1.0 / self.sequence_length  # adaptive mutation rate
         self.tournament_size = 3
-        self.elite_percentage = 0.1  # Keep top 10% by default
+        self.elite_percentage = elite_percentage  # Use provided value
         self.elitism_count = max(1, int(population_size * self.elite_percentage))
         
         # Early termination settings
