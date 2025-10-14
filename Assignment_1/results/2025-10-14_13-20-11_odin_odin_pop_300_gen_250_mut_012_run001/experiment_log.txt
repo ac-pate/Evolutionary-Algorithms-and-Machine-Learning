@@ -1,0 +1,13 @@
+RNA Folding EA Experiment Log
+Experiment: odin_pop_300_gen_250_mut_012 (Run #1)
+Device: odin
+Started: 2025-10-14 13:20:12
+Parameters: Pop=300, Gen=250
+Problems: 1.2
+================================================================================
+
+Starting Problem 1.2 at 13:20:12
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...
+ERROR in Problem 1.2: line_series() got an unexpected keyword argument 'stroke_colors'
+

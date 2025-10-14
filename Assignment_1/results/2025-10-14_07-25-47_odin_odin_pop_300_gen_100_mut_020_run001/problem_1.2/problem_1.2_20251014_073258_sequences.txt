@@ -1,0 +1,6 @@
+# Problem 1.2 Results
+# Best Fitness: 0.8590
+# Generation Found: 59
+# Runtime: 250.76s
+# Valid Sequences: 0
+

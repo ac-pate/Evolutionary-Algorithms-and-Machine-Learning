@@ -1,13 +1,132 @@
-# RNA Folding Evolutionary Algorithm - README
+# RNA Folding EA Assignment - UPDATED STRUCTURE
+**Achal Patel - 40227663**
 
-## Quick Start Guide
+## Project Organization
+
+```
+├── README.md                          # This file  
+├── config.py                          # Central configuration file
+├── test_runner.py                     # Interactive test runner
+├── requirements.txt                   # Python dependencies
+│
+├── scripts/                           # Setup and utility scripts
+│   ├── setup_machine.sh              # Complete environment setup (with Docker group)
+│   ├── auto_experiments.sh           # Automated experiment runner
+│   ├── test_setup.py                 # Setup validation script
+│   ├── ea_visualization_and_plots.py # Results visualization  
+│   └── generate_output.py            # Output generation utilities
+│
+├── src/                              # Source code
+│   ├── EA_Assignment_1_constraints.csv # Assignment input data (6 problems)
+│   ├── ea_runner.py                  # Main assignment runner
+│   ├── csv_processor.py              # CSV input/output handling
+│   └── rna_folding_ea.py            # Core evolutionary algorithm
+│
+├── output/                           # Auto-generated results
+│   └── EA_Assignment_1_output-sheet1_*_*.csv
+│
+├── results/                          # Experiment results
+├── data/                            # Data files
+├── ipknot/                          # IPknot RNA folding tool
+└── venv/                            # Python virtual environment
+```
+
+## QUICK START
+
+### 1. Setup Environment (ONE TIME)
+```bash
+# Run the comprehensive setup script
+./scripts/setup_machine.sh
+
+# WARNING: If prompted, restart your session for Docker group changes to take effect
+```
+
+### 2. Run Assignment Experiments
+```bash
+# Simple usage - auto-generates output files
+python3 src/ea_runner.py --experiment my_test
+
+# Run specific problems only
+python3 src/ea_runner.py --experiment quick_test --problems "3.2,1.2"
+
+# Interactive testing menu
+python3 test_runner.py
+```
+
+### 3. Validate Setup
+```bash
+# Test everything is working
+python3 scripts/test_setup.py
+```
+
+## KEY IMPROVEMENTS
+
+### **No More Sudo Hassles**
+- Setup script adds you to docker group
+- No password prompts during experiments
+- Clean, automated Docker access
+
+### **Auto-Generated Output Files**
+- No need to specify output paths
+- Automatic naming: `EA_Assignment_1_output-sheet1_{experiment}_{timestamp}.csv`
+- Organized in `output/` folder
+
+### **Real Assignment Data**
+- All 6 assignment problems loaded from `src/EA_Assignment_1_constraints.csv`
+- Supports bracket notation `[[` `]]` for pseudoknots
+- Assignment-ready CSV format
+
+### **Organized File Structure**
+- All scripts moved to `scripts/` folder
+- Clean root directory
+- Logical organization
+
+## OUTPUT FORMAT
+
+**Auto-generated files:**
+```
+output/EA_Assignment_1_output-sheet1_my_test_20251014_175350.csv
+```
+
+**CSV Format:**
+```csv
+id,sequence,fitness
+1.1,CGAAUCGAUCGAUC...,0.8756
+1.1,UGCAAGCUAUGCAA...,0.8432
+1.1,ACGUCGACUGACGU...,0.8301
+...
+```
+
+## ASSIGNMENT COMPLIANCE
+
+- Processes CSV input with multiple problems
+- Produces CSV output in required format  
+- Uses `config.py` for centralized configuration
+- Diversity-maintenance mechanism selects 5 substantially different sequences
+- Handles complex RNA structures with pseudoknots
+
+## TROUBLESHOOTING
+
+**Docker Issues:**
+```bash
+# If Docker still requires sudo after setup:
+newgrp docker  # Or restart your session
+```
+
+**Python Dependencies:**
+```bash
+# Activate virtual environment
+source venv/bin/activate
+python3 src/ea_runner.py --experiment test
+```
+
+**Validation:**
+```bash
+# Check everything is working
+python3 scripts/test_setup.py
+```
 
 ### Prerequisites
-- Ubuntu/Debian Linux system
-- Git installed
-- Internet connection for Docker setup
-
-### Setup Instructions
 
 1. **Clone the repository:**
 ```bash

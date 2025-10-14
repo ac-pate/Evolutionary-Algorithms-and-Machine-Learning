@@ -5,6 +5,7 @@ import numpy as np
 import subprocess
 import tempfile
 import os
+import csv
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import defaultdict
 import json
@@ -40,11 +41,22 @@ class RNAFoldingEA:
         self.max_workers = max_workers
         self.enable_cache_preloading = enable_cache_preloading
         
+        # === PROBLEM TYPE DETECTION ===
+        self.is_unknown_problem = len([c for c in sequence_constraint if c == 'N']) > len(sequence_constraint) * 0.7
+
+        
         # evolutionary params (will be optimized based on hardware)
         self.crossover_rate = 0.8
-        self.mutation_rate = 1.0 / self.sequence_length  # adaptive mutation rate
+        self.mutation_rate = 0.02  
         self.tournament_size = 3
-        self.elite_percentage = elite_percentage  # Use provided value
+        # Increase elitism for .2 problems to preserve good solutions
+        if self.is_unknown_problem:
+            self.elite_percentage = max(elite_percentage, 0.05)  # At least 5% for .2 problems
+            print(f"Elite percentage increased to {self.elite_percentage:.3f} for unknown sequence problem")
+        else:
+            self.elite_percentage = elite_percentage  # Keep default for .1 problems
+            print(f"Elite percentage set to {self.elite_percentage:.3f} for known sequence problem")
+        
         self.elitism_count = max(1, int(population_size * self.elite_percentage))
         
         # Early termination settings
@@ -65,12 +77,25 @@ class RNAFoldingEA:
         self.fitness_stagnation_counter = 0
         self.diversity_stagnation_counter = 0
         self.last_best_fitness = 0.0
+        self.last_real_fitness = 0.0  # Track real fitness separately from boosted
         self.last_diversity = 1.0
         
-        self.diversity_threshold = 0.2
-        self.restart_rate = 0.3
+        # Diversity-aware termination cache (performance optimization)
+        self.last_diversity_check_generation = -1
+        self.cached_diversity_score = 0.0
+        self.cached_min_diverse_fitness = 0.0
+        
+        # Diversity stagnation parameters
+        self.diversity_threshold = 0.3
+        self.restart_rate = self.restart_rate = 0.3 if self.is_unknown_problem else 0.4
+        
+        # Fitness stagnation parameters - mutation rate boost instead of fitness manipulation
+        self.mutation_rate_boost_factor = 4.0  # Increase mutation rate by 4x when stagnating
+        self.mutation_boost_generations = 5  # How long boost lasts
+        self.mutation_boost_active = 0  # Counter for active boost
+        self.fitness_threshold_for_boost = 0.85  # Only boost when fitness > 0.85
+        
         self.base_mutation_rate = self.mutation_rate
-        self.mutation_boost_factor = 3.0
         
         # iupac code mapping for constraint validation
         self.iupac_codes = {
@@ -174,10 +199,10 @@ class RNAFoldingEA:
             
             # Copy to container and execute
             base_name = os.path.basename(batch_file)
-            copy_cmd = ["sudo", "docker", "cp", batch_file, f"ipknot_runner:/work/{base_name}"]
+            copy_cmd = ["docker", "cp", batch_file, f"ipknot_runner:/work/{base_name}"]
             subprocess.run(copy_cmd, check=True, capture_output=True)
             
-            cmd = ["sudo", "docker", "exec", "ipknot_runner", "ipknot", f"/work/{base_name}"]
+            cmd = ["docker", "exec", "ipknot_runner", "ipknot", f"/work/{base_name}"]
             result = subprocess.run(cmd, capture_output=True, text=True, check=True, timeout=30*len(sequences))
 
             # Parse batch results
@@ -223,8 +248,8 @@ class RNAFoldingEA:
                 f.write(f">sequence\n{sequence}\n")
                 temp_file = f.name
             
-            cmd = ["sudo", "docker", "exec", "ipknot_runner", "ipknot", f"/work/{os.path.basename(temp_file)}"]
-            copy_cmd = ["sudo", "docker", "cp", temp_file, f"ipknot_runner:/work/{os.path.basename(temp_file)}"]
+            cmd = ["docker", "exec", "ipknot_runner", "ipknot", f"/work/{os.path.basename(temp_file)}"]
+            copy_cmd = ["docker", "cp", temp_file, f"ipknot_runner:/work/{os.path.basename(temp_file)}"]
             subprocess.run(copy_cmd, check=True, capture_output=True)
             
             result = subprocess.run(cmd, capture_output=True, text=True, check=True, timeout=30)
@@ -364,7 +389,7 @@ class RNAFoldingEA:
         sequence_list = list(sequence)
         
         # Adaptive mutation based on generation (cooling)
-        generation_ratio = getattr(self, 'current_generation', 0) / max(self.generations, 1)
+        generation_ratio = getattr(self, 'current_generation', 0) / (2 * max(self.generations, 1)) # Slower cooling 2x
         cooling_factor = 1.0 - (generation_ratio * 0.5)  # Reduce mutation over time
         current_rate = self.mutation_rate * cooling_factor
         
@@ -475,13 +500,14 @@ class RNAFoldingEA:
     def adaptive_mutation_rate(self, diversity):
         """Adaptive mutation with gradual cooling and stagnation response"""
         generation_ratio = getattr(self, 'current_generation', 0) / max(self.generations, 1)
-        cooling_factor = 1.0 - (generation_ratio * 0.3)  # Gradual cooling
+        cooling_factor = max(0.1, 1.0 - (generation_ratio * 0.3))  # Ensure minimum 10% of base rate
         
         mutation_rate = self.base_mutation_rate * cooling_factor
         
-        # Boost for fitness stagnation
-        if self.fitness_stagnation_counter > self.fitness_stagnation_threshold // 2:
-            mutation_rate *= self.mutation_boost_factor
+        # Apply mutation boost if active (replaces old fitness stagnation boost)
+        if self.mutation_boost_active > 0:
+            mutation_rate *= self.mutation_rate_boost_factor
+            print(f"MUTATION BOOST ACTIVE: rate = {mutation_rate:.6f} (base: {self.base_mutation_rate:.6f}, cooling: {cooling_factor:.3f}, boost: {self.mutation_rate_boost_factor}x)")
         
         # Boost for diversity stagnation
         if diversity < self.diversity_threshold:
@@ -489,15 +515,24 @@ class RNAFoldingEA:
         
         return min(mutation_rate, 0.1)
 
-    def crowding_selection(self, fitness_scores, offspring, offspring_fitness):
-        """Crowding selection to maintain diversity - optimized with parallel processing"""
+    def crowding_selection(self, fitness_scores, offspring, offspring_fitness, protected_indices=None):
+        """Crowding selection to maintain diversity - optimized with parallel processing
+        
+        Args:
+            protected_indices: Set of indices that should not be replaced (e.g., elites)
+        """
         new_population = self.population[:]
+        protected_indices = protected_indices or set()
         
         def find_most_similar(child):
             """Find most similar individual to child in current population"""
             best_similarity = -1
             best_idx = 0
             for j, individual in enumerate(self.population):
+                # Skip protected individuals (elites)
+                if j in protected_indices:
+                    continue
+                    
                 # Fast Hamming distance calculation
                 hamming_dist = sum(1 for a, b in zip(child, individual) if a != b)
                 similarity = 1.0 - (hamming_dist / len(child))
@@ -510,10 +545,12 @@ class RNAFoldingEA:
         with ThreadPoolExecutor(max_workers=min(self.max_workers, len(offspring))) as executor:
             most_similar_results = list(executor.map(find_most_similar, offspring))
         
-        # Apply replacements
+        # Apply replacements (avoiding protected individuals)
         for i, (child, child_fitness) in enumerate(zip(offspring, offspring_fitness)):
             similarity, most_similar_idx = most_similar_results[i]
-            if child_fitness > fitness_scores[most_similar_idx]:
+            # Only replace if target is not protected and child is better
+            if (most_similar_idx not in protected_indices and 
+                child_fitness > fitness_scores[most_similar_idx]):
                 new_population[most_similar_idx] = child
                 fitness_scores[most_similar_idx] = child_fitness
         
@@ -543,7 +580,7 @@ class RNAFoldingEA:
                 return self.generate_random_sequence()
     
     def restart_population(self, fitness_scores):
-        """Restart portion of population when stagnating"""
+        """Restart portion of population when stagnating (diversity focused)"""
         if len(fitness_scores) != len(self.population):
             print("Warning: Fitness scores and population size mismatch, skipping restart")
             return
@@ -590,11 +627,114 @@ class RNAFoldingEA:
                 new_population.append(self.generate_random_sequence())
         
         self.population = new_population[:self.population_size]
-        print(f"Anti-stagnation: Restarted {num_to_restart} individuals")
+        restart_percentage = (num_to_restart / self.population_size) * 100
+        print(f"DIVERSITY STAGNATION DETECTED: Restarted {num_to_restart}/{self.population_size} individuals ({restart_percentage:.0f}%)")
+    
+    def apply_mutation_boost(self, real_max_fitness):
+        """Apply mutation rate boost when fitness stagnates at high levels (>0.75)"""
+        if real_max_fitness <= self.fitness_threshold_for_boost:
+            print(f"MUTATION BOOST SKIPPED: Fitness {real_max_fitness:.4f} <= threshold {self.fitness_threshold_for_boost}")
+            return False
+        
+        # Activate mutation boost
+        self.mutation_boost_active = self.mutation_boost_generations
+        print(f"FITNESS STAGNATION DETECTED: MUTATION BOOST ACTIVATED: {self.mutation_rate_boost_factor}x for {self.mutation_boost_generations} generations")
+        return True
     
     def get_best_individuals(self):
         """Get best individuals as list of dictionaries"""
         return [{'sequence': seq, 'fitness': fitness} for seq, fitness in self.best_individuals]
+    
+    def get_diverse_top_sequences(self, num_sequences=5, min_diversity_threshold=0.15, verbose=False):
+        """
+        Get top sequences with STRONG diversity enforcement for grading
+        
+        Args:
+            num_sequences: Number of sequences to select (default 5 for assignment)
+            min_diversity_threshold: Minimum required diversity between sequences (0.15 = 15% different)
+        
+        Returns:
+            List of (sequence, fitness) tuples that are both high-fitness AND diverse
+        """
+        # Get all unique results sorted by fitness
+        unique_individuals = list(set(seq for seq, _ in self.best_individuals))
+        if not unique_individuals:
+            return []
+        
+        final_fitness = self.evaluate_fitness(unique_individuals)
+        all_results = sorted(zip(unique_individuals, final_fitness), key=lambda x: x[1], reverse=True)
+        
+        if len(all_results) <= 1:
+            return all_results
+        
+        # Header only if verbose
+        if verbose:
+            print(f"\nSelecting {num_sequences} DIVERSE sequences (min {min_diversity_threshold:.1%} different):")
+        
+        # Always start with the best fitness sequence
+        selected = [all_results[0]]
+        print(f"1. {all_results[0][0][:30]}... (fitness: {all_results[0][1]:.4f}) [Best fitness]")
+        
+        # For remaining sequences, enforce strong diversity requirement
+        remaining_candidates = all_results[1:]
+        
+        for position in range(2, num_sequences + 1):
+            best_candidate = None
+            best_score = -1
+            best_min_diversity = 0
+            
+            for candidate_seq, candidate_fitness in remaining_candidates:
+                # Calculate minimum diversity from ALL already selected sequences
+                diversities = []
+                for selected_seq, _ in selected:
+                    hamming_dist = sum(1 for a, b in zip(candidate_seq, selected_seq) if a != b)
+                    diversity = hamming_dist / len(candidate_seq)
+                    diversities.append(diversity)
+                
+                min_diversity = min(diversities)
+                
+                # STRONG diversity requirement: reject if too similar to ANY selected sequence
+                if min_diversity < min_diversity_threshold:
+                    continue  # Skip this candidate - too similar
+                
+                # For candidates that pass diversity threshold, balance fitness and diversity
+                # But prioritize passing the diversity threshold first
+                avg_diversity = sum(diversities) / len(diversities)
+                combined_score = candidate_fitness * 0.6 + avg_diversity * 0.4
+                
+                if combined_score > best_score:
+                    best_score = combined_score
+                    best_candidate = (candidate_seq, candidate_fitness)
+                    best_min_diversity = min_diversity
+            
+            if best_candidate:
+                selected.append(best_candidate)
+                remaining_candidates.remove(best_candidate)
+                if verbose:
+                    print(f"{position}. {best_candidate[0][:30]}... (fitness: {best_candidate[1]:.4f}, min_div: {best_min_diversity:.4f})")
+            else:
+                # No candidates meet diversity threshold - lower the bar slightly and try again
+                if verbose:
+                    print(f"   WARNING: No candidates with >{min_diversity_threshold:.1%} diversity found")
+                min_diversity_threshold *= 0.8  # Lower threshold by 20%
+                if min_diversity_threshold < 0.05:  # Don't go below 5%
+                    if verbose:
+                        print(f"   Using remaining sequences with reduced diversity requirement")
+                    # Just add the next best fitness sequences if diversity can't be achieved
+                    for remaining_seq, remaining_fitness in remaining_candidates:
+                        if len(selected) < num_sequences:
+                            selected.append((remaining_seq, remaining_fitness))
+                            if verbose:
+                                print(f"{len(selected)}. {remaining_seq[:30]}... (fitness: {remaining_fitness:.4f}) [Diversity fallback]")
+                    break
+        
+        # Report final diversity only if verbose
+        if verbose and len(selected) > 1:
+            sequences = [seq for seq, _ in selected]
+            final_diversity = self.calculate_diversity(sequences)
+            print(f"Final selected sequences diversity: {final_diversity:.4f}")
+        
+        return selected
     
     def run_evolution(self):
         """Main evolutionary algorithm loop"""
@@ -602,6 +742,13 @@ class RNAFoldingEA:
         print(f"Using {self.max_workers} parallel workers for fitness evaluation")
         print(f"Sequence constraint: {self.sequence_constraint}")
         print(f"Structure constraint: {self.structure_constraint}")
+        
+        # Add progress monitoring if available
+        try:
+            from src.progress_monitor import add_progress_monitoring
+            add_progress_monitoring(self)
+        except ImportError:
+            print("Progress monitor not available")
         
         self.initialize_population()
         
@@ -611,8 +758,11 @@ class RNAFoldingEA:
             # Evaluate fitness
             fitness_scores = self.evaluate_fitness(self.population)
             
+            # Track REAL fitness (before any boosting) for stagnation detection
+            real_max_fitness = max(fitness_scores)
+            
             # Track statistics
-            max_fitness = max(fitness_scores)
+            max_fitness = real_max_fitness  # Will be updated if boost is applied
             avg_fitness = sum(fitness_scores) / len(fitness_scores)
             self.fitness_history.append((generation, max_fitness, avg_fitness))
             
@@ -625,11 +775,12 @@ class RNAFoldingEA:
                 diversity = 0.0
             
             # Separate stagnation tracking for fitness and diversity
-            if max_fitness > 0 and max_fitness <= self.last_best_fitness + 1e-6:
+            # Use REAL fitness for stagnation detection (not boosted fitness)
+            if real_max_fitness > 0 and real_max_fitness <= self.last_real_fitness + 1e-6:
                 self.fitness_stagnation_counter += 1
             else:
                 self.fitness_stagnation_counter = 0
-                self.last_best_fitness = max_fitness
+                self.last_real_fitness = real_max_fitness
             
             if diversity <= self.last_diversity + 1e-6:
                 self.diversity_stagnation_counter += 1
@@ -637,42 +788,92 @@ class RNAFoldingEA:
                 self.diversity_stagnation_counter = 0
                 self.last_diversity = diversity
             
-            # Early termination check
-            if max_fitness >= self.early_termination_fitness:
+            # Decrease mutation boost counter if active
+            if self.mutation_boost_active > 0:
+                self.mutation_boost_active -= 1
+            
+            # Early termination check (use real fitness, not boosted)
+            if real_max_fitness >= self.early_termination_fitness:
                 self.high_fitness_streak += 1
+                
+                # Enhanced termination: check diversity when close to termination
                 if self.high_fitness_streak >= self.high_fitness_streak_threshold:
-                    self.early_terminated = True
-                    self.termination_reason = f"Early termination: fitness >={self.early_termination_fitness} for {self.high_fitness_streak} generations"
-                    print(f"\n{self.termination_reason}")
-                    break
+                    
+                    # Only check diversity if we have enough unique individuals (performance optimization)
+                    unique_count = len(set(seq for seq, _ in self.best_individuals))
+                    
+                    if unique_count >= 5:  # Only check if we have enough candidates
+                        
+                        # Use cached diversity if checked recently (performance optimization)
+                        if generation == self.last_diversity_check_generation:
+                            diversity_score = self.cached_diversity_score
+                            min_diverse_fitness = self.cached_min_diverse_fitness
+                        else:
+                            # Get current diverse candidates (lightweight check)
+                            current_diverse = self.get_diverse_top_sequences(num_sequences=5, min_diversity_threshold=0.15, verbose=False)
+                            
+                            if current_diverse and len(current_diverse) >= 3:  # Need at least 3 diverse sequences
+                                diverse_sequences = [seq for seq, _ in current_diverse]
+                                diverse_fitness = [fit for _, fit in current_diverse]
+                                
+                                min_diverse_fitness = min(diverse_fitness)
+                                diversity_score = self.calculate_diversity(diverse_sequences)
+                                
+                                # Cache results
+                                self.last_diversity_check_generation = generation
+                                self.cached_diversity_score = diversity_score
+                                self.cached_min_diverse_fitness = min_diverse_fitness
+                            else:
+                                diversity_score = 0.0
+                                min_diverse_fitness = 0.0
+                        
+                        # Terminate if we have both high fitness AND good diversity
+                        if (min_diverse_fitness >= 0.85 and diversity_score >= 0.20):
+                            self.early_terminated = True
+                            self.termination_reason = f"Early termination: High fitness + diverse solutions (diversity: {diversity_score:.3f}, min_fit: {min_diverse_fitness:.3f})"
+                            print(f"\n{self.termination_reason}")
+                            break
+                        else:
+                            # High fitness but low diversity - continue to improve diversity
+                            print(f"Generation {generation}: High fitness achieved, but diversity too low ({diversity_score:.3f}). Continuing...")
+                            # Reset streak to allow more generations for diversity improvement
+                            self.high_fitness_streak = max(0, self.high_fitness_streak - 5)
+                    else:
+                        # Standard termination when we don't have enough unique individuals
+                        self.early_terminated = True
+                        self.termination_reason = f"Early termination: fitness >={self.early_termination_fitness} for {self.high_fitness_streak} generations"
+                        print(f"\n{self.termination_reason}")
+                        break
             else:
                 self.high_fitness_streak = 0
             
-            # Anti-stagnation measures
-            should_apply_anti_stagnation = (
-                (max_fitness == 0.0 or max_fitness < self.early_termination_fitness) and
-                (self.fitness_stagnation_counter >= self.fitness_stagnation_threshold or 
-                self.diversity_stagnation_counter >= self.diversity_stagnation_threshold)
-            )
-
+            # === SEPARATED STAGNATION HANDLING ===
             
-            # Adaptive mutation
-            self.mutation_rate = self.adaptive_mutation_rate(diversity)
+            # Handle FITNESS stagnation with mutation rate boost (only when fitness >0.75)
+            if (self.fitness_stagnation_counter >= self.fitness_stagnation_threshold and
+                self.mutation_boost_active == 0):  # Only if boost not already active
+                
+                # Apply mutation rate boost (only if fitness is high enough)
+                boost_applied = self.apply_mutation_boost(real_max_fitness)
+                if boost_applied:
+                    self.fitness_stagnation_counter = 0  # Reset counter only if boost was applied
+                else:
+                    # If fitness too low, just reduce stagnation counter to prevent spam
+                    self.fitness_stagnation_counter = max(0, self.fitness_stagnation_counter - 2)
             
-            # Population restart if severely stagnant
-            if should_apply_anti_stagnation:
+            # Handle DIVERSITY stagnation with population restart
+            if (self.diversity_stagnation_counter >= self.diversity_stagnation_threshold):               
                 try:
                     self.restart_population(fitness_scores)
-                    self.fitness_stagnation_counter = 0
-                    self.diversity_stagnation_counter = 0
-                    self.last_best_fitness = 0.0
+                    self.diversity_stagnation_counter = 0  # Reset counter
                     self.last_diversity = 1.0
                     
                     # Re-evaluate after restart
                     fitness_scores = self.evaluate_fitness(self.population)
-                    max_fitness = max(fitness_scores)
+                    real_max_fitness = max(fitness_scores)
+                    max_fitness = real_max_fitness
                     avg_fitness = sum(fitness_scores) / len(fitness_scores)
-                    self.last_best_fitness = max_fitness
+                    self.last_real_fitness = real_max_fitness
                     
                     try:
                         diversity = self.calculate_diversity(self.population, sample_size)
@@ -680,10 +881,13 @@ class RNAFoldingEA:
                     except Exception as e:
                         print(f"Warning: Post-restart diversity calculation failed: {e}")
                         diversity = 0.0
+                        
                 except Exception as e:
                     print(f"Warning: Population restart failed: {e}, continuing with current population")
-                    self.fitness_stagnation_counter = 0
                     self.diversity_stagnation_counter = 0
+            
+            # Adaptive mutation
+            self.mutation_rate = self.adaptive_mutation_rate(diversity)
             
             # Call external callbacks
             for callback in self.callbacks:
@@ -697,14 +901,21 @@ class RNAFoldingEA:
                 if fitness > 0.9:
                     self.best_individuals.append((seq, fitness))
             
-            # Create next generation with 1% elitism and crowding
+            # Create next generation with elite preservation + mutation and protected crowding
             new_population = []
-            elite_count = max(1, int(self.population_size * 0.01))  # 1% elitism
+            elite_count = max(1, int(self.population_size * self.elite_percentage))  # 1%-5% elitism
             
-            # Select elites
+            # Select and preserve elites (keep originals + add mutated versions)
             elite_indices = sorted(range(len(fitness_scores)), key=lambda i: fitness_scores[i], reverse=True)[:elite_count]
-            for idx in elite_indices:
-                new_population.append(self.population[idx])
+            
+            # Always preserve the absolute best individual unchanged
+            best_idx = elite_indices[0]
+            new_population.append(self.population[best_idx])
+            
+            # Add mutated versions of remaining elites (no protection)
+            for idx in elite_indices[1:]:
+                mutated_elite = self.mutate(self.population[idx])
+                new_population.append(mutated_elite)
             
             # Generate offspring
             offspring = []
@@ -742,8 +953,9 @@ class RNAFoldingEA:
             if offspring:
                 offspring_fitness = self.evaluate_fitness(offspring)
                 
-                # Apply crowding selection instead of fitness sharing
-                self.crowding_selection(fitness_scores, offspring, offspring_fitness)
+                # Apply crowding selection with elite protection
+                elite_indices_set = set(elite_indices)
+                self.crowding_selection(fitness_scores, offspring, offspring_fitness, elite_indices_set)
             else:
                 # Just keep current population if no offspring generated
                 self.population = new_population[:self.population_size]
@@ -764,44 +976,131 @@ class RNAFoldingEA:
         print("\n=== FINAL ANALYSIS ===")
         
         if self.early_terminated:
-            print(f"EARLY TERMINATION: {self.termination_reason}")
+            print(f"TERMINATION: {self.termination_reason}")
         
-        # Remove duplicates and sort by fitness
-        unique_individuals = list(set(seq for seq, _ in self.best_individuals))
+        # Get the final diverse sequences for output
+        diverse_results = self.get_diverse_top_sequences(num_sequences=5, verbose=False)
         
-        # Re-evaluate fitness for unique individuals
-        final_fitness = self.evaluate_fitness(unique_individuals)
-        
-        # Sort by fitness
-        sorted_results = sorted(zip(unique_individuals, final_fitness), key=lambda x: x[1], reverse=True)
-        
-        print(f"Found {len(sorted_results)} unique high-quality sequences")
-        print(f"Elite percentage: 1.0% ({self.elitism_count} individuals)")
-        
-        if sorted_results:
-            # Calculate diversity
-            sequences = [seq for seq, _ in sorted_results]
+        if diverse_results:
+            print(f"SELECTED SEQUENCES: {len(diverse_results)} diverse solutions")
+            sequences = [seq for seq, _ in diverse_results]
+            fitness_scores = [fitness for _, fitness in diverse_results]
             diversity = self.calculate_diversity(sequences)
-            print(f"Average sequence diversity: {diversity:.4f}")
             
-            # Show top results
-            print("\nTop 10 sequences:")
-            for i, (seq, fitness) in enumerate(sorted_results[:10]):
-                print(f"{i+1:2d}. {seq} (fitness: {fitness:.4f})")
+            print(f"Best fitness: {max(fitness_scores):.4f}")
+            print(f"Avg fitness: {sum(fitness_scores)/len(fitness_scores):.4f}")
+            print(f"Diversity: {diversity:.4f}")
+            
+            # Show the selected sequences
+            for i, (seq, fitness) in enumerate(diverse_results, 1):
+                print(f"{i}. {seq[:50]}... (fitness: {fitness:.4f})")
+        else:
+            print("No diverse sequences found!")
         
-        return sorted_results
+        return diverse_results
     
-    def save_results(self, filename="assignment1_results.txt"):
-        """Save results to output file"""
-        results = self.analyze_results()
+    def save_results(self, filename=None, results_folder=None):
+        """
+        Save results to output file following assignment format
         
-        with open(filename, 'w') as f:
-            for seq, fitness in results:
-                if fitness > 0.5:
+        Args:
+            filename: Custom filename (optional)
+            results_folder: Folder to save results (optional, will auto-detect from experiment)
+        """
+        # Get diverse top sequences with STRONG diversity enforcement
+        diverse_results = self.get_diverse_top_sequences(num_sequences=10, min_diversity_threshold=0.15, verbose=False)
+        
+        if not diverse_results:
+            print("No high-quality diverse results to save")
+            return
+        
+        # Determine save location - prioritize CSV format for assignment
+        if results_folder:
+            # Save both txt and CSV formats to results folder
+            txt_file = os.path.join(results_folder, "output.txt")
+            csv_file = os.path.join(results_folder, "output.csv")
+        elif filename:
+            # Use provided filename
+            txt_file = filename
+            csv_file = filename.replace('.txt', '.csv')
+        else:
+            # Default to current directory
+            txt_file = "assignment1_results.txt"
+            csv_file = "assignment1_results.csv"
+        
+        # Ensure directory exists
+        for output_file in [txt_file, csv_file]:
+            if os.path.dirname(output_file):
+                os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        
+        # Filter for high-quality sequences only
+        high_quality_results = [(seq, fitness) for seq, fitness in diverse_results if fitness > 0.5]
+        
+        if not high_quality_results:
+            print("No high-quality sequences found (fitness > 0.5)")
+            return
+        
+        # Save TXT format (one sequence per line)
+        with open(txt_file, 'w') as f:
+            for seq, fitness in high_quality_results:
+                # Follow RNA convention: 5' to 3' direction (no 5' sign needed)
+                f.write(f"{seq}\n")
+        
+        # Save CSV format (for assignment submission)
+        with open(csv_file, 'w', newline='') as f:
+            writer = csv.writer(f)
+            # Write header
+            writer.writerow(['sequence', 'fitness'])
+            # Write sequences
+            for seq, fitness in high_quality_results:
+                writer.writerow([seq, f"{fitness:.4f}"])
+        
+        print(f"\nResults saved to:")
+        print(f"  TXT: {txt_file}")
+        print(f"  CSV: {csv_file}")
+        print(f"Saved {len(high_quality_results)} high-quality diverse sequences (fitness > 0.5)")
+        
+        if high_quality_results:
+            print(f"Top sequence fitness: {high_quality_results[0][1]:.4f}")
+            print(f"Fitness range: {high_quality_results[-1][1]:.4f} - {high_quality_results[0][1]:.4f}")
+            
+            # Calculate diversity of selected sequences
+            sequences = [seq for seq, _ in high_quality_results]
+            if len(sequences) > 1:
+                diversity = self.calculate_diversity(sequences)
+                print(f"Selected sequences diversity: {diversity:.4f}")
+                
+                # Check if diversity meets grading standards
+                if diversity < 0.2:
+                    print(f"⚠️  WARNING: Low diversity ({diversity:.4f}) may impact grading!")
+                    print(f"   Consider adjusting diversity parameters or running longer")
+                elif diversity >= 0.3:
+                    print(f"✅ Excellent diversity ({diversity:.4f}) for grading!")
+                else:
+                    print(f"✅ Good diversity ({diversity:.4f}) for grading")
+        
+        return txt_file, csv_file
+        with open(output_file, 'w') as f:
+            for seq, fitness in diverse_results:
+                if fitness > 0.5:  # Only save high-quality sequences
+                    # Follow RNA convention: 5' to 3' direction (5' sign not needed)
                     f.write(f"{seq}\n")
+                    high_quality_count += 1
         
-        print(f"\nResults saved to {filename}")
-        print(f"Saved {len([r for r in results if r[1] > 0.5])} sequences")
+        print(f"\nResults saved to {output_file}")
+        print(f"Saved {high_quality_count} high-quality diverse sequences (fitness > 0.5)")
+        
+        if diverse_results:
+            print(f"Top sequence fitness: {diverse_results[0][1]:.4f}")
+            print(f"Fitness range: {diverse_results[-1][1]:.4f} - {diverse_results[0][1]:.4f}")
+            
+            # Calculate diversity of selected sequences
+            sequences = [seq for seq, _ in diverse_results]
+            if len(sequences) > 1:
+                diversity = self.calculate_diversity(sequences)
+                print(f"Selected sequences diversity: {diversity:.4f}")
+        
+        return output_file
 
 
 def main():

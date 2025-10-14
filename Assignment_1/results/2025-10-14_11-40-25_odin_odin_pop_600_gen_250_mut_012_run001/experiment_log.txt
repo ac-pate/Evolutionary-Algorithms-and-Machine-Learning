@@ -1,0 +1,11 @@
+RNA Folding EA Experiment Log
+Experiment: odin_pop_600_gen_250_mut_012 (Run #1)
+Device: odin
+Started: 2025-10-14 11:40:26
+Parameters: Pop=600, Gen=250
+Problems: 1.2
+================================================================================
+
+Starting Problem 1.2 at 11:40:26
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...
