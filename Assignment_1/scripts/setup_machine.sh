@@ -101,8 +101,10 @@ RUN git clone --depth 1 https://github.com/ERGO-Code/HiGHS /tmp/HiGHS && \
     cmake --build /tmp/HiGHS/build --parallel && \
     cmake --install /tmp/HiGHS/build
 
+# Clone IPknot source directly instead of copying
+RUN git clone --depth 1 https://github.com/satoken/ipknot.git /src
+
 WORKDIR /src
-COPY . /src
 RUN cmake -S . -B build -G Ninja \
           -DCMAKE_BUILD_TYPE=Release \
           -DENABLE_HIGHS=ON && \
