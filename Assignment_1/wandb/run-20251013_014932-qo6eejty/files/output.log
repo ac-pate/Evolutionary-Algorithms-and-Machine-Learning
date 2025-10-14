@@ -1,0 +1,51 @@
+Wandb tracking initialized: https://wandb.ai/rna-folding-ea-ml/RNA-Folding-EA/runs/qo6eejty
+Project: RNA-Folding-EA
+Group: odin_1000
+Experiment log: results/2025-10-13_01-49-31_odin_odin_1000_individuals_run001/experiment_log.txt
+
+============================================================
+Running Problem 1.1
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYC...
+============================================================
+Enhanced progress monitoring enabled
+Wandb callback registered for problem 1.1
+Starting evolution: 1000 individuals, 10 generations
+Sequence constraint length: 78
+Structure constraint: ((((....))))....(((((.......)))))............(((((...
+EA Progress Monitoring Started
+==================================================
+Initializing population...
+Initialized population with 1000 individuals
+Gen   1/10 ( 10.0%) | Best: 0.6410, Avg: 0.3661, Diversity: 0.3302 | Time: 0.1min, ETA: calculating...
+Gen   2/10 ( 20.0%) | Best: 0.6538, Avg: 0.3840, Diversity: 0.3296 | Time: 0.3min, ETA: 1.1min
+Gen   3/10 ( 30.0%) | Best: 0.7179, Avg: 0.3877, Diversity: 0.3295 | Time: 0.4min, ETA: 1.0min
+Gen   4/10 ( 40.0%) | Best: 0.7179, Avg: 0.3916, Diversity: 0.3294 | Time: 0.6min, ETA: 52s
+Gen   5/10 ( 50.0%) | Best: 0.7179, Avg: 0.3949, Diversity: 0.3293 | Time: 0.7min, ETA: 43s
+Gen   6/10 ( 60.0%) | Best: 0.7179, Avg: 0.3945, Diversity: 0.3294 | Time: 0.9min, ETA: 35s
+Gen   7/10 ( 70.0%) | Best: 0.7821, Avg: 0.3972, Diversity: 0.3290 | Time: 1.0min, ETA: 26s
+Gen   8/10 ( 80.0%) | Best: 0.7821, Avg: 0.3951, Diversity: 0.3289 | Time: 1.2min, ETA: 17s
+Gen   9/10 ( 90.0%) | Best: 0.7821, Avg: 0.3925, Diversity: 0.3289 | Time: 1.3min, ETA: 9s
+Gen  10/10 (100.0%) | Best: 0.7821, Avg: 0.3968, Diversity: 0.3290 | Time: 1.5min, ETA: 0s
+
+=== FINAL ANALYSIS ===
+Found 0 unique high-quality sequences
+
+==================================================
+EA Execution Completed!
+Total Runtime: 1.46 minutes
+Final Best Fitness: 0.7821
+Total Improvement: 0.1410
+Solutions Found: 0
+Generate plots with: ./generate_plots.sh
+==================================================
+
+=== FINAL ANALYSIS ===
+Found 0 unique high-quality sequences
+
+Results saved to results/2025-10-13_01-49-31_odin_odin_1000_individuals_run001/problem_1.1/problem_1.1_results.txt
+Saved 0 sequences
+Problem 1.1 completed!
+Best fitness: 0.7821 (found at generation 6)
+Runtime: 87.66 seconds
+Valid sequences found: 0

@@ -1,0 +1,11 @@
+{"time":"2025-10-13T06:20:02.892884307-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-13T06:20:03.058109515-04:00","level":"INFO","msg":"stream: created new stream","id":"b5uxsurf"}
+{"time":"2025-10-13T06:20:03.058151796-04:00","level":"INFO","msg":"handler: started","stream_id":"b5uxsurf"}
+{"time":"2025-10-13T06:20:03.058201862-04:00","level":"INFO","msg":"stream: started","id":"b5uxsurf"}
+{"time":"2025-10-13T06:20:03.058217381-04:00","level":"INFO","msg":"writer: started","stream_id":"b5uxsurf"}
+{"time":"2025-10-13T06:20:03.058220768-04:00","level":"INFO","msg":"sender: started","stream_id":"b5uxsurf"}
+{"time":"2025-10-13T06:20:53.274262793-04:00","level":"INFO","msg":"stream: closing","id":"b5uxsurf"}
+{"time":"2025-10-13T06:20:53.574247858-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T06:20:53.66073587-04:00","level":"INFO","msg":"handler: closed","stream_id":"b5uxsurf"}
+{"time":"2025-10-13T06:20:53.660790344-04:00","level":"INFO","msg":"sender: closed","stream_id":"b5uxsurf"}
+{"time":"2025-10-13T06:20:53.660796977-04:00","level":"INFO","msg":"stream: closed","id":"b5uxsurf"}

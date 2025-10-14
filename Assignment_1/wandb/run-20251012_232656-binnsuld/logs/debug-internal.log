@@ -1,0 +1,13 @@
+{"time":"2025-10-12T23:26:56.365006236-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-12T23:26:56.525668002-04:00","level":"INFO","msg":"stream: created new stream","id":"binnsuld"}
+{"time":"2025-10-12T23:26:56.525734379-04:00","level":"INFO","msg":"stream: started","id":"binnsuld"}
+{"time":"2025-10-12T23:26:56.52577664-04:00","level":"INFO","msg":"sender: started","stream_id":"binnsuld"}
+{"time":"2025-10-12T23:26:56.52577698-04:00","level":"INFO","msg":"handler: started","stream_id":"binnsuld"}
+{"time":"2025-10-12T23:26:56.525803812-04:00","level":"INFO","msg":"writer: started","stream_id":"binnsuld"}
+{"time":"2025-10-12T23:26:56.705021598-04:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":37}
+{"time":"2025-10-12T23:26:56.746139562-04:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":80}
+{"time":"2025-10-12T23:26:59.483866852-04:00","level":"INFO","msg":"stream: closing","id":"binnsuld"}
+{"time":"2025-10-12T23:26:59.834199607-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-12T23:26:59.980168627-04:00","level":"INFO","msg":"handler: closed","stream_id":"binnsuld"}
+{"time":"2025-10-12T23:26:59.980235735-04:00","level":"INFO","msg":"sender: closed","stream_id":"binnsuld"}
+{"time":"2025-10-12T23:26:59.980242438-04:00","level":"INFO","msg":"stream: closed","id":"binnsuld"}

@@ -1,0 +1,28 @@
+{
+  "os": "Linux-6.8.0-83-generic-x86_64-with-glibc2.39",
+  "python": "CPython 3.12.3",
+  "startedAt": "2025-10-13T10:40:49.181611Z",
+  "args": [
+    "config/device_experiments.yml",
+    "--device",
+    "odin",
+    "--experiment",
+    "odin_pop_300_gen_100_mut_020",
+    "--constraint",
+    "2.1",
+    "--run",
+    "1"
+  ],
+  "program": "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py",
+  "codePath": "Assignment_1/src/ea_runner.py",
+  "codePathLocal": "src/ea_runner.py",
+  "git": {
+    "remote": "https://github.com/ac-pate/Evolutionary-Algorithms-and-Machine-Learning",
+    "commit": "93665f7de4c8b52f41fcf82f547d18c9f2bf38a0"
+  },
+  "email": "achalypatel3403@gmail.com",
+  "root": "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1",
+  "host": "ODIN-IEEE",
+  "executable": "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/venv/bin/python3",
+  "writerId": "x5ahp7yg1lk61r03rkz74d3xjq79x0tm"
+}

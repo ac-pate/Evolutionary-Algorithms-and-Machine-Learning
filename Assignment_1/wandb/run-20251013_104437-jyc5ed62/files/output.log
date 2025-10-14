@@ -1,0 +1,90 @@
+Initialized wandb tracking: odin_pop_300_gen_100_mut_020_problem_1.2_run001_20251013_104437
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 300 individuals, 100 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 300 individuals, 100 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+Structure constraint: ((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]...
+Initializing population...
+Initialized population with 300 individuals
+Gen   1/100 (  1.0%) | Best: 0.5897, Avg: 0.3510, Diversity: 0.7500 | Time: 0.0min, ETA: calculating...
+Gen   2/100 (  2.0%) | Best: 0.5897, Avg: 0.3510, Diversity: 0.7500 | Time: 0.1min, ETA: 4.0min
+Gen   3/100 (  3.0%) | Best: 0.5897, Avg: 0.3510, Diversity: 0.7500 | Time: 0.1min, ETA: 3.9min
+Gen   4/100 (  4.0%) | Best: 0.5897, Avg: 0.3510, Diversity: 0.7500 | Time: 0.2min, ETA: 3.9min
+Gen   5/100 (  5.0%) | Best: 0.5897, Avg: 0.3510, Diversity: 0.7500 | Time: 0.2min, ETA: 3.9min
+Gen   6/100 (  6.0%) | Best: 0.5897, Avg: 0.3510, Diversity: 0.7500 | Time: 0.2min, ETA: 3.8min
+Gen   7/100 (  7.0%) | Best: 0.5897, Avg: 0.3510, Diversity: 0.7500 (stagnant: 6) | Time: 0.3min, ETA: 3.8min
+Gen   8/100 (  8.0%) | Best: 0.5897, Avg: 0.3510, Diversity: 0.7500 (stagnant: 7) | Time: 0.3min, ETA: 3.7min
+Gen   9/100 (  9.0%) | Best: 0.5897, Avg: 0.3510, Diversity: 0.7500 (stagnant: 8) | Time: 0.4min, ETA: 3.7min
+Gen  10/100 ( 10.0%) | Best: 0.5897, Avg: 0.3510, Diversity: 0.7500 (stagnant: 9) | Time: 0.4min, ETA: 3.6min
+Anti-stagnation: Restarted 90 individuals (parallelized)
+Gen  11/100 ( 11.0%) | Best: 0.5897, Avg: 0.3806, Diversity: 0.7501 | Time: 0.5min, ETA: 3.9min
+Gen  12/100 ( 12.0%) | Best: 0.5897, Avg: 0.3806, Diversity: 0.7501 | Time: 0.5min, ETA: 3.8min
+Gen  13/100 ( 13.0%) | Best: 0.5897, Avg: 0.3806, Diversity: 0.7501 | Time: 0.6min, ETA: 3.7min
+Gen  14/100 ( 14.0%) | Best: 0.5897, Avg: 0.3806, Diversity: 0.7501 | Time: 0.6min, ETA: 3.7min
+Gen  15/100 ( 15.0%) | Best: 0.5897, Avg: 0.3806, Diversity: 0.7501 | Time: 0.6min, ETA: 3.6min
+Gen  16/100 ( 16.0%) | Best: 0.5897, Avg: 0.3806, Diversity: 0.7501 | Time: 0.7min, ETA: 3.5min
+Gen  17/100 ( 17.0%) | Best: 0.5897, Avg: 0.3806, Diversity: 0.7501 (stagnant: 6) | Time: 0.7min, ETA: 3.5min
+Gen  18/100 ( 18.0%) | Best: 0.5897, Avg: 0.3806, Diversity: 0.7501 (stagnant: 7) | Time: 0.7min, ETA: 3.4min
+Gen  19/100 ( 19.0%) | Best: 0.5897, Avg: 0.3806, Diversity: 0.7501 (stagnant: 8) | Time: 0.8min, ETA: 3.4min
+Gen  20/100 ( 20.0%) | Best: 0.5897, Avg: 0.3806, Diversity: 0.7501 (stagnant: 9) | Time: 0.8min, ETA: 3.3min
+Anti-stagnation: Restarted 90 individuals (parallelized)
+Gen  21/100 ( 21.0%) | Best: 0.5897, Avg: 0.3968, Diversity: 0.7496 | Time: 0.9min, ETA: 3.4min
+Gen  22/100 ( 22.0%) | Best: 0.5897, Avg: 0.3968, Diversity: 0.7496 | Time: 1.0min, ETA: 3.4min
+Gen  23/100 ( 23.0%) | Best: 0.5897, Avg: 0.3968, Diversity: 0.7496 | Time: 1.0min, ETA: 3.3min
+Gen  24/100 ( 24.0%) | Best: 0.5897, Avg: 0.3968, Diversity: 0.7496 | Time: 1.0min, ETA: 3.3min
+Gen  25/100 ( 25.0%) | Best: 0.5897, Avg: 0.3968, Diversity: 0.7496 | Time: 1.1min, ETA: 3.3min
+Gen  26/100 ( 26.0%) | Best: 0.5897, Avg: 0.3968, Diversity: 0.7496 | Time: 1.1min, ETA: 3.2min
+Gen  27/100 ( 27.0%) | Best: 0.5897, Avg: 0.3968, Diversity: 0.7496 (stagnant: 6) | Time: 1.2min, ETA: 3.2min
+Gen  28/100 ( 28.0%) | Best: 0.5897, Avg: 0.3968, Diversity: 0.7496 (stagnant: 7) | Time: 1.2min, ETA: 3.1min
+Gen  29/100 ( 29.0%) | Best: 0.5897, Avg: 0.3968, Diversity: 0.7496 (stagnant: 8) | Time: 1.3min, ETA: 3.1min
+Gen  30/100 ( 30.0%) | Best: 0.5897, Avg: 0.3968, Diversity: 0.7496 (stagnant: 9) | Time: 1.3min, ETA: 3.1min
+Anti-stagnation: Restarted 90 individuals (parallelized)
+Gen  31/100 ( 31.0%) | Best: 0.5897, Avg: 0.4037, Diversity: 0.7500 | Time: 1.4min, ETA: 3.1min
+Gen  32/100 ( 32.0%) | Best: 0.5897, Avg: 0.4037, Diversity: 0.7500 | Time: 1.4min, ETA: 3.0min
+Gen  33/100 ( 33.0%) | Best: 0.5897, Avg: 0.4037, Diversity: 0.7500 | Time: 1.5min, ETA: 3.0min
+Gen  34/100 ( 34.0%) | Best: 0.5897, Avg: 0.4037, Diversity: 0.7500 | Time: 1.5min, ETA: 2.9min
+Gen  35/100 ( 35.0%) | Best: 0.5897, Avg: 0.4037, Diversity: 0.7500 | Time: 1.5min, ETA: 2.9min
+Gen  36/100 ( 36.0%) | Best: 0.5897, Avg: 0.4037, Diversity: 0.7500 | Time: 1.6min, ETA: 2.8min
+Gen  37/100 ( 37.0%) | Best: 0.5897, Avg: 0.4037, Diversity: 0.7500 (stagnant: 6) | Time: 1.6min, ETA: 2.8min
+Gen  38/100 ( 38.0%) | Best: 0.5897, Avg: 0.4037, Diversity: 0.7500 (stagnant: 7) | Time: 1.7min, ETA: 2.7min
+Gen  39/100 ( 39.0%) | Best: 0.5897, Avg: 0.4037, Diversity: 0.7500 (stagnant: 8) | Time: 1.7min, ETA: 2.7min
+Gen  40/100 ( 40.0%) | Best: 0.5897, Avg: 0.4037, Diversity: 0.7500 (stagnant: 9) | Time: 1.7min, ETA: 2.6min
+Anti-stagnation: Restarted 90 individuals (parallelized)
+Error folding sequence UUAAAGACACGGUAAUUUCCUAGCCCGGUCUAUAGUUUCUGCUGCGUGAUAGAGCUUUGUCGGUAAAUUAGGCCGUGU: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpt329kyg9.fa']' returned non-zero exit status 130.Error folding sequence CCUCGGUCAAUCAGCGUAAUGGAGGAAAUUAAGCGUGUGCUCCCCUGUACCAUUAGACAAACGCGUGGGUAUGAGCUC: Command '['sudo', 'docker', 'cp', '/tmp/tmp758ae9g_.fa', 'ipknot_runner:/work/tmp758ae9g_.fa']' returned non-zero exit status 130.
+Error folding sequence GAACAUGCAAGUUAAUUGCCGAUCACAUUCCUAAAGCCACGAGAUGAACGAAGCAUCAUUUAGUUUUAGGUAUUUAUC: Command '['sudo', 'docker', 'cp', '/tmp/tmplznh4tqi.fa', 'ipknot_runner:/work/tmplznh4tqi.fa']' returned non-zero exit status 130.
+
+Error folding sequence GGGCGGUUUGGCCACAGCCCGUUGAGACCACGUGCAUAGCUUACGAGGACUCUUUUUAGUGCCUACUCGCUGGUAGCA: Command '['sudo', 'docker', 'cp', '/tmp/tmp6iv_8t84.fa', 'ipknot_runner:/work/tmp6iv_8t84.fa']' returned non-zero exit status 130.
+Error folding sequence AAAUUAUGAGACAGACCCAUAAUUGGGACGUGAGAAGAGACUCAACACUCCAUAUGGGUGGGCGUCAUUAAUUCGAUC: Command '['sudo', 'docker', 'cp', '/tmp/tmp3ho2wxdv.fa', 'ipknot_runner:/work/tmp3ho2wxdv.fa']' returned non-zero exit status 130.Error folding sequence GCUGGGAUGCUCUCAACGUAUCAUAACACGAGAAGGUGGGCCGCGCCAUCCAGCCACCCUCAGCGGCUCCGUGUGUGA: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmp7hhm7w0f.fa']' returned non-zero exit status 130.
+Traceback (most recent call last):
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 734, in <module>
+    main()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 678, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 579, in run_experiment
+    result = run_single_problem(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 411, in run_single_problem
+    ea.run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 138, in enhanced_run_evolution
+    original_run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 626, in run_evolution
+    fitness_scores = self.evaluate_fitness(self.population)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 247, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/usr/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt

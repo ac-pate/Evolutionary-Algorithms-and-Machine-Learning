@@ -1,0 +1,1 @@
+{"generation":73,"_runtime":187,"early_terminated":false,"final_runtime_minutes":3.1173011302947997,"success":1,"_wandb":{"runtime":187},"_timestamp":1.7603607141511676e+09,"_step":73,"termination_reason":"max_generations","final_best_fitness":0.9743589743589743,"final_valid_solutions":1830,"best_fitness":0.9743589743589743,"diversity":0.1580030300431645}

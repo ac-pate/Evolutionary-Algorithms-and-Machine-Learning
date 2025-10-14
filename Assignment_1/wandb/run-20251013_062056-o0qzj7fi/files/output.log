@@ -1,0 +1,51 @@
+Initialized wandb tracking: odin_pop_300_gen_100_mut_020_problem_2.1_run001_20251013_062056
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 200 individuals, 100 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 200 individuals, 100 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: UUAWUARWUAMAGSGCSNNUSNANWRUACNNMWAUAGNUAUNNAGUAUYAAAAGUNANRNURGUNNARSYUUUAURGAKAAYGNUUUGGRUNYUGUNGMCRNGGWNNRKAKWGAUCKMAYCAGAUCKRCGNAKGCURUNCSSSAUGYGRCACMUNCGNYRGCUUMUUAWGWARWKCAWURAGGUNACNUMRWGKMCNWRGWUWWUAAGAUCGCNAAAY
+Structure constraint: ...................((((((((..((((((.((((((......((((((((..........))))))))..)))))).))))))))))))))........((((((([[[((......]]]..))...)))))))((((((.[[[.))))))....((((((((.....((((((((....))))))))......))))))))...]]].....
+Initializing population...
+Initialized population with 200 individuals
+Gen   1/100 (  1.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.24090 | Time: 0.1min, ETA: calculating... (streak: 0)
+Gen   2/100 (  2.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23930 | Time: 0.2min, ETA: 8.7min (streak: 0)
+Gen   3/100 (  3.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23780 | Time: 0.3min, ETA: 9.3min (streak: 0)
+Gen   4/100 (  4.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23770 | Time: 0.4min, ETA: 9.2min (streak: 0)
+Gen   5/100 (  5.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23680 | Time: 0.5min, ETA: 9.0min (streak: 0)
+Gen   6/100 (  6.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23580 | Time: 0.6min, ETA: 9.0min (streak: 0)
+Gen   7/100 (  7.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23560 | Time: 0.7min, ETA: 9.3min (streak: 0)
+Gen   8/100 (  8.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23420 | Time: 0.8min, ETA: 9.3min (streak: 0)
+Gen   9/100 (  9.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23280 | Time: 0.9min, ETA: 9.2min (streak: 0)
+Gen  10/100 ( 10.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23160 | Time: 1.0min, ETA: 9.0min (streak: 0)
+Gen  11/100 ( 11.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23050 | Time: 1.1min, ETA: 9.0min (streak: 0)
+Traceback (most recent call last):
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 734, in <module>
+    main()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 678, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 579, in run_experiment
+    result = run_single_problem(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 411, in run_single_problem
+    ea.run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 128, in enhanced_run_evolution
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 382, in run_evolution
+    fitness_scores = self.evaluate_fitness(self.population)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 237, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/usr/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt

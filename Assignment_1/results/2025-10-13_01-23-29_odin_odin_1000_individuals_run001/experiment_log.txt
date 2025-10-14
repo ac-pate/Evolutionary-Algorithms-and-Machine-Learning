@@ -1,0 +1,13 @@
+RNA Folding EA Experiment Log
+Experiment: odin_1000_individuals (Run #1)
+Device: odin
+Started: 2025-10-13 01:23:30
+Parameters: Pop=1000, Gen=10
+Problems: 2.2
+================================================================================
+
+Starting Problem 2.2 at 01:23:30
+Structure: ...................((((((((..((((((.((((((......((...
+Sequence:  NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...
+ERROR in Problem 2.2: unsupported operand type(s) for +: 'int' and 'tuple'
+

@@ -1,0 +1,144 @@
+Initialized wandb tracking: odin_pop_300_gen_100_mut_020_problem_3.1_run001_20251013_071832
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 200 individuals, 100 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 200 individuals, 100 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: ARUUSNMUAGWAGCGCCNRMNNURRUUGGGNCRRAAAUNMNKNRNRNNSMANWCSCKSNAANGUMUCSAUYNKUKKACKMGGRNGAGRYYWAUCSAAGUUNNGSCSGRAGNYUYCCKGNYNKKNAUGCANYCKUKAARYNUUAMUYNCRANUYAYYUGGGNNAYCMWGNGGNCWNANNNGWAAUSAARMRUSCYY
+Structure constraint: ..............[[...((((((((((........(((((..(((.......)))...)))))))))))))))........(((((((...(((....)))]]...)))))))(((((((....)))))))..................((((((((....))))))))........................
+Initializing population...
+Initialized population with 200 individuals
+Gen   1/100 (  1.0%) | Best: 0.6051, Avg: 0.4358, Diversity: 0.3002 | Time: 0.1min, ETA: calculating...
+Gen   2/100 (  2.0%) | Best: 0.6205, Avg: 0.4638, Diversity: 0.2979 | Time: 0.2min, ETA: 10.3min
+Gen   3/100 (  3.0%) | Best: 0.6564, Avg: 0.4898, Diversity: 0.2941 | Time: 0.3min, ETA: 9.5min
+Gen   4/100 (  4.0%) | Best: 0.6718, Avg: 0.5191, Diversity: 0.2872 | Time: 0.4min, ETA: 9.1min
+Gen   5/100 (  5.0%) | Best: 0.6872, Avg: 0.5451, Diversity: 0.2785 | Time: 0.5min, ETA: 8.8min
+Gen   6/100 (  6.0%) | Best: 0.7282, Avg: 0.5523, Diversity: 0.2674 | Time: 0.5min, ETA: 8.4min
+Gen   7/100 (  7.0%) | Best: 0.7846, Avg: 0.5628, Diversity: 0.2587 | Time: 0.6min, ETA: 8.3min
+Gen   8/100 (  8.0%) | Best: 0.7846, Avg: 0.5860, Diversity: 0.2489 | Time: 0.7min, ETA: 7.9min
+Gen   9/100 (  9.0%) | Best: 0.7846, Avg: 0.6030, Diversity: 0.2330 | Time: 0.8min, ETA: 7.6min
+Gen  10/100 ( 10.0%) | Best: 0.7846, Avg: 0.6257, Diversity: 0.2198 | Time: 0.8min, ETA: 7.6min
+Gen  11/100 ( 11.0%) | Best: 0.7897, Avg: 0.6572, Diversity: 0.1913 | Time: 0.9min, ETA: 7.5min
+Gen  12/100 ( 12.0%) | Best: 0.7897, Avg: 0.6774, Diversity: 0.1788 | Time: 1.0min, ETA: 7.6min
+Gen  13/100 ( 13.0%) | Best: 0.8103, Avg: 0.6915, Diversity: 0.1729 | Time: 1.1min, ETA: 7.3min
+Gen  14/100 ( 14.0%) | Best: 0.8103, Avg: 0.7066, Diversity: 0.1627 | Time: 1.1min, ETA: 7.0min
+Gen  15/100 ( 15.0%) | Best: 0.8154, Avg: 0.7303, Diversity: 0.1548 | Time: 1.2min, ETA: 6.7min
+Gen  16/100 ( 16.0%) | Best: 0.8462, Avg: 0.7336, Diversity: 0.1475 | Time: 1.2min, ETA: 6.4min
+Gen  17/100 ( 17.0%) | Best: 0.8462, Avg: 0.7486, Diversity: 0.1434 | Time: 1.3min, ETA: 6.2min
+Gen  18/100 ( 18.0%) | Best: 0.8667, Avg: 0.7609, Diversity: 0.1462 | Time: 1.3min, ETA: 5.9min
+Gen  19/100 ( 19.0%) | Best: 0.8667, Avg: 0.7676, Diversity: 0.1471 | Time: 1.3min, ETA: 5.7min
+Gen  20/100 ( 20.0%) | Best: 0.8667, Avg: 0.7736, Diversity: 0.1499 | Time: 1.4min, ETA: 5.5min
+Gen  21/100 ( 21.0%) | Best: 0.8667, Avg: 0.7739, Diversity: 0.1488 | Time: 1.4min, ETA: 5.3min
+Gen  22/100 ( 22.0%) | Best: 0.8718, Avg: 0.7852, Diversity: 0.1443 | Time: 1.5min, ETA: 5.2min
+Gen  23/100 ( 23.0%) | Best: 0.8821, Avg: 0.7998, Diversity: 0.1350 | Time: 1.5min, ETA: 5.0min
+Gen  24/100 ( 24.0%) | Best: 0.8821, Avg: 0.7951, Diversity: 0.1312 | Time: 1.5min, ETA: 4.8min
+Gen  25/100 ( 25.0%) | Best: 0.8872, Avg: 0.8066, Diversity: 0.1320 | Time: 1.6min, ETA: 4.7min
+Gen  26/100 ( 26.0%) | Best: 0.8872, Avg: 0.8136, Diversity: 0.1253 | Time: 1.6min, ETA: 4.6min
+Gen  27/100 ( 27.0%) | Best: 0.8923, Avg: 0.8138, Diversity: 0.1310 | Time: 1.6min, ETA: 4.5min
+Gen  28/100 ( 28.0%) | Best: 0.8923, Avg: 0.8215, Diversity: 0.1326 | Time: 1.7min, ETA: 4.3min
+Gen  29/100 ( 29.0%) | Best: 0.9026, Avg: 0.8305, Diversity: 0.1291 | Time: 1.7min, ETA: 4.2min
+Milestone: First high-quality solution (fitness > 0.9) at generation 29!
+Gen  30/100 ( 30.0%) | Best: 0.9026, Avg: 0.8407, Diversity: 0.1305 | Time: 1.7min, ETA: 4.1min
+Gen  31/100 ( 31.0%) | Best: 0.9026, Avg: 0.8402, Diversity: 0.1329 | Time: 1.8min, ETA: 4.0min
+Gen  32/100 ( 32.0%) | Best: 0.9026, Avg: 0.8355, Diversity: 0.1313 | Time: 1.8min, ETA: 3.9min
+Gen  33/100 ( 33.0%) | Best: 0.9026, Avg: 0.8475, Diversity: 0.1293 | Time: 1.9min, ETA: 3.8min
+Gen  34/100 ( 34.0%) | Best: 0.9026, Avg: 0.8404, Diversity: 0.1271 | Time: 1.9min, ETA: 3.7min
+Gen  35/100 ( 35.0%) | Best: 0.9026, Avg: 0.8444, Diversity: 0.1249 (stagnant: 6) | Time: 1.9min, ETA: 3.6min
+Gen  36/100 ( 36.0%) | Best: 0.9026, Avg: 0.8389, Diversity: 0.1266 (stagnant: 7) | Time: 2.3min, ETA: 4.1min
+Gen  37/100 ( 37.0%) | Best: 0.9128, Avg: 0.8529, Diversity: 0.1257 | Time: 2.7min, ETA: 4.6min
+Gen  38/100 ( 38.0%) | Best: 0.9128, Avg: 0.8480, Diversity: 0.1216 | Time: 2.7min, ETA: 4.4min
+Gen  39/100 ( 39.0%) | Best: 0.9128, Avg: 0.8495, Diversity: 0.1207 | Time: 2.7min, ETA: 4.3min
+Gen  40/100 ( 40.0%) | Best: 0.9128, Avg: 0.8497, Diversity: 0.1244 | Time: 2.8min, ETA: 4.2min
+Gen  41/100 ( 41.0%) | Best: 0.9128, Avg: 0.8421, Diversity: 0.1233 | Time: 2.8min, ETA: 4.1min
+Gen  42/100 ( 42.0%) | Best: 0.9128, Avg: 0.8571, Diversity: 0.1207 | Time: 2.8min, ETA: 3.9min
+Gen  43/100 ( 43.0%) | Best: 0.9128, Avg: 0.8447, Diversity: 0.1189 (stagnant: 6) | Time: 2.9min, ETA: 3.8min
+Gen  44/100 ( 44.0%) | Best: 0.9128, Avg: 0.8529, Diversity: 0.1226 (stagnant: 7) | Time: 3.2min, ETA: 4.1min
+Gen  45/100 ( 45.0%) | Best: 0.9128, Avg: 0.8533, Diversity: 0.1234 (stagnant: 8) | Time: 3.6min, ETA: 4.4min
+Gen  46/100 ( 46.0%) | Best: 0.9128, Avg: 0.7981, Diversity: 0.1358 (stagnant: 9) | Time: 4.0min, ETA: 4.7min
+Gen  47/100 ( 47.0%) | Best: 0.9128, Avg: 0.7866, Diversity: 0.1430 (stagnant: 10) | Time: 4.4min, ETA: 5.0min
+Gen  48/100 ( 48.0%) | Best: 0.9128, Avg: 0.7634, Diversity: 0.1512 (stagnant: 11) | Time: 4.8min, ETA: 5.2min
+Gen  49/100 ( 49.0%) | Best: 0.9128, Avg: 0.7656, Diversity: 0.1576 (stagnant: 12) | Time: 5.2min, ETA: 5.4min
+Gen  50/100 ( 50.0%) | Best: 0.9128, Avg: 0.7585, Diversity: 0.1620 (stagnant: 13) | Time: 5.6min, ETA: 5.6min
+Gen  51/100 ( 51.0%) | Best: 0.9128, Avg: 0.7665, Diversity: 0.1591 (stagnant: 14) | Time: 6.0min, ETA: 5.7min
+Stagnation Detected: Restarted 60 individuals
+Gen  52/100 ( 52.0%) | Best: 0.9128, Avg: 0.7164, Diversity: 0.2283 | Time: 6.4min, ETA: 5.9min
+Gen  53/100 ( 53.0%) | Best: 0.9128, Avg: 0.7695, Diversity: 0.1652 | Time: 6.5min, ETA: 5.7min
+Gen  54/100 ( 54.0%) | Best: 0.9128, Avg: 0.7984, Diversity: 0.1509 | Time: 6.5min, ETA: 5.6min
+Gen  55/100 ( 55.0%) | Best: 0.9128, Avg: 0.8221, Diversity: 0.1457 | Time: 6.6min, ETA: 5.4min
+Gen  56/100 ( 56.0%) | Best: 0.9128, Avg: 0.8367, Diversity: 0.1430 | Time: 6.6min, ETA: 5.2min
+Gen  57/100 ( 57.0%) | Best: 0.9128, Avg: 0.8314, Diversity: 0.1411 | Time: 6.6min, ETA: 5.0min
+Gen  58/100 ( 58.0%) | Best: 0.9128, Avg: 0.8337, Diversity: 0.1412 (stagnant: 6) | Time: 6.7min, ETA: 4.8min
+Gen  59/100 ( 59.0%) | Best: 0.9128, Avg: 0.8403, Diversity: 0.1367 (stagnant: 7) | Time: 7.1min, ETA: 4.9min
+Gen  60/100 ( 60.0%) | Best: 0.9128, Avg: 0.8435, Diversity: 0.1328 (stagnant: 8) | Time: 7.4min, ETA: 5.0min
+Gen  61/100 ( 61.0%) | Best: 0.9179, Avg: 0.8060, Diversity: 0.1390 | Time: 7.8min, ETA: 5.0min
+Gen  62/100 ( 62.0%) | Best: 0.9179, Avg: 0.8410, Diversity: 0.1384 | Time: 7.9min, ETA: 4.8min
+Gen  63/100 ( 63.0%) | Best: 0.9179, Avg: 0.8537, Diversity: 0.1328 | Time: 7.9min, ETA: 4.6min
+Gen  64/100 ( 64.0%) | Best: 0.9179, Avg: 0.8609, Diversity: 0.1309 | Time: 7.9min, ETA: 4.5min
+Gen  65/100 ( 65.0%) | Best: 0.9179, Avg: 0.8614, Diversity: 0.1278 | Time: 8.0min, ETA: 4.3min
+Gen  66/100 ( 66.0%) | Best: 0.9179, Avg: 0.8784, Diversity: 0.1228 | Time: 8.0min, ETA: 4.1min
+Gen  67/100 ( 67.0%) | Best: 0.9179, Avg: 0.8788, Diversity: 0.1204 (stagnant: 6) | Time: 8.0min, ETA: 4.0min
+Gen  68/100 ( 68.0%) | Best: 0.9179, Avg: 0.8722, Diversity: 0.1212 (stagnant: 7) | Time: 8.4min, ETA: 4.0min
+Gen  69/100 ( 69.0%) | Best: 0.9231, Avg: 0.8727, Diversity: 0.1263 | Time: 8.8min, ETA: 3.9min
+Gen  70/100 ( 70.0%) | Best: 0.9231, Avg: 0.8709, Diversity: 0.1237 | Time: 8.8min, ETA: 3.8min
+Gen  71/100 ( 71.0%) | Best: 0.9231, Avg: 0.8776, Diversity: 0.1184 | Time: 8.9min, ETA: 3.6min
+Gen  72/100 ( 72.0%) | Best: 0.9231, Avg: 0.8719, Diversity: 0.1121 | Time: 8.9min, ETA: 3.5min
+Gen  73/100 ( 73.0%) | Best: 0.9231, Avg: 0.8722, Diversity: 0.1152 | Time: 8.9min, ETA: 3.3min
+Gen  74/100 ( 74.0%) | Best: 0.9231, Avg: 0.8734, Diversity: 0.1126 | Time: 9.0min, ETA: 3.1min
+Gen  75/100 ( 75.0%) | Best: 0.9231, Avg: 0.8734, Diversity: 0.1076 (stagnant: 6) | Time: 9.0min, ETA: 3.0min
+Gen  76/100 ( 76.0%) | Best: 0.9231, Avg: 0.8746, Diversity: 0.1094 (stagnant: 7) | Time: 9.4min, ETA: 3.0min
+Gen  77/100 ( 77.0%) | Best: 0.9231, Avg: 0.8697, Diversity: 0.1100 (stagnant: 8) | Time: 9.7min, ETA: 2.9min
+Gen  78/100 ( 78.0%) | Best: 0.9282, Avg: 0.8230, Diversity: 0.1256 | Time: 10.1min, ETA: 2.8min
+Gen  79/100 ( 79.0%) | Best: 0.9282, Avg: 0.8482, Diversity: 0.1258 | Time: 10.1min, ETA: 2.7min
+Gen  80/100 ( 80.0%) | Best: 0.9282, Avg: 0.8673, Diversity: 0.1220 | Time: 10.2min, ETA: 2.5min
+Gen  81/100 ( 81.0%) | Best: 0.9282, Avg: 0.8683, Diversity: 0.1225 | Time: 10.2min, ETA: 2.4min
+Gen  82/100 ( 82.0%) | Best: 0.9282, Avg: 0.8639, Diversity: 0.1216 | Time: 10.2min, ETA: 2.2min
+Gen  83/100 ( 83.0%) | Best: 0.9282, Avg: 0.8732, Diversity: 0.1178 | Time: 10.3min, ETA: 2.1min
+Gen  84/100 ( 84.0%) | Best: 0.9282, Avg: 0.8770, Diversity: 0.1157 (stagnant: 6) | Time: 10.3min, ETA: 2.0min
+Gen  85/100 ( 85.0%) | Best: 0.9282, Avg: 0.8766, Diversity: 0.1225 (stagnant: 7) | Time: 10.7min, ETA: 1.9min
+Gen  86/100 ( 86.0%) | Best: 0.9282, Avg: 0.8698, Diversity: 0.1250 (stagnant: 8) | Time: 11.1min, ETA: 1.8min
+Gen  87/100 ( 87.0%) | Best: 0.9282, Avg: 0.8237, Diversity: 0.1384 (stagnant: 9) | Time: 11.4min, ETA: 1.7min
+Gen  88/100 ( 88.0%) | Best: 0.9282, Avg: 0.7990, Diversity: 0.1494 (stagnant: 10) | Time: 11.8min, ETA: 1.6min
+Gen  89/100 ( 89.0%) | Best: 0.9282, Avg: 0.7918, Diversity: 0.1542 (stagnant: 11) | Time: 12.2min, ETA: 1.5min
+Gen  90/100 ( 90.0%) | Best: 0.9282, Avg: 0.7817, Diversity: 0.1577 (stagnant: 12) | Time: 12.6min, ETA: 1.4min
+Gen  91/100 ( 91.0%) | Best: 0.9282, Avg: 0.7784, Diversity: 0.1581 (stagnant: 13) | Time: 13.0min, ETA: 1.3min
+Gen  92/100 ( 92.0%) | Best: 0.9282, Avg: 0.7870, Diversity: 0.1543 (stagnant: 14) | Time: 13.4min, ETA: 1.2min
+Stagnation Detected: Restarted 60 individuals
+Gen  93/100 ( 93.0%) | Best: 0.9282, Avg: 0.7252, Diversity: 0.2300 | Time: 13.8min, ETA: 1.0min
+Gen  94/100 ( 94.0%) | Best: 0.9282, Avg: 0.7814, Diversity: 0.1637 | Time: 13.9min, ETA: 53s
+Gen  95/100 ( 95.0%) | Best: 0.9385, Avg: 0.8262, Diversity: 0.1481 | Time: 13.9min, ETA: 44s
+Gen  96/100 ( 96.0%) | Best: 0.9385, Avg: 0.8479, Diversity: 0.1425 | Time: 14.0min, ETA: 35s
+Gen  97/100 ( 97.0%) | Best: 0.9385, Avg: 0.8552, Diversity: 0.1343 | Time: 14.0min, ETA: 26s
+Gen  98/100 ( 98.0%) | Best: 0.9385, Avg: 0.8688, Diversity: 0.1253 | Time: 14.1min, ETA: 17s
+Gen  99/100 ( 99.0%) | Best: 0.9385, Avg: 0.8703, Diversity: 0.1214 | Time: 14.1min, ETA: 9s
+Gen 100/100 (100.0%) | Best: 0.9385, Avg: 0.8678, Diversity: 0.1135 | Time: 14.1min, ETA: 0s
+
+Evolution completed!
+
+=== FINAL ANALYSIS ===
+Found 2609 unique high-quality sequences
+Elite percentage: 1.0% (2 individuals)
+Average sequence diversity: 0.1335
+
+Top 10 sequences:
+ 1. AGUUCCCUAGAAGCGCCUACACUAAUUGGGACAGAAAUCAGUUAAGGAGAACACCCUGCAACGUCUCGAUUAGUGGACGAGGAGGAGGCUAAUCCAAGUUUGGGCGGGAGCCUCCCGGGUGUGCAUGCACUCGUUAAAUCUUACUUGCGAAUCACUUGGGAUAUCAAGUGGGCAGACUCGAAAUCAAACAUGCUC (fitness: 0.9385)
+ 2. AGUUCCCUAGAAGCGCCUACACUAAUUGGGACAGAAAUCAGUUAAGGAGAACACCCUGCAACGUCUCGAUUAGUGGACGAGGAGGAGGCUAAUCCAAGUUUGGGCGGGAGCCUCCCGGGUGUGCAUGCACUCGUUAAGUAUUAAUCGCGAAUCACUUGGGAUAUCAAGUGGACUCACUGGAAAUCAAACAUGCUC (fitness: 0.9385)
+ 3. AAUUGAAUAGUAGCGCCUACACUAAUUGGGACAGAAAUCAGUUAAGGAGAACACCCUGCAACGUCUCGAUUAGUGGACGAGGAGGAGGCUAAUCCAAGUUUGGGCGGGAGCCUCCCGGGUGUGCAUGCACUCGUUAAGUAUUAAUCGCGAAUUACUUGGGGUAUCAAGUGGCCAUAGCAGAAAUCAAGAAUCCUC (fitness: 0.9385)
+ 4. AGUUGCCUAGAAGCGCCUACACUAAUUGGGACAGAAAUCAGUUAAGGAGAACACCCUGCAACGUCUCGAUUAGUGGACGAGGAGGAGGCUAAUCCAAGUUUGGGCGGGAGCCUCCCGGGUGUGCAUGCACUCGUUAAACCUUAAUCGCGAAUCACUUGGGAUAUCAAGUGGGCAGACUAGAAAUCAAACAUGCUC (fitness: 0.9385)
+ 5. AGUUGCCUAGAAGCGCCUACACUAAUUGGGACAGAAAUCAGUUAAGGAGAACACCCUGCAACGUCUCGAUUAGUGGACGAGGAGGAGGCUAAUCCAAGUUUGGGCGGGAGCCUCCCGGGUGUGCAUGCACUCGUUAAACCUUAAUUGCGAAUCACUUGGGAUAUCAAGUGGGCUGACUAGAAAUCAAAAGUGCUC (fitness: 0.9385)
+ 6. AGUUCCCUAGAAGCGCCUACACUAAUUGGGACAGAAAUCAGUUAAGGAGAACACCCUGCAACGUCUCGAUUAGUGGACGAGGAGGAGGCUAAUCCAAGUUUGGGCGGGAGCCUCCCGGGUGUGUAUGCACCCGUUAAGCAUUAAUUGCGAAUCACUUGGGGGACCAAGUGGGCUCACUGGAAAUCAAACGUGCUC (fitness: 0.9385)
+ 7. AGUUCCCUAGAAGCGCCUACACUAAUUGGGACAGAAAUCAGUUAAGGAGAACACCCUGCAACGUCUCGAUUAGUGGACGAGGAGGAGGCUAAUCCAAGUUUGGGCGGGAGCCUCCCGGGUGUGCAUGCACUCGUUAAGUAUUAAUCGCGAAUCACUUGGGAUAUCAAGUGGGCAGACUAGAAAUCAAACAUGCUC (fitness: 0.9385)
+ 8. AGUUGCCUAGAAGCGCCUACACUAGUUGGGACAGAAAUCAGUUAAGGAGAACACCCUGCAACGUCUCGAUUAGUGGACGAGGAGGAGGCUAAUCCAAGUUUGGGCGGGAGCCUCCCGGGUGUGCAUGCACUCGUUAAACCUUAAUUGCGAAUCACUUGGGAUAUCAAGUGGGCUGACUAGAAAUCAAAAGUGCUC (fitness: 0.9385)
+ 9. AGUUCCCUAGAAGCGCCUACACUAAUUGGGACAGAAAUCAGUUAAGGAGAACACCCUGCAACGUCUCGAUUAGUGGACGAGGAGGAGGCUAAUCCAAGUUUGGGCGGGAGCCUCCCGGGUGUGCAUGCACUCGUUAAGUAUUAAUCGCGAAUCACUUGGGCUACCAAGUGGACUCACUGGAAAUCAAACAUGCUC (fitness: 0.9385)
+10. AGUUCCCUAGAAGCGCCUACACUAAUUGGGACAGAAAUCAGUUAAGGAGAACACCCUGCAACGUCUCGAUUAGUGGACGAGGAGGAGGCUAAUCCAAGUUUGGGCGGGAGCCUCCCGGGUGUGGAUGCACCCGUUAAGCAUUAAUUGCGAAUCACUUGGGGGACCAAGUGGGCUCACUGGAAAUGAAACGUGCUC (fitness: 0.9385)
+
+==================================================
+EA Execution Completed!
+Total Runtime: 14.63 minutes
+Final Best Fitness: 0.9385
+Total Improvement: 0.3333
+Solutions Found: 3337
+Generate plots with: ./generate_plots.sh
+==================================================
+Logged essential results to wandb for problem 3.1

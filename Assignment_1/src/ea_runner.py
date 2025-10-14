@@ -20,6 +20,14 @@ except ImportError:
     print("or run: ./setup_machine.sh")
     sys.exit(1)
 
+try:
+    import wandb
+except ImportError:
+    print("Error: wandb is not installed. Please install it with:")
+    print("pip3 install wandb")
+    print("or run: ./setup_machine.sh")
+    sys.exit(1)
+
 def get_device_workers(device):
     """
     Get optimal worker count for specific device
@@ -38,99 +46,6 @@ def get_device_workers(device):
     }
     
     return device_configs.get(device, 8)  # default to 8 if device unknown
-
-def initialize_wandb(experiment_name, device, config, problem_id, run_number=1, enable_wandb=True):
-    """
-    Initialize wandb for experiment tracking
-    
-    Args:
-        experiment_name (str): Name of the experiment
-        device (str): Device name
-        config (dict): Experiment configuration
-        problem_id (str): Problem identifier (e.g., '1.1', '2.2')
-        run_number (int): Run number for this experiment
-        enable_wandb (bool): Whether to enable wandb tracking
-    
-    Returns:
-        wandb.run or None: wandb run object if initialized, None otherwise
-    """
-    if not enable_wandb:
-        return None
-    
-    try:
-        # Create a unique run name
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        run_name = f"{experiment_name}_problem_{problem_id}_run{run_number:03d}_{timestamp}"
-        
-        # Initialize wandb
-        run = wandb.init(
-            project="rna-folding-ea",
-            name=run_name,
-            config={
-                "experiment_name": experiment_name,
-                "device": device,
-                "problem_id": problem_id,
-                "run_number": run_number,
-                "population_size": config.get('POPULATION_SIZE'),
-                "generations": config.get('GENERATIONS'),
-                "crossover_rate": config.get('CROSSOVER_RATE', 0.8),
-                "mutation_rate": config.get('MUTATION_RATE', 0.01),
-                "tournament_size": config.get('TOURNAMENT_SIZE', 3),
-                "timestamp": timestamp
-            },
-            tags=[
-                f"device:{device}",
-                f"problem:{problem_id}",
-                f"experiment:{experiment_name}",
-                f"run:{run_number}"
-            ],
-            group=f"{experiment_name}_problem_{problem_id}",
-            job_type="evolutionary_algorithm"
-        )
-        
-        print(f"Initialized wandb tracking: {run_name}")
-        return run
-        
-    except Exception as e:
-        print(f"Warning: Failed to initialize wandb: {e}")
-        return None
-
-def create_wandb_callback(wandb_run, problem_id):
-    """
-    Create a callback function for wandb logging during EA evolution
-    
-    Args:
-        wandb_run: wandb run object
-        problem_id (str): Problem identifier
-    
-    Returns:
-        function: Callback function for EA
-    """
-    if not wandb_run:
-        return lambda *args, **kwargs: None  # No-op function
-    
-    def log_generation(generation, max_fitness, avg_fitness, diversity):
-        """
-        Log generation data to wandb
-        
-        Args:
-            generation (int): Current generation number
-            max_fitness (float): Best fitness in generation
-            avg_fitness (float): Average fitness in generation
-            diversity (float): Population diversity
-        """
-        try:
-            wandb_run.log({
-                "generation": generation,
-                f"best_fitness_problem_{problem_id}": max_fitness,
-                f"avg_fitness_problem_{problem_id}": avg_fitness,
-                f"diversity_problem_{problem_id}": diversity,
-                "problem_id": problem_id
-            }, step=generation)
-        except Exception as e:
-            print(f"Warning: Failed to log to wandb: {e}")
-    
-    return log_generation
 
 def load_experiment_config(config_file):
     """load experiment configuration from yaml or json file"""
@@ -200,7 +115,7 @@ def save_experiment_summary(results_dir, experiment_name, device, config, all_re
     return summary_file, output_file
 
 def update_master_data_file(data_dir, experiment_name, device, config, all_results, total_time, run_number=1):
-    """Update master data file with high-level experiment information"""
+    """Update master data file with high-level experiment information and upload to wandb"""
     master_file = data_dir / "all_experiments_master.csv"
     
     # Check if file exists and create header if not
@@ -212,12 +127,10 @@ def update_master_data_file(data_dir, experiment_name, device, config, all_resul
         if not file_exists:
             writer.writerow([
                 'timestamp', 'experiment_name', 'device', 'run_number', 'population_size', 'generations',
-                'crossover_rate', 'mutation_rate', 'tournament_size', 'elite_percentage', 
-                'early_termination_fitness', 'early_termination_gens', 'early_terminated', 
-                'total_runtime_minutes', 'problems_solved', 'avg_best_fitness', 'best_overall_fitness', 
-                'total_valid_solutions', 'avg_generation_found', 'efficiency_score', 
-                'problem_1.1_fitness', 'problem_1.2_fitness', 'problem_2.1_fitness', 
-                'problem_2.2_fitness', 'problem_3.1_fitness', 'problem_3.2_fitness'
+                'crossover_rate', 'mutation_rate', 'tournament_size', 'total_runtime_minutes',
+                'problems_solved', 'avg_best_fitness', 'best_overall_fitness', 'total_valid_solutions',
+                'avg_generation_found', 'efficiency_score', 'problem_1.1_fitness', 'problem_1.2_fitness',
+                'problem_2.1_fitness', 'problem_2.2_fitness', 'problem_3.1_fitness', 'problem_3.2_fitness'
             ])
         
         # Calculate aggregate statistics
@@ -233,16 +146,11 @@ def update_master_data_file(data_dir, experiment_name, device, config, all_resul
         for pid in ['1.1', '1.2', '2.1', '2.2', '3.1', '3.2']:
             problem_fitnesses[f'problem_{pid}_fitness'] = all_results.get(pid, {}).get('best_fitness', 0)
         
-        # Check if any experiment was early terminated
-        early_terminated = any(r.get('early_terminated', False) for r in all_results.values())
-        
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         writer.writerow([
             timestamp, experiment_name, device, run_number, config['POPULATION_SIZE'], config['GENERATIONS'],
             config.get('CROSSOVER_RATE', 0.8), config.get('MUTATION_RATE', 0.01), 
-            config.get('TOURNAMENT_SIZE', 3), config.get('ELITE_PERCENTAGE', 0.1),
-            config.get('EARLY_TERMINATION_FITNESS', 0.95), config.get('HIGH_FITNESS_STREAK_THRESHOLD', 25),
-            early_terminated, round(total_time / 60, 2),
+            config.get('TOURNAMENT_SIZE', 3), round(total_time / 60, 2),
             problems_solved, round(avg_best_fitness, 4), round(best_overall_fitness, 4),
             total_valid_solutions, round(avg_generation_found, 2), round(efficiency_score, 4),
             problem_fitnesses['problem_1.1_fitness'], problem_fitnesses['problem_1.2_fitness'],
@@ -252,97 +160,7 @@ def update_master_data_file(data_dir, experiment_name, device, config, all_resul
     
     return master_file
 
-def update_master_output_file(data_dir, all_results):
-    """
-    Update master output CSV with top 5 solutions per problem, auto-sorted by fitness
-    
-    Args:
-        data_dir (Path): Data directory path
-        all_results (dict): Results from current experiment
-    
-    Returns:
-        Path: Path to master output file
-    """
-    master_output_file = data_dir / "master_output_solutions.csv"
-    fitness_data_file = data_dir / "master_output_fitness_data.json"
-    
-    # Load existing fitness data if file exists
-    existing_fitness_data = {}
-    if fitness_data_file.exists():
-        try:
-            with open(fitness_data_file, 'r') as f:
-                existing_fitness_data = json.load(f)
-        except:
-            existing_fitness_data = {}
-    
-    # Update with new results
-    for problem_id, result in all_results.items():
-        if problem_id not in existing_fitness_data:
-            existing_fitness_data[problem_id] = []
-        
-        # Add new sequences with fitness from this experiment
-        new_sequences = result.get('top_sequences_with_fitness', [])
-        existing_fitness_data[problem_id].extend(new_sequences)
-    
-    # For each problem, sort by fitness and keep unique sequences
-    final_data = {}
-    for problem_id in ['1.1', '1.2', '2.1', '2.2', '3.1', '3.2']:
-        if problem_id not in existing_fitness_data:
-            final_data[problem_id] = [''] * 5
-            continue
-        
-        sequences_with_fitness = existing_fitness_data[problem_id]
-        if not sequences_with_fitness:
-            final_data[problem_id] = [''] * 5
-            continue
-        
-        # Remove duplicates while keeping highest fitness version
-        unique_sequences = {}
-        for item in sequences_with_fitness:
-            if isinstance(item, dict) and 'sequence' in item and 'fitness' in item:
-                seq = item['sequence']
-                fitness = item['fitness']
-                if seq not in unique_sequences or fitness > unique_sequences[seq]:
-                    unique_sequences[seq] = fitness
-        
-        # Sort by fitness (descending) and take top 5
-        sorted_sequences = sorted(unique_sequences.items(), key=lambda x: x[1], reverse=True)
-        top_5_sequences = [seq for seq, fitness in sorted_sequences[:5]]
-        
-        # Pad with empty strings to ensure exactly 5 results
-        while len(top_5_sequences) < 5:
-            top_5_sequences.append('')
-        
-        final_data[problem_id] = top_5_sequences
-        
-        # Update existing data with only the best unique sequences (keep top 20 for future)
-        existing_fitness_data[problem_id] = [
-            {'sequence': seq, 'fitness': fitness} 
-            for seq, fitness in sorted_sequences[:20]
-        ]
-    
-    # Save updated fitness data
-    with open(fitness_data_file, 'w') as f:
-        json.dump(existing_fitness_data, f, indent=2)
-    
-    # Write the updated master output file
-    with open(master_output_file, 'w', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow(['id', 'result_1', 'result_2', 'result_3', 'result_4', 'result_5'])
-        
-        for problem_id in ['1.1', '1.2', '2.1', '2.2', '3.1', '3.2']:
-            sequences = final_data.get(problem_id, [''] * 5)
-            writer.writerow([problem_id] + sequences)
-        
-        # Add the note row
-        writer.writerow([''] * 6)
-        writer.writerow(['Note: Best solutions auto-sorted by fitness'] + [''] * 5)
-    
-    print(f"Updated master output file: {master_output_file}")
-    print(f"Updated fitness data: {fitness_data_file}")
-    return master_output_file
-
-def run_single_problem(problem_id, problem_config, experiment_config, device, max_workers, problem_dir, enable_wandb=True, run_number=1):
+def run_single_problem(problem_id, problem_config, experiment_config, device, max_workers, problem_dir, wandb_run, generation_offset):
     """Run EA for a single problem and return results"""
     print(f"\n{'='*60}")
     print(f"Running Problem {problem_id}")
@@ -366,35 +184,6 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
         ea.mutation_rate = experiment_config['MUTATION_RATE']
     if 'TOURNAMENT_SIZE' in experiment_config:
         ea.tournament_size = experiment_config['TOURNAMENT_SIZE']
-    if 'ELITE_PERCENTAGE' in experiment_config:
-        ea.elite_percentage = experiment_config['ELITE_PERCENTAGE']
-        ea.elitism_count = max(1, int(ea.population_size * ea.elite_percentage))
-    if 'EARLY_TERMINATION_FITNESS' in experiment_config:
-        ea.early_termination_fitness = experiment_config['EARLY_TERMINATION_FITNESS']
-    if 'HIGH_FITNESS_STREAK_THRESHOLD' in experiment_config:
-        ea.high_fitness_streak_threshold = experiment_config['HIGH_FITNESS_STREAK_THRESHOLD']
-    
-    # Add wandb tracking if available
-    wandb_tracker = None
-    if enable_wandb:
-        try:
-            from wandb_tracker import add_wandb_tracking
-            # Prepare config for wandb
-            wandb_config = dict(experiment_config)
-            wandb_config['SEQUENCE_CONSTRAINT'] = problem_config['SEQUENCE_CONSTRAINT']
-            wandb_config['STRUCTURE_CONSTRAINT'] = problem_config['STRUCTURE_CONSTRAINT']
-            
-            ea, wandb_tracker = add_wandb_tracking(
-                ea_instance=ea,
-                experiment_name=experiment_config.get('NAME', 'unnamed_experiment'),
-                device=device,
-                config=wandb_config,
-                problem_id=problem_id,
-                run_number=run_number,
-                enable_wandb=enable_wandb
-            )
-        except ImportError:
-            print("Warning: wandb_tracker module not available. Running without wandb tracking.")
     
     # Add progress monitoring
     try:
@@ -404,11 +193,100 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
     except ImportError:
         print("Progress monitoring not available, running standard EA...")
     
+    # Log experiment configuration as metadata (not time-series data)
+    if wandb_run:
+        wandb_run.config.update({
+            f"problem_{problem_id}": {
+                "population_size": experiment_config['POPULATION_SIZE'],
+                "generations": experiment_config['GENERATIONS'],
+                "crossover_rate": experiment_config.get('CROSSOVER_RATE', 0.8),
+                "mutation_rate": experiment_config.get('MUTATION_RATE', 0.01),
+                "tournament_size": experiment_config.get('TOURNAMENT_SIZE', 3),
+                "sequence_length": len(problem_config['SEQUENCE_CONSTRAINT']),
+                "sequence_constraint": problem_config['SEQUENCE_CONSTRAINT'],
+                "structure_constraint": problem_config['STRUCTURE_CONSTRAINT']
+            }
+        })
+    
     # Track start time
     import time
     start_time = time.time()
     
+    # Simple real-time wandb callback - no throttling
+    history = None
+    metric_prefix = None
+
+    if wandb_run:
+        metric_prefix = f"problem_{problem_id}"
+
+        history = {
+            "global_step": [],
+            "problem_generation": [],
+            "fitness_max": [],
+            "fitness_avg": [],
+            "diversity": []
+        }
+
+        def wandb_callback(generation, best_fitness, avg_fitness, diversity):
+            # Track history for combined visualizations and log metrics in real-time
+            global_step = generation_offset + generation
+
+            history["global_step"].append(global_step)
+            history["problem_generation"].append(generation)
+            history["fitness_max"].append(best_fitness)
+            history["fitness_avg"].append(avg_fitness)
+            history["diversity"].append(diversity)
+
+            wandb_run.log({
+                "global_step": global_step,
+                "generation": generation,
+                "problem_id": problem_id,
+                "fitness_max": best_fitness,
+                "fitness_avg": avg_fitness,
+                "diversity": diversity,
+                f"{metric_prefix}_fitness_max": best_fitness,
+                f"{metric_prefix}_fitness_avg": avg_fitness,
+                f"{metric_prefix}_diversity": diversity
+            })
+        
+        # Add callback to EA
+        ea.add_callback(wandb_callback)
+        print(f"Wandb real-time callback registered for problem {problem_id}")
+    else:
+        print(f"No wandb run for problem {problem_id}")
+    
     ea.run_evolution()
+
+    if wandb_run and history and history["global_step"]:
+        # Create a table and combined chart for the charts dashboard
+        combined_data = list(zip(
+            history["global_step"],
+            history["problem_generation"],
+            history["fitness_max"],
+            history["fitness_avg"],
+            history["diversity"]
+        ))
+
+        combined_table = wandb.Table(
+            columns=["global_step", "problem_generation", "fitness_max", "fitness_avg", "diversity"],
+            data=combined_data
+        )
+
+        wandb_run.log({
+            f"{metric_prefix}_fitness_diversity_table": combined_table
+        })
+
+        combined_chart = wandb.plot.line_series(
+            xs=history["global_step"],
+            ys=[history["fitness_max"], history["fitness_avg"], history["diversity"]],
+            keys=["fitness_max", "fitness_avg", "diversity"],
+            title=f"Problem {problem_id} Fitness & Diversity",
+            xname="global_step"
+        )
+
+        wandb_run.log({
+            f"{metric_prefix}_fitness_diversity_chart": combined_chart
+        })
     
     # Calculate runtime
     runtime = time.time() - start_time
@@ -427,31 +305,10 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
     best_fitness = max(fitness_values) if fitness_values else 0
     generation_found = next((entry[0] for entry in fitness_history if entry[1] == best_fitness), 0) if fitness_history else 0
     
-    # Get top 5 valid sequences above fitness threshold with their fitness scores
+    # Get top 5 valid sequences above fitness threshold
     valid_sequences = [ind for ind in best_individuals if ind['fitness'] > 0.5]  # threshold
     valid_sequences.sort(key=lambda x: x['fitness'], reverse=True)
     top_sequences = [seq['sequence'] for seq in valid_sequences[:5]]
-    
-    # Store sequences with fitness for master output sorting
-    top_sequences_with_fitness = [
-        {'sequence': seq['sequence'], 'fitness': seq['fitness']} 
-        for seq in valid_sequences[:10]  # Store top 10 for better sorting
-    ]
-    
-    # Log final results to wandb if tracker is available
-    if wandb_tracker and wandb_tracker.enabled:
-        try:
-            wandb_tracker.log_final_results(
-                best_fitness=best_fitness,
-                generation_found=generation_found,
-                runtime=runtime,
-                valid_sequences=valid_sequences,
-                fitness_history=fitness_history
-            )
-            wandb_tracker.finish()
-            print(f"Logged final results to wandb for problem {problem_id}")
-        except Exception as e:
-            print(f"Warning: Failed to log final results to wandb: {e}")
     
     # Save problem-specific results
     problem_results_file = problem_dir / f"problem_{problem_id}_results.txt"
@@ -478,17 +335,23 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
         'avg_diversity_final': final_diversity,
         'total_time': runtime,
         'top_sequences': top_sequences,
-        'top_sequences_with_fitness': top_sequences_with_fitness,
-        'fitness_history': fitness_history,
-        'early_terminated': getattr(ea, 'early_terminated', False),
-        'termination_reason': getattr(ea, 'termination_reason', None),
-        'elite_percentage': ea.elite_percentage,
-        'elitism_count': ea.elitism_count
+        'fitness_history': fitness_history
     }
     
     problem_stats_file = problem_dir / f"problem_{problem_id}_stats.json"
     with open(problem_stats_file, 'w') as f:
         json.dump(problem_stats, f, indent=2)
+    
+    # Log final results to wandb summary (not charts)
+    if wandb_run:
+        # Use wandb.summary for final metrics (tables, not time-series charts)
+        wandb_run.summary.update({
+            f"final_best_fitness": best_fitness,
+            f"final_generation_found": generation_found,
+            f"final_runtime_seconds": runtime,
+            f"final_valid_sequences": len(valid_sequences),
+            f"final_problem": problem_id
+        })
     
     print(f"Problem {problem_id} completed!")
     print(f"Best fitness: {best_fitness:.4f} (found at generation {generation_found})")
@@ -497,21 +360,10 @@ def run_single_problem(problem_id, problem_config, experiment_config, device, ma
     
     return problem_stats
 def run_experiment(experiment_config, device=None, problems_to_run=None, run_number=1, enable_wandb=True):
-    """Run experiment for all problems or specific problems"""
+    """Run experiment for all problems or specific problems with wandb tracking"""
     print(f"\n{'='*80}")
     print(f"Starting experiment: {experiment_config['NAME']} (Run #{run_number})")
     print(f"Parameters: Pop={experiment_config['POPULATION_SIZE']}, Gen={experiment_config['GENERATIONS']}")
-    
-    # Check if wandb is available
-    wandb_available = False
-    if enable_wandb:
-        try:
-            from wandb_tracker import WANDB_AVAILABLE
-            wandb_available = WANDB_AVAILABLE
-        except ImportError:
-            wandb_available = False
-    
-    print(f"Wandb tracking: {'enabled' if enable_wandb and wandb_available else 'disabled'}")
     
     # Determine optimal worker count
     if device:
@@ -534,6 +386,54 @@ def run_experiment(experiment_config, device=None, problems_to_run=None, run_num
         experiment_config['NAME'], device or 'unknown', problems_to_run, run_number
     )
     
+    # Initialize wandb run if enabled
+    wandb_run = None
+    if enable_wandb:
+        try:
+            # Create meaningful experiment grouping
+            experiment_group = f"{device}_{experiment_config['NAME'].split('_')[1]}"  # e.g., "odin_intensive", "nyquist_standard"
+            
+            wandb_run = wandb.init(
+                project="RNA-Folding-EA",  # Correct project name
+                group=experiment_group,  # Group by device and experiment type
+                name=f"{device}_{experiment_config['NAME']}_run{run_number:03d}_{datetime.datetime.now().strftime('%m%d_%H%M')}",
+                config={
+                    "experiment_name": experiment_config['NAME'],
+                    "run_number": run_number,
+                    "device": device,
+                    "device_workers": max_workers,
+                    "population_size": experiment_config['POPULATION_SIZE'],
+                    "generations": experiment_config['GENERATIONS'],
+                    "crossover_rate": experiment_config.get('CROSSOVER_RATE', 0.8),
+                    "mutation_rate": experiment_config.get('MUTATION_RATE', 0.01),
+                    "tournament_size": experiment_config.get('TOURNAMENT_SIZE', 3),
+                    "problems": problems_to_run,
+                },
+                tags=[
+                    device, 
+                    experiment_config['NAME'].split('_')[1],  
+                    f"run-{run_number}",
+                    f"pop-{experiment_config['POPULATION_SIZE']}",
+                    f"gen-{experiment_config['GENERATIONS']}",
+                ],
+                notes=f"Multi-problem RNA folding experiment on {device.upper()} - {len(problems_to_run)} problems with {experiment_config['POPULATION_SIZE']} population over {experiment_config['GENERATIONS']} generations"
+            )
+            print(f"Wandb tracking initialized: {wandb_run.url}")
+            print(f"Project: RNA-Folding-EA")
+            print(f"Group: {experiment_group}")
+
+            # Define global metrics for the run (charts use global_step as x-axis)
+            wandb_run.define_metric("global_step", summary="last")
+            wandb_run.define_metric("generation", summary="last")
+            for metric in ["fitness_max", "fitness_avg", "diversity"]:
+                wandb_run.define_metric(metric, step_metric="global_step")
+        except Exception as e:
+            print(f"Warning: Could not initialize wandb: {e}")
+            print("Continuing with local logging only...")
+            wandb_run = None
+    else:
+        print("Wandb tracking disabled")
+    
     # Load problem configurations
     config_file = "config/device_experiments.yml"
     with open(config_file, 'r') as f:
@@ -545,6 +445,7 @@ def run_experiment(experiment_config, device=None, problems_to_run=None, run_num
     experiment_start_time = time.time()
     
     all_results = {}
+    generation_offset = 0
     
     # Create experiment log file and ensure it exists
     log_file = results_dir / "experiment_log.txt"
@@ -555,7 +456,6 @@ def run_experiment(experiment_config, device=None, problems_to_run=None, run_num
         f.write(f"Started: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write(f"Parameters: Pop={experiment_config['POPULATION_SIZE']}, Gen={experiment_config['GENERATIONS']}\n")
         f.write(f"Problems: {', '.join(problems_to_run)}\n")
-        f.write(f"Wandb tracking: {'enabled' if enable_wandb and wandb_available else 'disabled'}\n")
         f.write(f"{'='*80}\n\n")
     
     print(f"Experiment log: {log_file}")
@@ -578,9 +478,12 @@ def run_experiment(experiment_config, device=None, problems_to_run=None, run_num
             
             result = run_single_problem(
                 problem_id, problem_config, experiment_config,
-                device, max_workers, problem_dir, enable_wandb, run_number
+                device, max_workers, problem_dir, wandb_run, generation_offset
             )
             all_results[problem_id] = result
+
+            # Advance offset so global step grows monotonically across problems
+            generation_offset += experiment_config['GENERATIONS']
             
             # Log completion to file
             with open(log_file, 'a') as f:
@@ -594,35 +497,29 @@ def run_experiment(experiment_config, device=None, problems_to_run=None, run_num
             # Log error to file
             with open(log_file, 'a') as f:
                 f.write(f"ERROR in Problem {problem_id}: {e}\n\n")
+                
+            if wandb_run:
+                wandb_run.log({f"problem_{problem_id}/error": str(e)})
     
     # Calculate total experiment time
     total_experiment_time = time.time() - experiment_start_time
-    
-    # Update master data files
-    master_experiments_file = update_master_data_file(
-        data_dir, experiment_config['NAME'], device or 'unknown', experiment_config, all_results, total_experiment_time, run_number
-    )
-    
-    master_output_file = update_master_output_file(data_dir, all_results)
-    
-    # Log experiment summary to wandb if available (minimal)
-    if enable_wandb and wandb_available and all_results:
-        try:
-            from wandb_tracker import log_experiment_summary
-            log_experiment_summary(
-                experiment_name=experiment_config['NAME'],
-                device=device or 'unknown',
-                problems_results=all_results,
-                total_runtime=total_experiment_time,
-                enable_wandb=enable_wandb
-            )
-        except Exception as e:
-            print(f"Warning: Failed to log experiment summary to wandb: {e}")
     
     # Save experiment summary 
     summary_file, output_file = save_experiment_summary(
         results_dir, experiment_config['NAME'], device, experiment_config, all_results
     )
+    
+    # Log simple summary to wandb summary (not charts)
+    if wandb_run:
+        # Use wandb.summary for experiment-level metrics (tables, not time-series charts)
+        wandb_run.summary.update({
+            "experiment_total_runtime_minutes": total_experiment_time / 60,
+            "experiment_problems_completed": len(all_results),
+            "experiment_avg_best_fitness": sum(r['best_fitness'] for r in all_results.values()) / len(all_results) if all_results else 0,
+            "experiment_best_overall_fitness": max(r['best_fitness'] for r in all_results.values()) if all_results else 0
+        })
+        
+        wandb_run.finish()
     
     print(f"\n{'='*80}")
     print(f"Experiment {experiment_config['NAME']} (Run #{run_number}) completed!")
@@ -630,10 +527,8 @@ def run_experiment(experiment_config, device=None, problems_to_run=None, run_num
     print(f"Results saved to: {results_dir}")
     print(f"Summary: {summary_file}")
     print(f"Output: {output_file}")
-    print(f"Master experiments log: {master_experiments_file}")
-    print(f"Master output solutions: {master_output_file}")
-    if enable_wandb and wandb_available:
-        print(f"Wandb logs available at: https://wandb.ai/")
+    if wandb_run:
+        print(f"Wandb: {wandb_run.url}")
     print(f"{'='*80}")
     
     return all_results

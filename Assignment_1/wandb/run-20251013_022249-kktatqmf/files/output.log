@@ -1,0 +1,70 @@
+Wandb tracking: https://wandb.ai/rna-folding-ea-ml/RNA-Folding-EA/runs/kktatqmf
+Experiment log: results/2025-10-13_02-22-49_odin_odin_1000_individuals_run001/experiment_log.txt
+
+============================================================
+Running Problem 1.1
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYC...
+============================================================
+Wandb callback registered for problem 1.1
+Starting evolution: 500 individuals, 10 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYCNMNSCKCNCNCKUKKSWSAACSSSAMCN
+Structure constraint: ((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]...
+Initializing population...
+Initialized population with 500 individuals
+
+Generation 1/10
+Max fitness: 0.7051, Avg fitness: 0.3622, Diversity: 0.3301
+DEBUG: Logging Gen 0 - Best: 0.7051, Avg: 0.3622, Div: 0.3301
+
+Generation 2/10
+Max fitness: 0.7564, Avg fitness: 0.3867, Diversity: 0.3291
+DEBUG: Logging Gen 1 - Best: 0.7564, Avg: 0.3867, Div: 0.3291
+
+Generation 3/10
+Max fitness: 0.7564, Avg fitness: 0.3973, Diversity: 0.3290
+DEBUG: Logging Gen 2 - Best: 0.7564, Avg: 0.3973, Div: 0.3290
+
+Generation 4/10
+Max fitness: 0.7564, Avg fitness: 0.3922, Diversity: 0.3289
+DEBUG: Logging Gen 3 - Best: 0.7564, Avg: 0.3922, Div: 0.3289
+
+Generation 5/10
+Max fitness: 0.7564, Avg fitness: 0.3890, Diversity: 0.3288
+DEBUG: Logging Gen 4 - Best: 0.7564, Avg: 0.3890, Div: 0.3288
+
+Generation 6/10
+Max fitness: 0.7564, Avg fitness: 0.4030, Diversity: 0.3287
+DEBUG: Logging Gen 5 - Best: 0.7564, Avg: 0.4030, Div: 0.3287
+
+Generation 7/10
+Max fitness: 0.7564, Avg fitness: 0.3915, Diversity: 0.3288
+DEBUG: Logging Gen 6 - Best: 0.7564, Avg: 0.3915, Div: 0.3288
+
+Generation 8/10
+Max fitness: 0.7564, Avg fitness: 0.4035, Diversity: 0.3289
+DEBUG: Logging Gen 7 - Best: 0.7564, Avg: 0.4035, Div: 0.3289
+
+Generation 9/10
+Max fitness: 0.7564, Avg fitness: 0.3975, Diversity: 0.3289
+DEBUG: Logging Gen 8 - Best: 0.7564, Avg: 0.3975, Div: 0.3289
+
+Generation 10/10
+Max fitness: 0.7564, Avg fitness: 0.3964, Diversity: 0.3287
+DEBUG: Logging Gen 9 - Best: 0.7564, Avg: 0.3964, Div: 0.3287
+
+Evolution completed!
+
+=== FINAL ANALYSIS ===
+Found 0 unique high-quality sequences
+
+=== FINAL ANALYSIS ===
+Found 0 unique high-quality sequences
+
+Results saved to results/2025-10-13_02-22-49_odin_odin_1000_individuals_run001/problem_1.1/problem_1.1_results.txt
+Saved 0 sequences
+Problem 1.1 completed!
+Best fitness: 0.7564 (found at generation 1)
+Runtime: 42.17 seconds
+Valid sequences found: 0

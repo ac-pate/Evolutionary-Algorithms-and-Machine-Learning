@@ -1,0 +1,11 @@
+{"time":"2025-10-13T05:42:44.136556107-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-13T05:42:44.293096619-04:00","level":"INFO","msg":"stream: created new stream","id":"cwawupir"}
+{"time":"2025-10-13T05:42:44.293145994-04:00","level":"INFO","msg":"handler: started","stream_id":"cwawupir"}
+{"time":"2025-10-13T05:42:44.293177634-04:00","level":"INFO","msg":"stream: started","id":"cwawupir"}
+{"time":"2025-10-13T05:42:44.29319101-04:00","level":"INFO","msg":"writer: started","stream_id":"cwawupir"}
+{"time":"2025-10-13T05:42:44.293192032-04:00","level":"INFO","msg":"sender: started","stream_id":"cwawupir"}
+{"time":"2025-10-13T05:46:17.760089659-04:00","level":"INFO","msg":"stream: closing","id":"cwawupir"}
+{"time":"2025-10-13T05:46:18.12904768-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T05:46:18.297606158-04:00","level":"INFO","msg":"handler: closed","stream_id":"cwawupir"}
+{"time":"2025-10-13T05:46:18.297697794-04:00","level":"INFO","msg":"sender: closed","stream_id":"cwawupir"}
+{"time":"2025-10-13T05:46:18.297707031-04:00","level":"INFO","msg":"stream: closed","id":"cwawupir"}

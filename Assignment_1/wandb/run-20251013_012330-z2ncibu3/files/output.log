@@ -1,0 +1,49 @@
+Wandb tracking initialized: https://wandb.ai/rna-folding-ea-ml/RNA-Folding-EA/runs/z2ncibu3
+Project: RNA-Folding-EA
+Group: odin_1000
+Experiment log: results/2025-10-13_01-23-29_odin_odin_1000_individuals_run001/experiment_log.txt
+
+============================================================
+Running Problem 2.2
+Structure: ...................((((((((..((((((.((((((......((...
+Sequence:  NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...
+============================================================
+Enhanced progress monitoring enabled
+Wandb callback registered for problem 2.2
+Starting evolution: 1000 individuals, 10 generations
+Sequence constraint length: 218
+Structure constraint: ...................((((((((..((((((.((((((......((...
+EA Progress Monitoring Started
+==================================================
+Initializing population...
+Initialized population with 1000 individuals
+Gen   1/10 ( 10.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7500 | Time: 0.5min, ETA: calculating...
+Gen   2/10 ( 20.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7493 | Time: 1.0min, ETA: 4.2min
+Gen   3/10 ( 30.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7488 | Time: 1.6min, ETA: 3.7min
+Gen   4/10 ( 40.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7485 | Time: 2.1min, ETA: 3.2min
+Gen   5/10 ( 50.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7482 | Time: 2.7min, ETA: 2.7min
+Gen   6/10 ( 60.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7479 | Time: 3.2min, ETA: 2.1min
+Gen   7/10 ( 70.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7476 | Time: 3.8min, ETA: 1.6min
+Gen   8/10 ( 80.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7474 | Time: 4.3min, ETA: 1.1min
+Gen   9/10 ( 90.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7474 | Time: 4.9min, ETA: 33s
+Gen  10/10 (100.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7473 | Time: 5.4min, ETA: 0s
+
+=== FINAL ANALYSIS ===
+Found 0 unique high-quality sequences
+
+==================================================
+EA Execution Completed!
+Total Runtime: 5.45 minutes
+Final Best Fitness: 0.0000
+Total Improvement: 0.0000
+Solutions Found: 0
+Generate plots with: ./generate_plots.sh
+==================================================
+
+=== FINAL ANALYSIS ===
+Found 0 unique high-quality sequences
+
+Results saved to results/2025-10-13_01-23-29_odin_odin_1000_individuals_run001/problem_2.2/problem_2.2_results.txt
+Saved 0 sequences
+Error running problem 2.2: unsupported operand type(s) for +: 'int' and 'tuple'
+Master experiments table uploaded to wandb

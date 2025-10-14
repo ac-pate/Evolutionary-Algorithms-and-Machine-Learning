@@ -1,0 +1,78 @@
+_wandb:
+    value:
+        cli_version: 0.22.2
+        e:
+            5sghbbzewl2bi40d2q4warbnfkyuellc:
+                args:
+                    - config/device_experiments.yml
+                    - --device
+                    - odin
+                    - --experiment
+                    - odin_1000_individuals
+                    - --constraint
+                    - "1.1"
+                    - --run
+                    - "1"
+                codePath: Assignment_1/src/ea_runner.py
+                codePathLocal: src/ea_runner.py
+                cpu_count: 16
+                cpu_count_logical: 32
+                cudaVersion: "13.0"
+                disk:
+                    /:
+                        total: "473624838144"
+                        used: "62059794432"
+                email: achalypatel3403@gmail.com
+                executable: /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/venv/bin/python3
+                git:
+                    commit: 4679c0c3e128002cbf75f9e1894e8022ee10733a
+                    remote: https://github.com/ac-pate/Evolutionary-Algorithms-and-Machine-Learning
+                gpu: NVIDIA GeForce RTX 5070
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Blackwell
+                      cudaCores: 6144
+                      memoryTotal: "12820938752"
+                      name: NVIDIA GeForce RTX 5070
+                      uuid: GPU-7501b1c9-9eb0-ee9a-fbf7-3b85c97ec088
+                host: ODIN-IEEE
+                memory:
+                    total: "98714808320"
+                os: Linux-6.8.0-83-generic-x86_64-with-glibc2.39
+                program: /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py
+                python: CPython 3.12.3
+                root: /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1
+                startedAt: "2025-10-13T08:26:27.295312Z"
+                writerId: 5sghbbzewl2bi40d2q4warbnfkyuellc
+        m: []
+        python_version: 3.12.3
+        t:
+            "3":
+                - 2
+                - 13
+                - 15
+                - 16
+            "4": 3.12.3
+            "5": 0.22.2
+            "12": 0.22.2
+            "13": linux-x86_64
+crossover_rate:
+    value: 0.8
+device:
+    value: odin
+experiment_name:
+    value: odin_1000_individuals
+generations:
+    value: 20
+mutation_rate:
+    value: 0.5
+population_size:
+    value: 100
+problem_id:
+    value: "1.1"
+run_number:
+    value: 1
+timestamp:
+    value: "20251013_042627"
+tournament_size:
+    value: 50

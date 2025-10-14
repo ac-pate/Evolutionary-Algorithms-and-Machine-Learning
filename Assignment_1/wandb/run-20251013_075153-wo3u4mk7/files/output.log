@@ -1,0 +1,42 @@
+Initialized wandb tracking: odin_pop_300_gen_100_mut_020_problem_3.1_run001_20251013_075153
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 200 individuals, 100 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 200 individuals, 100 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: ARUUSNMUAGWAGCGCCNRMNNURRUUGGGNCRRAAAUNMNKNRNRNNSMANWCSCKSNAANGUMUCSAUYNKUKKACKMGGRNGAGRYYWAUCSAAGUUNNGSCSGRAGNYUYCCKGNYNKKNAUGCANYCKUKAARYNUUAMUYNCRANUYAYYUGGGNNAYCMWGNGGNCWNANNNGWAAUSAARMRUSCYY
+Structure constraint: ..............[[...((((((((((........(((((..(((.......)))...)))))))))))))))........(((((((...(((....)))]]...)))))))(((((((....)))))))..................((((((((....))))))))........................
+Initializing population...
+Initialized population with 200 individuals
+Gen   1/100 (  1.0%) | Best: 0.6154, Avg: 0.4428, Diversity: 0.2998 | Time: 0.2min, ETA: calculating...
+Gen   2/100 (  2.0%) | Best: 0.6410, Avg: 0.4673, Diversity: 0.2972 | Time: 0.3min, ETA: 15.4min
+Gen   3/100 (  3.0%) | Best: 0.6923, Avg: 0.5021, Diversity: 0.2913 | Time: 0.4min, ETA: 13.1min
+Gen   4/100 (  4.0%) | Best: 0.6923, Avg: 0.5328, Diversity: 0.2830 | Time: 0.5min, ETA: 12.3min
+Gen   5/100 (  5.0%) | Best: 0.7436, Avg: 0.5564, Diversity: 0.2691 | Time: 0.6min, ETA: 11.3min
+Gen   6/100 (  6.0%) | Best: 0.7641, Avg: 0.5793, Diversity: 0.2568 | Time: 0.7min, ETA: 10.8min
+Gen   7/100 (  7.0%) | Best: 0.7641, Avg: 0.5999, Diversity: 0.2461 | Time: 0.8min, ETA: 10.1min
+Gen   8/100 (  8.0%) | Best: 0.8154, Avg: 0.6094, Diversity: 0.2372 | Time: 0.8min, ETA: 9.5min
+Gen   9/100 (  9.0%) | Best: 0.8154, Avg: 0.6374, Diversity: 0.2248 | Time: 0.9min, ETA: 9.2min
+Gen  10/100 ( 10.0%) | Best: 0.8154, Avg: 0.6649, Diversity: 0.2051 | Time: 1.0min, ETA: 8.7min
+Gen  11/100 ( 11.0%) | Best: 0.8256, Avg: 0.6818, Diversity: 0.1866 | Time: 1.0min, ETA: 8.3min
+Gen  12/100 ( 12.0%) | Best: 0.8359, Avg: 0.6912, Diversity: 0.1695 | Time: 1.1min, ETA: 8.0min
+Gen  13/100 ( 13.0%) | Best: 0.8564, Avg: 0.7069, Diversity: 0.1550 | Time: 1.1min, ETA: 7.6min
+Gen  14/100 ( 14.0%) | Best: 0.8564, Avg: 0.7203, Diversity: 0.1387 | Time: 1.2min, ETA: 7.3min
+Gen  15/100 ( 15.0%) | Best: 0.8667, Avg: 0.7415, Diversity: 0.1242 | Time: 1.2min, ETA: 7.0min
+Gen  16/100 ( 16.0%) | Best: 0.8667, Avg: 0.7644, Diversity: 0.1098 | Time: 1.4min, ETA: 7.5min
+Error running problem 3.1: list index out of range
+Updated master output file: data/master_output_solutions.csv
+Updated fitness data: data/master_output_fitness_data.json
+
+================================================================================
+Experiment odin_pop_300_gen_100_mut_020 (Run #1) completed!
+Total runtime: 1.49 minutes
+Results saved to: results/2025-10-13_07-51-52_odin_odin_pop_300_gen_100_mut_020_run001
+Summary: results/2025-10-13_07-51-52_odin_odin_pop_300_gen_100_mut_020_run001/experiment_summary.csv
+Output: results/2025-10-13_07-51-52_odin_odin_pop_300_gen_100_mut_020_run001/output_results.csv
+Master experiments log: data/all_experiments_master.csv
+Master output solutions: data/master_output_solutions.csv
+Wandb logs available at: https://wandb.ai/
+================================================================================

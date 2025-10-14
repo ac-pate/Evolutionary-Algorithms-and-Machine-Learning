@@ -1,0 +1,43 @@
+Initialized wandb tracking: odin_1000_individuals_problem_1.1_run001_20251013_050601
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Starting evolution: 100 individuals, 20 generations
+Sequence constraint length: 78
+Structure constraint: ((((....))))....(((((.......)))))............(((((...
+EA Progress Monitoring Started
+==================================================
+Initializing population...
+Initialized population with 100 individuals
+Gen   1/20 (  5.0%) | Best: 0.6154, Avg: 0.3510, Diversity: 0.3297 | Time: 0.0min, ETA: calculating...
+Gen   2/20 ( 10.0%) | Best: 0.6154, Avg: 0.3947, Diversity: 0.3264 | Time: 0.0min, ETA: 17s
+Gen   3/20 ( 15.0%) | Best: 0.6410, Avg: 0.4003, Diversity: 0.3224 | Time: 0.0min, ETA: 16s
+Gen   4/20 ( 20.0%) | Best: 0.6410, Avg: 0.3805, Diversity: 0.3240 | Time: 0.1min, ETA: 14s
+Gen   5/20 ( 25.0%) | Best: 0.6410, Avg: 0.3919, Diversity: 0.3254 | Time: 0.1min, ETA: 14s
+Gen   6/20 ( 30.0%) | Best: 0.6410, Avg: 0.4024, Diversity: 0.3262 | Time: 0.1min, ETA: 12s
+Traceback (most recent call last):
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 716, in <module>
+    main()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 660, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 561, in run_experiment
+    result = run_single_problem(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 397, in run_single_problem
+    ea.run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 119, in enhanced_run_evolution
+    fitness_scores = ea_instance.evaluate_fitness(ea_instance.population)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 229, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/usr/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt

@@ -1,0 +1,2 @@
+problem_id,best_fitness,generation_found,avg_fitness_final,avg_diversity_final,total_time_seconds,population_size,generations,device,experiment_name
+1.1,0.6666666666666666,9,0.3960897435897436,0.325457135457138,19.404170751571655,100,20,odin,odin_1000_individuals

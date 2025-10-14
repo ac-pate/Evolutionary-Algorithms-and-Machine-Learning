@@ -1,0 +1,12 @@
+{"time":"2025-10-13T05:55:21.779823927-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-13T05:55:21.936516398-04:00","level":"INFO","msg":"stream: created new stream","id":"wp7014z5"}
+{"time":"2025-10-13T05:55:21.936553128-04:00","level":"INFO","msg":"handler: started","stream_id":"wp7014z5"}
+{"time":"2025-10-13T05:55:21.936623793-04:00","level":"INFO","msg":"stream: started","id":"wp7014z5"}
+{"time":"2025-10-13T05:55:21.936636157-04:00","level":"INFO","msg":"writer: started","stream_id":"wp7014z5"}
+{"time":"2025-10-13T05:55:21.936635536-04:00","level":"INFO","msg":"sender: started","stream_id":"wp7014z5"}
+{"time":"2025-10-13T05:57:32.32955354-04:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.00041773}],"total_operations":1}}
+{"time":"2025-10-13T05:57:32.694326075-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T05:57:32.80770508-04:00","level":"INFO","msg":"stream: closing","id":"wp7014z5"}
+{"time":"2025-10-13T05:57:32.807711543-04:00","level":"INFO","msg":"handler: closed","stream_id":"wp7014z5"}
+{"time":"2025-10-13T05:57:32.80774662-04:00","level":"INFO","msg":"sender: closed","stream_id":"wp7014z5"}
+{"time":"2025-10-13T05:57:32.807749616-04:00","level":"INFO","msg":"stream: closed","id":"wp7014z5"}

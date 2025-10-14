@@ -1,0 +1,23 @@
+2025-10-13 12:08:54,851 INFO    MainThread:1062127 [wandb_setup.py:_flush():81] Current SDK version is 0.22.2
+2025-10-13 12:08:54,851 INFO    MainThread:1062127 [wandb_setup.py:_flush():81] Configure stats pid to 1062127
+2025-10-13 12:08:54,851 INFO    MainThread:1062127 [wandb_setup.py:_flush():81] Loading settings from /home/odin/.config/wandb/settings
+2025-10-13 12:08:54,851 INFO    MainThread:1062127 [wandb_setup.py:_flush():81] Loading settings from /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/wandb/settings
+2025-10-13 12:08:54,851 INFO    MainThread:1062127 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-10-13 12:08:54,851 INFO    MainThread:1062127 [wandb_init.py:setup_run_log_directory():705] Logging user logs to /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/wandb/run-20251013_120854-pu825lp0/logs/debug.log
+2025-10-13 12:08:54,851 INFO    MainThread:1062127 [wandb_init.py:setup_run_log_directory():706] Logging internal logs to /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/wandb/run-20251013_120854-pu825lp0/logs/debug-internal.log
+2025-10-13 12:08:54,851 INFO    MainThread:1062127 [wandb_init.py:init():832] calling init triggers
+2025-10-13 12:08:54,852 INFO    MainThread:1062127 [wandb_init.py:init():837] wandb.init called with sweep_config: {}
+config: {'experiment_name': 'odin_pop_300_gen_150_mut_020', 'device': 'odin', 'problem_id': '1.2', 'run_number': 1, 'population_size': 300, 'generations': 150, 'crossover_rate': 0.8, 'mutation_rate': 0.02, 'tournament_size': 6, 'elite_percentage': 0.012, 'early_termination_fitness': 0.95, 'high_fitness_streak_threshold': 25, 'timestamp': '20251013_120854', 'sequence_length': 78, 'structure_length': 78, '_wandb': {}}
+2025-10-13 12:08:54,852 INFO    MainThread:1062127 [wandb_init.py:init():880] starting backend
+2025-10-13 12:08:55,055 INFO    MainThread:1062127 [wandb_init.py:init():883] sending inform_init request
+2025-10-13 12:08:55,056 INFO    MainThread:1062127 [wandb_init.py:init():891] backend started and connected
+2025-10-13 12:08:55,057 INFO    MainThread:1062127 [wandb_init.py:init():961] updated telemetry
+2025-10-13 12:08:55,058 INFO    MainThread:1062127 [wandb_init.py:init():985] communicating run to backend with 90.0 second timeout
+2025-10-13 12:08:55,420 INFO    MainThread:1062127 [wandb_init.py:init():1036] starting run threads in backend
+2025-10-13 12:08:55,451 INFO    MainThread:1062127 [wandb_run.py:_console_start():2509] atexit reg
+2025-10-13 12:08:55,451 INFO    MainThread:1062127 [wandb_run.py:_redirect():2357] redirect: wrap_raw
+2025-10-13 12:08:55,451 INFO    MainThread:1062127 [wandb_run.py:_redirect():2426] Wrapping output streams.
+2025-10-13 12:08:55,451 INFO    MainThread:1062127 [wandb_run.py:_redirect():2449] Redirects installed.
+2025-10-13 12:08:55,452 INFO    MainThread:1062127 [wandb_init.py:init():1076] run started, returning control to user process
+2025-10-13 12:12:08,952 INFO    wandb-AsyncioManager-main:1062127 [service_client.py:_forward_responses():80] Reached EOF.
+2025-10-13 12:12:08,952 INFO    wandb-AsyncioManager-main:1062127 [mailbox.py:close():137] Closing mailbox, abandoning 1 handles.

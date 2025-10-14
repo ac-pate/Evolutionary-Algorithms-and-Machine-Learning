@@ -1,0 +1,12 @@
+{"time":"2025-10-13T06:40:49.182919174-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-13T06:40:49.340230851-04:00","level":"INFO","msg":"stream: created new stream","id":"slxd17p0"}
+{"time":"2025-10-13T06:40:49.340267992-04:00","level":"INFO","msg":"handler: started","stream_id":"slxd17p0"}
+{"time":"2025-10-13T06:40:49.340297428-04:00","level":"INFO","msg":"stream: started","id":"slxd17p0"}
+{"time":"2025-10-13T06:40:49.340307678-04:00","level":"INFO","msg":"writer: started","stream_id":"slxd17p0"}
+{"time":"2025-10-13T06:40:49.340318879-04:00","level":"INFO","msg":"sender: started","stream_id":"slxd17p0"}
+{"time":"2025-10-13T06:40:49.48176428-04:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.031669362}],"total_operations":1}}
+{"time":"2025-10-13T06:40:49.953643042-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T06:40:50.054967264-04:00","level":"INFO","msg":"stream: closing","id":"slxd17p0"}
+{"time":"2025-10-13T06:40:50.054975109-04:00","level":"INFO","msg":"handler: closed","stream_id":"slxd17p0"}
+{"time":"2025-10-13T06:40:50.054997873-04:00","level":"INFO","msg":"sender: closed","stream_id":"slxd17p0"}
+{"time":"2025-10-13T06:40:50.055000728-04:00","level":"INFO","msg":"stream: closed","id":"slxd17p0"}

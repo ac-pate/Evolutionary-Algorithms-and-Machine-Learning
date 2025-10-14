@@ -1,0 +1,40 @@
+_wandb:
+    value:
+        cli_version: 0.22.2
+        e:
+            x5ahp7yg1lk61r03rkz74d3xjq79x0tm:
+                args:
+                    - config/device_experiments.yml
+                    - --device
+                    - odin
+                    - --experiment
+                    - odin_pop_300_gen_100_mut_020
+                    - --constraint
+                    - "2.1"
+                    - --run
+                    - "1"
+                codePath: Assignment_1/src/ea_runner.py
+                codePathLocal: src/ea_runner.py
+                email: achalypatel3403@gmail.com
+                executable: /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/venv/bin/python3
+                git:
+                    commit: 93665f7de4c8b52f41fcf82f547d18c9f2bf38a0
+                    remote: https://github.com/ac-pate/Evolutionary-Algorithms-and-Machine-Learning
+                host: ODIN-IEEE
+                os: Linux-6.8.0-83-generic-x86_64-with-glibc2.39
+                program: /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py
+                python: CPython 3.12.3
+                root: /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1
+                startedAt: "2025-10-13T10:40:49.181611Z"
+                writerId: x5ahp7yg1lk61r03rkz74d3xjq79x0tm
+        m: []
+        python_version: 3.12.3
+        t:
+            "3":
+                - 2
+                - 13
+                - 15
+            "4": 3.12.3
+            "5": 0.22.2
+            "12": 0.22.2
+            "13": linux-x86_64

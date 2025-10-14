@@ -1,0 +1,26 @@
+2025-10-13 02:22:49,391 INFO    MainThread:833386 [wandb_setup.py:_flush():81] Current SDK version is 0.22.2
+2025-10-13 02:22:49,391 INFO    MainThread:833386 [wandb_setup.py:_flush():81] Configure stats pid to 833386
+2025-10-13 02:22:49,391 INFO    MainThread:833386 [wandb_setup.py:_flush():81] Loading settings from /home/odin/.config/wandb/settings
+2025-10-13 02:22:49,391 INFO    MainThread:833386 [wandb_setup.py:_flush():81] Loading settings from /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/wandb/settings
+2025-10-13 02:22:49,391 INFO    MainThread:833386 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-10-13 02:22:49,391 INFO    MainThread:833386 [wandb_init.py:setup_run_log_directory():705] Logging user logs to /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/wandb/run-20251013_022249-kktatqmf/logs/debug.log
+2025-10-13 02:22:49,391 INFO    MainThread:833386 [wandb_init.py:setup_run_log_directory():706] Logging internal logs to /home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/wandb/run-20251013_022249-kktatqmf/logs/debug-internal.log
+2025-10-13 02:22:49,391 INFO    MainThread:833386 [wandb_init.py:init():832] calling init triggers
+2025-10-13 02:22:49,391 INFO    MainThread:833386 [wandb_init.py:init():837] wandb.init called with sweep_config: {}
+config: {'population_size': 500, 'generations': 10, 'device': 'odin', 'problems': ['1.1'], '_wandb': {}}
+2025-10-13 02:22:49,391 INFO    MainThread:833386 [wandb_init.py:init():880] starting backend
+2025-10-13 02:22:49,594 INFO    MainThread:833386 [wandb_init.py:init():883] sending inform_init request
+2025-10-13 02:22:49,596 INFO    MainThread:833386 [wandb_init.py:init():891] backend started and connected
+2025-10-13 02:22:49,596 INFO    MainThread:833386 [wandb_init.py:init():961] updated telemetry
+2025-10-13 02:22:49,598 INFO    MainThread:833386 [wandb_init.py:init():985] communicating run to backend with 90.0 second timeout
+2025-10-13 02:22:49,895 INFO    MainThread:833386 [wandb_init.py:init():1036] starting run threads in backend
+2025-10-13 02:22:49,932 INFO    MainThread:833386 [wandb_run.py:_console_start():2509] atexit reg
+2025-10-13 02:22:49,932 INFO    MainThread:833386 [wandb_run.py:_redirect():2357] redirect: wrap_raw
+2025-10-13 02:22:49,932 INFO    MainThread:833386 [wandb_run.py:_redirect():2426] Wrapping output streams.
+2025-10-13 02:22:49,932 INFO    MainThread:833386 [wandb_run.py:_redirect():2449] Redirects installed.
+2025-10-13 02:22:49,933 INFO    MainThread:833386 [wandb_init.py:init():1076] run started, returning control to user process
+2025-10-13 02:23:32,304 INFO    MainThread:833386 [wandb_run.py:_finish():2275] finishing run rna-folding-ea-ml/RNA-Folding-EA/kktatqmf
+2025-10-13 02:23:32,304 INFO    MainThread:833386 [wandb_run.py:_atexit_cleanup():2474] got exitcode: 0
+2025-10-13 02:23:32,304 INFO    MainThread:833386 [wandb_run.py:_restore():2456] restore
+2025-10-13 02:23:32,304 INFO    MainThread:833386 [wandb_run.py:_restore():2462] restore done
+2025-10-13 02:23:32,769 INFO    MainThread:833386 [wandb_run.py:_footer_sync_info():3872] logging synced files

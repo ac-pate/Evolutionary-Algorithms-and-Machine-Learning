@@ -1,0 +1,13 @@
+{"time":"2025-10-12T23:03:59.636328397-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-12T23:03:59.792487993-04:00","level":"INFO","msg":"stream: created new stream","id":"soil3gdb"}
+{"time":"2025-10-12T23:03:59.792514323-04:00","level":"INFO","msg":"handler: started","stream_id":"soil3gdb"}
+{"time":"2025-10-12T23:03:59.792553578-04:00","level":"INFO","msg":"stream: started","id":"soil3gdb"}
+{"time":"2025-10-12T23:03:59.792564108-04:00","level":"INFO","msg":"writer: started","stream_id":"soil3gdb"}
+{"time":"2025-10-12T23:03:59.79256497-04:00","level":"INFO","msg":"sender: started","stream_id":"soil3gdb"}
+{"time":"2025-10-12T23:03:59.988009331-04:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":37}
+{"time":"2025-10-12T23:04:00.097211844-04:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":251}
+{"time":"2025-10-12T23:04:06.289424055-04:00","level":"INFO","msg":"stream: closing","id":"soil3gdb"}
+{"time":"2025-10-12T23:04:06.729700951-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-12T23:04:07.026208288-04:00","level":"INFO","msg":"handler: closed","stream_id":"soil3gdb"}
+{"time":"2025-10-12T23:04:07.026296697-04:00","level":"INFO","msg":"sender: closed","stream_id":"soil3gdb"}
+{"time":"2025-10-12T23:04:07.026304292-04:00","level":"INFO","msg":"stream: closed","id":"soil3gdb"}

@@ -1,0 +1,14 @@
+RNA Folding EA Experiment Log
+Experiment: odin_1000_individuals (Run #1)
+Device: odin
+Started: 2025-10-13 03:05:53
+Parameters: Pop=100, Gen=20
+Problems: 1.1
+================================================================================
+
+Starting Problem 1.1 at 03:05:53
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYC...
+Completed Problem 1.1 at 03:06:12
+Best fitness: 0.7692, Runtime: 18.75s
+

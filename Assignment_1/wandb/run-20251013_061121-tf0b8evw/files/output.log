@@ -1,0 +1,76 @@
+Initialized wandb tracking: odin_pop_300_gen_100_mut_020_problem_2.1_run001_20251013_061120
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 300 individuals, 100 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 300 individuals, 100 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: UUAWUARWUAMAGSGCSNNUSNANWRUACNNMWAUAGNUAUNNAGUAUYAAAAGUNANRNURGUNNARSYUUUAURGAKAAYGNUUUGGRUNYUGUNGMCRNGGWNNRKAKWGAUCKMAYCAGAUCKRCGNAKGCURUNCSSSAUGYGRCACMUNCGNYRGCUUMUUAWGWARWKCAWURAGGUNACNUMRWGKMCNWRGWUWWUAAGAUCGCNAAAY
+Structure constraint: ...................((((((((..((((((.((((((......((((((((..........))))))))..)))))).))))))))))))))........((((((([[[((......]]]..))...)))))))((((((.[[[.))))))....((((((((.....((((((((....))))))))......))))))))...]]].....
+Initializing population...
+Initialized population with 300 individuals
+Gen   1/100 (  1.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2409 | Time: 0.1min, ETA: calculating...
+Gen   2/100 (  2.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 0.2min, ETA: 12.1min
+Gen   3/100 (  3.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 0.4min, ETA: 12.0min
+Gen   4/100 (  4.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 0.5min, ETA: 12.1min
+Gen   5/100 (  5.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 0.7min, ETA: 13.5min
+Gen   6/100 (  6.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 0.8min, ETA: 13.1min
+Gen   7/100 (  7.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 1.0min, ETA: 12.9min
+Gen   8/100 (  8.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 1.1min, ETA: 13.0min
+Gen   9/100 (  9.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 1.3min, ETA: 12.7min
+Gen  10/100 ( 10.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2404 | Time: 1.4min, ETA: 12.4min
+Gen  11/100 ( 11.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 1.5min, ETA: 12.2min
+Gen  12/100 ( 12.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 1.6min, ETA: 12.0min
+Gen  13/100 ( 13.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 1.8min, ETA: 11.8min
+Gen  14/100 ( 14.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 1.9min, ETA: 11.6min
+Gen  15/100 ( 15.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2404 | Time: 2.0min, ETA: 11.5min
+Gen  16/100 ( 16.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2404 | Time: 2.2min, ETA: 11.3min
+Gen  17/100 ( 17.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2404 | Time: 2.3min, ETA: 11.1min
+Gen  18/100 ( 18.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 2.4min, ETA: 11.0min
+Gen  19/100 ( 19.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 2.6min, ETA: 10.9min
+Gen  20/100 ( 20.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 2.7min, ETA: 10.9min
+Gen  21/100 ( 21.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 2.8min, ETA: 10.7min
+Gen  22/100 ( 22.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 3.0min, ETA: 10.6min
+Gen  23/100 ( 23.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 3.1min, ETA: 10.5min
+Gen  24/100 ( 24.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 3.3min, ETA: 10.4min
+Gen  25/100 ( 25.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 3.4min, ETA: 10.2min
+Gen  26/100 ( 26.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2407 | Time: 3.5min, ETA: 10.1min
+Gen  27/100 ( 27.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 3.7min, ETA: 9.9min
+Gen  28/100 ( 28.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 3.8min, ETA: 9.8min
+Gen  29/100 ( 29.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 4.0min, ETA: 9.7min
+Gen  30/100 ( 30.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2405 | Time: 4.1min, ETA: 9.5min
+Gen  31/100 ( 31.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 4.2min, ETA: 9.4min
+Gen  32/100 ( 32.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 4.3min, ETA: 9.2min
+Gen  33/100 ( 33.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2406 | Time: 4.5min, ETA: 9.1min
+Gen  34/100 ( 34.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2404 | Time: 4.6min, ETA: 8.9min
+Error folding sequence UUAAUAAUUACAGCGCCCUUCUAUUAUACCCAUAUAGCUAUACAGUAUUAAAAGUUAGAAUGGUCUAACUUUUAUAGAGAACGGUUUGGAUAUUGUUGACAAGGAGCGGAUUGAUCUAACCAGAUCUGCGCAGGCUGUGCGCCAUGUGGCACAUCCGCUGGCUUCUUAAGAAAAGCAAUGAGGUGACUUAAUGUACAAAGAUUAUAAGAUCGCAAAAU: Command '['sudo', 'docker', 'cp', '/tmp/tmppsdptpai.fa', 'ipknot_runner:/work/tmppsdptpai.fa']' died with <Signals.SIGINT: 2>.
+Traceback (most recent call last):
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 734, in <module>
+    main()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 678, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 579, in run_experiment
+    result = run_single_problem(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 411, in run_single_problem
+    ea.run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 127, in enhanced_run_evolution
+    original_run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 382, in run_evolution
+    fitness_scores = self.evaluate_fitness(self.population)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 237, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/usr/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt

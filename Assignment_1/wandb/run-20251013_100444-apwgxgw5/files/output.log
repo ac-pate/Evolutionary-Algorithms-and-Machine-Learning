@@ -1,0 +1,51 @@
+Initialized wandb tracking: odin_pop_1000_gen_150_mut_02_problem_1.1_run001_20251013_100444
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 1000 individuals, 500 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 1000 individuals, 500 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYCNMNSCKCNCNCKUKKSWSAACSSSAMCN
+Structure constraint: ((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]...
+Initializing population...
+Initialized population with 1000 individuals
+Gen   1/500 (  0.2%) | Best: 0.7692, Avg: 0.3628, Diversity: 0.3301 | Time: 0.2min, ETA: calculating...
+Gen   2/500 (  0.4%) | Best: 0.8462, Avg: 0.4483, Diversity: 0.3247 | Time: 0.4min, ETA: 90.9min
+Gen   3/500 (  0.6%) | Best: 0.8462, Avg: 0.5298, Diversity: 0.3088 | Time: 0.5min, ETA: 81.5min
+Error folding sequence GAGAUAUCUUUGGGAUCCUCUAGCUCAAGGAGGACUAUGCUAUCCGGACCCAGGCGCCCCCUUGUGUGAACGGGAACU: Command '['sudo', 'docker', 'cp', '/tmp/tmpba201pq8.fa', 'ipknot_runner:/work/tmpba201pq8.fa']' died with <Signals.SIGINT: 2>.Error folding sequence GAACUUCCUUUCGGAUCCUCUAGCACCAGGAGGACUAUGCUAUGCGUACCGCACCGCUCGCGUGGGACAACGGGAACA: Command '['sudo', 'docker', 'cp', '/tmp/tmpzn3hqy1k.fa', 'ipknot_runner:/work/tmpzn3hqy1k.fa']' died with <Signals.SIGINT: 2>.Error folding sequence GAGAUACCGUUCGGCUCCUCUAGCUCACGGAGGACUAUGCUGUUCGUCUCAAACCGCGCCCGUGGCACAACGCGACCG: Command '['sudo', 'docker', 'cp', '/tmp/tmpoghagr7r.fa', 'ipknot_runner:/work/tmpoghagr7r.fa']' died with <Signals.SIGINT: 2>.Error folding sequence GAGAUAUAUGUGGGCUCCUCCAGCGCAAGGAGGUCAAUUCGAUUCGUACCAACCCUCACUCUUUUCAGAACGGGACCG: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpguu5oyk3.fa']' died with <Signals.SIGINT: 2>.
+Error folding sequence GAACUACCUGUCCGAUCCUCCAGCUCAAGGAGGACUAUGGUGUACGGCCCCAAGCGCCCACUUUUGACAACCCCAACC: Command '['sudo', 'docker', 'cp', '/tmp/tmp0bsx1a0l.fa', 'ipknot_runner:/work/tmp0bsx1a0l.fa']' died with <Signals.SIGINT: 2>.
+Error folding sequence GAACUAUAUGUGGGCUCCUCCAGCGCAAGGAGGUCAAUUCUGUACGCCUCACGCCGCACGCGUUUGAGAACGCGAACG: Command '['sudo', 'docker', 'cp', '/tmp/tmpezv7ybfi.fa', 'ipknot_runner:/work/tmpezv7ybfi.fa']' returned non-zero exit status 130.
+
+
+Error folding sequence GAACUAUCGUUCCGAUCCUCCAGCGCACAGAGGGCAAUGGUAUCCGGCCCCAGGCUCACACUUGUCUGAACCGCACCU: Command '['sudo', 'docker', 'cp', '/tmp/tmp291vtkcw.fa', 'ipknot_runner:/work/tmp291vtkcw.fa']' returned non-zero exit status 130.
+Error folding sequence GAGAUAUAGGUCGGAUCCUCUAGCACACGGAGGACUAUUCGAUUCGCAUCAAGCCGCUCCCGUUUCACAACCCCACCG: Command '['sudo', 'docker', 'cp', '/tmp/tmp4sm1228q.fa', 'ipknot_runner:/work/tmp4sm1228q.fa']' returned non-zero exit status 130.
+Traceback (most recent call last):
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 734, in <module>
+    main()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 678, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 579, in run_experiment
+    result = run_single_problem(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 411, in run_single_problem
+    ea.run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 138, in enhanced_run_evolution
+    original_run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 575, in run_evolution
+    fitness_scores = self.evaluate_fitness(self.population)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 247, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/usr/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt

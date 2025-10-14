@@ -1,0 +1,52 @@
+Wandb tracking initialized: https://wandb.ai/rna-folding-ea-ml/RNA-Folding-EA/runs/alybci0y
+
+============================================================
+Running Problem 2.2
+Structure: ...................((((((((..((((((.((((((......((...
+Sequence:  NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...
+============================================================
+Enhanced progress monitoring enabled
+Starting evolution: 400 individuals, 200 generations
+Sequence constraint length: 218
+Structure constraint: ...................((((((((..((((((.((((((......((...
+EA Progress Monitoring Started
+==================================================
+Initializing population...
+Initialized population with 400 individuals
+Gen   1/200 (  0.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7499 | Time: 0.3min, ETA: calculating...
+Gen   2/200 (  1.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7477 | Time: 0.6min, ETA: 57.7min
+Gen   3/200 (  1.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7463 | Time: 0.9min, ETA: 57.9min
+Gen   4/200 (  2.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7436 | Time: 1.1min, ETA: 53.9min
+Gen   5/200 (  2.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7429 | Time: 1.3min, ETA: 52.5min
+Gen   6/200 (  3.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7407 | Time: 1.6min, ETA: 51.7min
+Gen   7/200 (  3.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7403 | Time: 1.8min, ETA: 50.6min
+Gen   8/200 (  4.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7399 | Time: 2.2min, ETA: 51.9min
+Gen   9/200 (  4.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7393 | Time: 2.4min, ETA: 50.7min
+Gen  10/200 (  5.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7379 | Time: 2.6min, ETA: 49.7min
+Gen  11/200 (  5.5%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7371 | Time: 2.9min, ETA: 49.2min
+Gen  12/200 (  6.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.7357 | Time: 3.1min, ETA: 48.6min
+Error folding sequence UAGCACUACAACUGGCAACCCUCGCAAAGCUGCAGACACAAGAUGCUUCGGAAACCGGUUUCUCUAAUAAGUUCUUUACCGAGGCUGAUGAUUCAUCAGUGCACCUCGUUGGUAUGGAGGCGUGUUAAGGCAAUUCCAACUAAUACCUUGUGACCCAUAUGUAUCUGGUCAAGCGGGACGGAAGGGGAUGGCGACCUGCAUGUCCAUAAAUGGCGCAU: Command '['sudo', 'docker', 'cp', '/tmp/tmp8a6cc9pr.fa', 'ipknot_runner:/work/tmp8a6cc9pr.fa']' died with <Signals.SIGINT: 2>.
+Error folding sequence CAUUGCCGCUUCAUACUCCUUACAGCGGCCUACAGACACUGGAUGCUGCGGAAACCGGUUUCUCUAAUAAGUUCUUUACCGAGGCCGAUGAUUCAACAGUGGACCUCGUUGGUAUGAAGGCGUGUUAAGACUCUCAAUGACCUUCUGCUAAGAUCACGCAGCUGGAAAACGCACCGACCUUCGAAGUGAUCAUGCAGAGUCGACCACAGGGCUUUCUU: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpx75996yr.fa']' returned non-zero exit status 255.
+Traceback (most recent call last):
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 474, in <module>
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 437, in main
+    with open(log_file, 'a') as f:
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 346, in run_experiment
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 216, in run_single_problem
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 119, in enhanced_run_evolution
+    fitness_scores = ea_instance.evaluate_fitness(ea_instance.population)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 228, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/usr/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt

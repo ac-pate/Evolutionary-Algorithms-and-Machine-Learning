@@ -1,0 +1,24 @@
+RNA Folding EA Experiment Log
+Experiment: odin_pop_300_gen_100_mut_020 (Run #1)
+Device: odin
+Started: 2025-10-13 08:48:35
+Parameters: Pop=300, Gen=100
+Problems: 1.1, 1.2, 2.1, 2.2, 3.1, 3.2
+Wandb tracking: enabled
+================================================================================
+
+Starting Problem 1.1 at 08:48:35
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYC...
+Completed Problem 1.1 at 08:50:46
+Best fitness: 1.0000, Runtime: 118.93s
+
+Starting Problem 1.2 at 08:50:46
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN...
+Completed Problem 1.2 at 08:54:43
+Best fitness: 0.8974, Runtime: 235.60s
+
+Starting Problem 2.1 at 08:54:43
+Structure: ...................((((((((..((((((.((((((......((...
+Sequence:  UUAWUARWUAMAGSGCSNNUSNANWRUACNNMWAUAGNUAUNNAGUAUYA...

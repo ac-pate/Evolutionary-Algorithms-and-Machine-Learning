@@ -1,0 +1,74 @@
+Initialized wandb tracking: odin_pop_300_gen_100_mut_020_problem_1.2_run001_20251013_104952
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 300 individuals, 100 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 300 individuals, 100 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+Structure constraint: ((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]...
+Initializing population...
+Initialized population with 300 individuals
+Gen   1/100 (  1.0%) | Best: 0.5769, Avg: 0.3608, Diversity: 0.7502 | Time: 0.0min, ETA: calculating...
+Gen   2/100 (  2.0%) | Best: 0.6282, Avg: 0.3756, Diversity: 0.7433 | Time: 0.1min, ETA: 3.9min
+Gen   3/100 (  3.0%) | Best: 0.7308, Avg: 0.3797, Diversity: 0.7338 | Time: 0.1min, ETA: 3.8min
+Gen   4/100 (  4.0%) | Best: 0.8333, Avg: 0.4135, Diversity: 0.7116 | Time: 0.2min, ETA: 3.7min
+Gen   5/100 (  5.0%) | Best: 0.8462, Avg: 0.4345, Diversity: 0.6626 | Time: 0.2min, ETA: 3.7min
+Gen   6/100 (  6.0%) | Best: 0.8462, Avg: 0.4738, Diversity: 0.5707 | Time: 0.2min, ETA: 3.6min
+Gen   7/100 (  7.0%) | Best: 0.8462, Avg: 0.4950, Diversity: 0.4826 | Time: 0.3min, ETA: 3.5min
+Gen   8/100 (  8.0%) | Best: 0.8333, Avg: 0.5352, Diversity: 0.3769 | Time: 0.3min, ETA: 3.5min
+Gen   9/100 (  9.0%) | Best: 0.8462, Avg: 0.5672, Diversity: 0.2871 | Time: 0.3min, ETA: 3.4min
+Gen  10/100 ( 10.0%) | Best: 0.8718, Avg: 0.5792, Diversity: 0.2416 | Time: 0.4min, ETA: 3.4min
+Gen  11/100 ( 11.0%) | Best: 0.8718, Avg: 0.6174, Diversity: 0.1989 | Time: 0.4min, ETA: 3.3min
+Gen  12/100 ( 12.0%) | Best: 0.8718, Avg: 0.6212, Diversity: 0.1843 | Time: 0.4min, ETA: 3.3min
+Gen  13/100 ( 13.0%) | Best: 0.8974, Avg: 0.6124, Diversity: 0.1628 | Time: 0.5min, ETA: 3.3min
+Gen  14/100 ( 14.0%) | Best: 0.9231, Avg: 0.6162, Diversity: 0.1493 | Time: 0.5min, ETA: 3.2min
+Milestone: First high-quality solution (fitness > 0.9) at generation 14!
+Gen  15/100 ( 15.0%) | Best: 0.9231, Avg: 0.6447, Diversity: 0.1569 | Time: 0.6min, ETA: 3.2min
+Gen  16/100 ( 16.0%) | Best: 0.9231, Avg: 0.6764, Diversity: 0.1542 | Time: 0.6min, ETA: 3.2min
+Gen  17/100 ( 17.0%) | Best: 0.9231, Avg: 0.6602, Diversity: 0.1695 | Time: 0.6min, ETA: 3.1min
+Gen  18/100 ( 18.0%) | Best: 0.9231, Avg: 0.6529, Diversity: 0.1780 | Time: 0.7min, ETA: 3.1min
+Gen  19/100 ( 19.0%) | Best: 0.9231, Avg: 0.6553, Diversity: 0.1829 | Time: 0.7min, ETA: 3.0min
+Gen  20/100 ( 20.0%) | Best: 0.9231, Avg: 0.6578, Diversity: 0.1866 (stagnant: 6) | Time: 0.8min, ETA: 3.0min
+Gen  21/100 ( 21.0%) | Best: 0.9231, Avg: 0.5933, Diversity: 0.2339 (stagnant: 7) | Time: 0.8min, ETA: 3.0min
+Gen  22/100 ( 22.0%) | Best: 0.9487, Avg: 0.5772, Diversity: 0.2682 | Time: 0.8min, ETA: 2.9min
+Gen  23/100 ( 23.0%) | Best: 0.9231, Avg: 0.6184, Diversity: 0.2544 | Time: 0.9min, ETA: 2.9min
+Gen  24/100 ( 24.0%) | Best: 0.9744, Avg: 0.6643, Diversity: 0.2447 (streak: 1) | Time: 0.9min, ETA: 2.8min
+Excellent: Near-perfect solution (fitness > 0.95) at generation 24!
+Gen  25/100 ( 25.0%) | Best: 0.9487, Avg: 0.6715, Diversity: 0.2481 | Time: 0.9min, ETA: 2.8min
+Error folding sequence CACCGCCAGGUCAUUACGUCAUCUUAUCUGUCGUCCCACUUCAUCUCGGUCGACAUUUUGCAUCCCCCUAUGCAAUUC: Command '['sudo', 'docker', 'cp', '/tmp/tmppgmehjq5.fa', 'ipknot_runner:/work/tmppgmehjq5.fa']' died with <Signals.SIGINT: 2>.
+Error folding sequence UACCGCCAGGUCCUUACGUCAUCUUAUUUGACGGCCCAUUUUAUUAAGGCGUUAUUUUUGCAUCACGCUAUGGCACUU: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpkip4hy2_.fa']' died with <Signals.SIGINT: 2>.
+Error folding sequence CGCCGCGAGGUGUUGUCGUCAUCCUAUCAGACGUCCCGUUUCAUUGAGGUGUAAUUGUUGCAUCACCCUAUGCAAAUU: Command '['sudo', 'docker', 'cp', '/tmp/tmpi735n3op.fa', 'ipknot_runner:/work/tmpi735n3op.fa']' returned non-zero exit status 130.Error folding sequence CGCCGCCAGGUGUUGUCGUCAUCCUAUCUGACGUCCCGUUUCAUUGAGGUGUAAUUGUUGCAUCGCCCUAUGCAAUUU: Command '['sudo', 'docker', 'cp', '/tmp/tmp4zlh054s.fa', 'ipknot_runner:/work/tmp4zlh054s.fa']' returned non-zero exit status 130.Error folding sequence CACCGCCAGGUAGUUCCGUCAUCACAUUUGACGUCCCUCUUAAUUAAGGUAUUCCAUUUGCAUCUCCUUAUGCAACUU: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpuaffnypt.fa']' died with <Signals.SIGINT: 2>.
+
+
+Error folding sequence CGCCGCCAGGUCAUUACGUCGCCUUAUUUGACGUCCCUUUUAAUAGAGGUGUACUCUUUGCAUCACCUUAUGCAACUU: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmph5y8w4vp.fa']' returned non-zero exit status 130.
+Traceback (most recent call last):
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 734, in <module>
+    main()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 678, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 579, in run_experiment
+    result = run_single_problem(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 411, in run_single_problem
+    ea.run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 138, in enhanced_run_evolution
+    original_run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 575, in run_evolution
+    fitness_scores = self.evaluate_fitness(self.population)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 247, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/usr/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt
