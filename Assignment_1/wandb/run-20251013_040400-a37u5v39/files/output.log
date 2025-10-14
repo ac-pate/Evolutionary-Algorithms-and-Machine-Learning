@@ -1,0 +1,59 @@
+Experiment-level wandb tracking: odin_1000_individuals_run001
+Device: ODIN | Workers: 28
+Running problems: 1.1
+================================================================================
+Experiment log: results/2025-10-13_04-04-01_odin_odin_1000_individuals_run001/experiment_log.txt
+
+============================================================
+Running Problem 1.1
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYC...
+============================================================
+[34m[1mwandb[0m: wandb.init() called while a run is active and reinit is set to 'default', so returning the previous run.
+wandb tracking enabled: odin_1000_individuals_run001
+Enhanced progress monitoring enabled
+Starting evolution: 100 individuals, 20 generations
+Sequence constraint length: 78
+Structure constraint: ((((....))))....(((((.......)))))............(((((...
+EA Progress Monitoring Started
+==================================================
+Initializing population...
+Initialized population with 100 individuals
+Gen   1/20 (  5.0%) | Best: 0.5513, Avg: 0.3609, Diversity: 0.3302 | Time: 0.0min, ETA: calculating...
+Gen   2/20 ( 10.0%) | Best: 0.5897, Avg: 0.3945, Diversity: 0.3276 | Time: 0.0min, ETA: 18s
+Gen   3/20 ( 15.0%) | Best: 0.5897, Avg: 0.3629, Diversity: 0.3246 | Time: 0.1min, ETA: 17s
+Gen   4/20 ( 20.0%) | Best: 0.6154, Avg: 0.3896, Diversity: 0.3251 | Time: 0.1min, ETA: 17s
+Gen   5/20 ( 25.0%) | Best: 0.6154, Avg: 0.3899, Diversity: 0.3257 | Time: 0.1min, ETA: 15s
+Gen   6/20 ( 30.0%) | Best: 0.6154, Avg: 0.3872, Diversity: 0.3239 | Time: 0.1min, ETA: 15s
+Gen   7/20 ( 35.0%) | Best: 0.6282, Avg: 0.3965, Diversity: 0.3251 | Time: 0.1min, ETA: 14s
+Gen   8/20 ( 40.0%) | Best: 0.6538, Avg: 0.4010, Diversity: 0.3259 | Time: 0.1min, ETA: 12s
+Gen   9/20 ( 45.0%) | Best: 0.6538, Avg: 0.4009, Diversity: 0.3261 | Time: 0.2min, ETA: 11s
+Gen  10/20 ( 50.0%) | Best: 0.6667, Avg: 0.4049, Diversity: 0.3233 | Time: 0.2min, ETA: 10s
+Gen  11/20 ( 55.0%) | Best: 0.6667, Avg: 0.3949, Diversity: 0.3247 | Time: 0.2min, ETA: 9s
+Gen  12/20 ( 60.0%) | Best: 0.6667, Avg: 0.3890, Diversity: 0.3251 | Time: 0.2min, ETA: 8s
+Gen  13/20 ( 65.0%) | Best: 0.6667, Avg: 0.3877, Diversity: 0.3253 | Time: 0.2min, ETA: 7s
+Gen  14/20 ( 70.0%) | Best: 0.6667, Avg: 0.3958, Diversity: 0.3240 | Time: 0.2min, ETA: 6s
+Gen  15/20 ( 75.0%) | Best: 0.6667, Avg: 0.3958, Diversity: 0.3260 | Time: 0.2min, ETA: 5s
+Gen  16/20 ( 80.0%) | Best: 0.6667, Avg: 0.3949, Diversity: 0.3257 | Time: 0.3min, ETA: 4s
+Gen  17/20 ( 85.0%) | Best: 0.6667, Avg: 0.4056, Diversity: 0.3246 | Time: 0.3min, ETA: 3s
+Gen  18/20 ( 90.0%) | Best: 0.6667, Avg: 0.4031, Diversity: 0.3249 | Time: 0.3min, ETA: 2s
+Gen  19/20 ( 95.0%) | Best: 0.6667, Avg: 0.4008, Diversity: 0.3253 | Time: 0.3min, ETA: 1s
+Gen  20/20 (100.0%) | Best: 0.6667, Avg: 0.3935, Diversity: 0.3258 | Time: 0.3min, ETA: 0s
+
+=== FINAL ANALYSIS ===
+Found 0 unique high-quality sequences
+
+==================================================
+EA Execution Completed!
+Total Runtime: 0.32 minutes
+Final Best Fitness: 0.6667
+Total Improvement: 0.1154
+Solutions Found: 0
+Generate plots with: ./generate_plots.sh
+==================================================
+
+=== FINAL ANALYSIS ===
+Found 0 unique high-quality sequences
+
+Results saved to results/2025-10-13_04-04-01_odin_odin_1000_individuals_run001/problem_1.1/problem_1.1_results.txt
+Saved 0 sequences

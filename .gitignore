@@ -1,1 +1,6 @@
-/Assignment_1/COEN 432 Assignment 1_ Inverse RNA Folding.docx
+# Ignore specific assignment doc
+Assignment_1/COEN 432 Assignment 1_ Inverse RNA Folding.docx
+
+# Ignore these folders
+Assignment_1/ipknot/
+Assignment_1/untracked/

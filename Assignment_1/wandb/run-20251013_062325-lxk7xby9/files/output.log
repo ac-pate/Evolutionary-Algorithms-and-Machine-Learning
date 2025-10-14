@@ -1,0 +1,16 @@
+Initialized wandb tracking: odin_pop_300_gen_100_mut_020_problem_2.1_run001_20251013_062325
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 200 individuals, 100 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 200 individuals, 100 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: UUAWUARWUAMAGSGCSNNUSNANWRUACNNMWAUAGNUAUNNAGUAUYAAAAGUNANRNURGUNNARSYUUUAURGAKAAYGNUUUGGRUNYUGUNGMCRNGGWNNRKAKWGAUCKMAYCAGAUCKRCGNAKGCURUNCSSSAUGYGRCACMUNCGNYRGCUUMUUAWGWARWKCAWURAGGUNACNUMRWGKMCNWRGWUWWUAAGAUCGCNAAAY
+Structure constraint: ...................((((((((..((((((.((((((......((((((((..........))))))))..)))))).))))))))))))))........((((((([[[((......]]]..))...)))))))((((((.[[[.))))))....((((((((.....((((((((....))))))))......))))))))...]]].....
+Initializing population...
+Initialized population with 200 individuals
+Gen   1/100 (  1.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.24070 | Time: 0.1min, ETA: calculating...
+Gen   2/100 (  2.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23970 | Time: 0.2min, ETA: 10.1min
+Gen   3/100 (  3.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23850 | Time: 0.3min, ETA: 11.0min
+Gen   4/100 (  4.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.23770 | Time: 0.4min, ETA: 10.7min

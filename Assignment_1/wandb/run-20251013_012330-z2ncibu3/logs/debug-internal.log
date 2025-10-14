@@ -1,0 +1,14 @@
+{"time":"2025-10-13T01:23:30.334387444-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-13T01:23:30.493628763-04:00","level":"INFO","msg":"stream: created new stream","id":"z2ncibu3"}
+{"time":"2025-10-13T01:23:30.493738804-04:00","level":"INFO","msg":"stream: started","id":"z2ncibu3"}
+{"time":"2025-10-13T01:23:30.493751769-04:00","level":"INFO","msg":"writer: started","stream_id":"z2ncibu3"}
+{"time":"2025-10-13T01:23:30.493748302-04:00","level":"INFO","msg":"handler: started","stream_id":"z2ncibu3"}
+{"time":"2025-10-13T01:23:30.493768962-04:00","level":"INFO","msg":"sender: started","stream_id":"z2ncibu3"}
+{"time":"2025-10-13T01:23:30.706555837-04:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":37}
+{"time":"2025-10-13T01:23:30.776073414-04:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":7}
+{"time":"2025-10-13T01:28:58.535700175-04:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading artifact run-z2ncibu3-experiment_summary_table","runtime_seconds":0.851557002},{"desc":"uploading artifact run-z2ncibu3-master_experiments_table","runtime_seconds":0.440383684},{"desc":"uploading artifact experiment_results_odin_1000_individuals_run001","runtime_seconds":0.129426536},{"desc":"updating run metadata","runtime_seconds":0.000596983}],"total_operations":4}}
+{"time":"2025-10-13T01:28:59.403418999-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T01:28:59.504444476-04:00","level":"INFO","msg":"stream: closing","id":"z2ncibu3"}
+{"time":"2025-10-13T01:28:59.504452893-04:00","level":"INFO","msg":"handler: closed","stream_id":"z2ncibu3"}
+{"time":"2025-10-13T01:28:59.504501716-04:00","level":"INFO","msg":"sender: closed","stream_id":"z2ncibu3"}
+{"time":"2025-10-13T01:28:59.504515122-04:00","level":"INFO","msg":"stream: closed","id":"z2ncibu3"}

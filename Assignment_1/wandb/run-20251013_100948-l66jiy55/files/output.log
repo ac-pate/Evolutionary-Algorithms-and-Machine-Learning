@@ -1,0 +1,72 @@
+Initialized wandb tracking: odin_pop_1000_gen_500_mut_02_problem_1.1_run001_20251013_100948
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 1000 individuals, 500 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 1000 individuals, 500 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYCNMNSCKCNCNCKUKKSWSAACSSSAMCN
+Structure constraint: ((((....))))....(((((.......)))))............(((((.......[[[[[[))))).]]]]]]...
+Initializing population...
+Initialized population with 1000 individuals
+Gen   1/500 (  0.2%) | Best: 0.6667, Avg: 0.3659, Diversity: 0.3302 | Time: 0.1min, ETA: calculating...
+Gen   2/500 (  0.4%) | Best: 0.7949, Avg: 0.4503, Diversity: 0.3260 | Time: 0.3min, ETA: 71.2min
+Gen   3/500 (  0.6%) | Best: 0.8462, Avg: 0.5157, Diversity: 0.3152 | Time: 0.4min, ETA: 68.7min
+Gen   4/500 (  0.8%) | Best: 0.8462, Avg: 0.5523, Diversity: 0.3019 | Time: 0.5min, ETA: 67.1min
+Gen   5/500 (  1.0%) | Best: 0.8974, Avg: 0.5927, Diversity: 0.2818 | Time: 0.7min, ETA: 66.2min
+Gen   6/500 (  1.2%) | Best: 0.8974, Avg: 0.6454, Diversity: 0.2325 | Time: 0.8min, ETA: 65.6min
+Gen   7/500 (  1.4%) | Best: 0.9615, Avg: 0.6932, Diversity: 0.2096 (streak: 1) | Time: 0.9min, ETA: 65.6min
+Milestone: First high-quality solution (fitness > 0.9) at generation 7!
+Excellent: Near-perfect solution (fitness > 0.95) at generation 7!
+Gen   8/500 (  1.6%) | Best: 0.9615, Avg: 0.6686, Diversity: 0.2276 (streak: 2) | Time: 1.1min, ETA: 66.0min
+Gen   9/500 (  1.8%) | Best: 1.0000, Avg: 0.7549, Diversity: 0.1841 (streak: 3) | Time: 1.2min, ETA: 66.0min
+Gen  10/500 (  2.0%) | Best: 1.0000, Avg: 0.8196, Diversity: 0.1262 (streak: 4) | Time: 1.3min, ETA: 65.8min
+Gen  11/500 (  2.2%) | Best: 1.0000, Avg: 0.8390, Diversity: 0.1040 (streak: 5) | Time: 1.5min, ETA: 66.0min
+Anti-stagnation: Restarted 300 individuals (parallelized)
+Gen  12/500 (  2.4%) | Best: 1.0000, Avg: 0.7681, Diversity: 0.2133 (streak: 6) | Time: 1.8min, ETA: 72.6min
+Anti-stagnation: Restarted 300 individuals (parallelized)
+Gen  13/500 (  2.6%) | Best: 1.0000, Avg: 0.7524, Diversity: 0.1987 (streak: 7) | Time: 2.1min, ETA: 78.4min
+Anti-stagnation: Restarted 300 individuals (parallelized)
+Gen  14/500 (  2.8%) | Best: 1.0000, Avg: 0.7504, Diversity: 0.1962 (streak: 8) | Time: 2.4min, ETA: 83.6min
+Anti-stagnation: Restarted 300 individuals (parallelized)
+Gen  15/500 (  3.0%) | Best: 1.0000, Avg: 0.7448, Diversity: 0.1981 (streak: 9) | Time: 2.7min, ETA: 87.7min
+Anti-stagnation: Restarted 300 individuals (parallelized)
+Gen  16/500 (  3.2%) | Best: 1.0000, Avg: 0.7581, Diversity: 0.1952 (streak: 10) | Time: 3.0min, ETA: 91.4min
+Anti-stagnation: Restarted 300 individuals (parallelized)
+Gen  17/500 (  3.4%) | Best: 1.0000, Avg: 0.7519, Diversity: 0.1965 (streak: 11) | Time: 3.3min, ETA: 94.6min
+Anti-stagnation: Restarted 300 individuals (parallelized)
+Gen  18/500 (  3.6%) | Best: 1.0000, Avg: 0.7696, Diversity: 0.1953 (streak: 12) | Time: 3.6min, ETA: 97.4min
+Error folding sequence GAACUACAGUUCCGCUCCUCUAGCUCCCAGAGGCCAAUGGUGUACGGCUCGCAGCGCUCGCGUGGGUCAACGCGACCA: Command '['sudo', 'docker', 'cp', '/tmp/tmppk_01c9e.fa', 'ipknot_runner:/work/tmppk_01c9e.fa']' died with <Signals.SIGINT: 2>.
+Error folding sequence GAACUACCGUUCCGCUCCUCUAGCUCACAGAGGCCAAUUCUGUACGGCUCACAGCGCUCGCGUGGGUCAACGCGACCU: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmphfajdvyj.fa']' died with <Signals.SIGINT: 2>.
+Error folding sequence GAACUACCGUUCCGAUCCUCUAGCUCCCAGAGGCCAAUUGUGUACGGCUCGCAGCGCUCGCGUGUGUCAACGCGAACA: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmp19ytxni_.fa']' returned non-zero exit status 130.
+Error folding sequence GAACUACCGUGCCGAUCCUCUAGCUCCAAGAGGCCAAUUGUAUACGGCUCAAUGCGCUCGCGUGGGUCAACGCGAACA: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmpdirg8af0.fa']' returned non-zero exit status 130.
+Traceback (most recent call last):
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 734, in <module>
+    main()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 678, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 579, in run_experiment
+    result = run_single_problem(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 411, in run_single_problem
+    ea.run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 138, in enhanced_run_evolution
+    original_run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 575, in run_evolution
+    fitness_scores = self.evaluate_fitness(self.population)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 247, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/usr/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt

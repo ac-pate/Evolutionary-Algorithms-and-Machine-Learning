@@ -1,0 +1,108 @@
+Initialized wandb tracking: odin_pop_300_gen_100_mut_020_problem_2.1_run001_20251013_090520
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 300 individuals, 100 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 300 individuals, 100 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: UUAWUARWUAMAGSGCSNNUSNANWRUACNNMWAUAGNUAUNNAGUAUYAAAAGUNANRNURGUNNARSYUUUAURGAKAAYGNUUUGGRUNYUGUNGMCRNGGWNNRKAKWGAUCKMAYCAGAUCKRCGNAKGCURUNCSSSAUGYGRCACMUNCGNYRGCUUMUUAWGWARWKCAWURAGGUNACNUMRWGKMCNWRGWUWWUAAGAUCGCNAAAY
+Structure constraint: ...................((((((((..((((((.((((((......((((((((..........))))))))..)))))).))))))))))))))........((((((([[[((......]]]..))...)))))))((((((.[[[.))))))....((((((((.....((((((((....))))))))......))))))))...]]].....
+Initializing population...
+Initialized population with 300 individuals
+Gen   1/100 (  1.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2409 | Time: 0.1min, ETA: calculating...
+Gen   2/100 (  2.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2401 | Time: 0.3min, ETA: 13.2min
+Gen   3/100 (  3.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2394 | Time: 0.4min, ETA: 13.3min
+Gen   4/100 (  4.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2386 | Time: 0.5min, ETA: 13.0min
+Gen   5/100 (  5.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2384 | Time: 0.7min, ETA: 13.2min
+Gen   6/100 (  6.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2383 (stagnant: 6) | Time: 0.8min, ETA: 13.1min
+Gen   7/100 (  7.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2375 (stagnant: 7) | Time: 1.1min, ETA: 14.2min
+Gen   8/100 (  8.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2372 (stagnant: 8) | Time: 1.2min, ETA: 14.1min
+Gen   9/100 (  9.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2364 (stagnant: 9) | Time: 1.4min, ETA: 13.7min
+Gen  10/100 ( 10.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2356 (stagnant: 10) | Time: 1.5min, ETA: 13.8min
+Gen  11/100 ( 11.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2357 (stagnant: 11) | Time: 1.7min, ETA: 13.5min
+Gen  12/100 ( 12.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2352 (stagnant: 12) | Time: 1.8min, ETA: 13.2min
+Gen  13/100 ( 13.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2348 (stagnant: 13) | Time: 2.0min, ETA: 13.4min
+Gen  14/100 ( 14.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2337 (stagnant: 14) | Time: 2.2min, ETA: 13.4min
+Anti-stagnation: Restarted 90 individuals (parallelized)
+Gen  15/100 ( 15.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2369 | Time: 2.5min, ETA: 14.0min
+Gen  16/100 ( 16.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2363 | Time: 2.6min, ETA: 13.7min
+Gen  17/100 ( 17.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2355 | Time: 2.7min, ETA: 13.4min
+Gen  18/100 ( 18.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2349 | Time: 2.9min, ETA: 13.1min
+Gen  19/100 ( 19.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2342 | Time: 3.0min, ETA: 12.9min
+Gen  20/100 ( 20.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2328 | Time: 3.2min, ETA: 12.7min
+Gen  21/100 ( 21.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2320 (stagnant: 6) | Time: 3.3min, ETA: 12.4min
+Gen  22/100 ( 22.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2326 (stagnant: 7) | Time: 3.4min, ETA: 12.2min
+Gen  23/100 ( 23.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2320 (stagnant: 8) | Time: 3.6min, ETA: 12.1min
+Gen  24/100 ( 24.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2322 (stagnant: 9) | Time: 3.8min, ETA: 11.9min
+Gen  25/100 ( 25.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2313 (stagnant: 10) | Time: 3.9min, ETA: 11.7min
+Gen  26/100 ( 26.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2308 (stagnant: 11) | Time: 4.1min, ETA: 11.5min
+Gen  27/100 ( 27.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2293 (stagnant: 12) | Time: 4.2min, ETA: 11.3min
+Gen  28/100 ( 28.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2284 (stagnant: 13) | Time: 4.3min, ETA: 11.1min
+Gen  29/100 ( 29.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2278 (stagnant: 14) | Time: 4.5min, ETA: 11.1min
+Anti-stagnation: Restarted 90 individuals (parallelized)
+Gen  30/100 ( 30.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2343 | Time: 4.8min, ETA: 11.3min
+Gen  31/100 ( 31.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2335 | Time: 5.0min, ETA: 11.2min
+Gen  32/100 ( 32.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2326 | Time: 5.2min, ETA: 11.0min
+Gen  33/100 ( 33.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2319 | Time: 5.4min, ETA: 10.9min
+Gen  34/100 ( 34.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2318 | Time: 5.5min, ETA: 10.7min
+Gen  35/100 ( 35.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2301 | Time: 5.7min, ETA: 10.6min
+Gen  36/100 ( 36.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2298 (stagnant: 6) | Time: 5.8min, ETA: 10.4min
+Gen  37/100 ( 37.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2299 (stagnant: 7) | Time: 6.0min, ETA: 10.2min
+Gen  38/100 ( 38.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2295 (stagnant: 8) | Time: 6.1min, ETA: 10.0min
+Gen  39/100 ( 39.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2286 (stagnant: 9) | Time: 6.3min, ETA: 9.8min
+Gen  40/100 ( 40.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2298 (stagnant: 10) | Time: 6.4min, ETA: 9.6min
+Gen  41/100 ( 41.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2293 (stagnant: 11) | Time: 6.6min, ETA: 9.5min
+Gen  42/100 ( 42.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2291 (stagnant: 12) | Time: 6.8min, ETA: 9.3min
+Gen  43/100 ( 43.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2289 (stagnant: 13) | Time: 6.9min, ETA: 9.1min
+Gen  44/100 ( 44.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2290 (stagnant: 14) | Time: 7.1min, ETA: 9.0min
+Anti-stagnation: Restarted 90 individuals (parallelized)
+Gen  45/100 ( 45.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2349 | Time: 7.3min, ETA: 8.9min
+Gen  46/100 ( 46.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2341 | Time: 7.4min, ETA: 8.7min
+Gen  47/100 ( 47.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2334 | Time: 7.6min, ETA: 8.5min
+Gen  48/100 ( 48.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2324 | Time: 7.7min, ETA: 8.4min
+Gen  49/100 ( 49.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2316 | Time: 7.9min, ETA: 8.2min
+Gen  50/100 ( 50.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2312 | Time: 8.0min, ETA: 8.0min
+Gen  51/100 ( 51.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2292 (stagnant: 6) | Time: 8.2min, ETA: 7.8min
+Gen  52/100 ( 52.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2284 (stagnant: 7) | Time: 8.3min, ETA: 7.7min
+Gen  53/100 ( 53.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2277 (stagnant: 8) | Time: 8.5min, ETA: 7.5min
+Gen  54/100 ( 54.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2272 (stagnant: 9) | Time: 8.6min, ETA: 7.4min
+Gen  55/100 ( 55.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2273 (stagnant: 10) | Time: 8.8min, ETA: 7.2min
+Gen  56/100 ( 56.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2265 (stagnant: 11) | Time: 8.9min, ETA: 7.0min
+Gen  57/100 ( 57.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2261 (stagnant: 12) | Time: 9.0min, ETA: 6.8min
+Gen  58/100 ( 58.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2271 (stagnant: 13) | Time: 9.2min, ETA: 6.6min
+Gen  59/100 ( 59.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2270 (stagnant: 14) | Time: 9.3min, ETA: 6.5min
+Anti-stagnation: Restarted 90 individuals (parallelized)
+Gen  60/100 ( 60.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2334 | Time: 9.6min, ETA: 6.4min
+Gen  61/100 ( 61.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2321 | Time: 9.8min, ETA: 6.2min
+Gen  62/100 ( 62.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2306 | Time: 9.9min, ETA: 6.1min
+Error folding sequence UUAAUAGUUAAAGGGCCGCUCCACUAUACGAAAAUAGUUAUGCAGUAUUAAAAGUCACAGUGGUUUAAGCUUUAUGGAGAAUGCUUUGGGUUCUGUAGCCGUGGACGGUAUUGAUCGCACCAGAUCUGCGUAUGCUGUGCCCCAUGCGACACAUGCGCCGGCUUCUUAAGUAAAGCAUUAAGGUCACUUCGAGGACUAAGUUUAUAAGAUCGCUAAAC: Command '['sudo', 'docker', 'exec', 'ipknot_runner', 'ipknot', '/work/tmp8fhu9j55.fa']' died with <Signals.SIGINT: 2>.
+Traceback (most recent call last):
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 734, in <module>
+    main()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 678, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 579, in run_experiment
+    result = run_single_problem(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 411, in run_single_problem
+    ea.run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 138, in enhanced_run_evolution
+    original_run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 575, in run_evolution
+    fitness_scores = self.evaluate_fitness(self.population)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 247, in evaluate_fitness
+    fitness_scores = list(executor.map(evaluate_single, sequences))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/usr/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt

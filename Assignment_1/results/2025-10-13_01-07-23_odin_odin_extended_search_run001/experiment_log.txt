@@ -1,0 +1,11 @@
+RNA Folding EA Experiment Log
+Experiment: odin_extended_search (Run #1)
+Device: odin
+Started: 2025-10-13 01:07:23
+Parameters: Pop=400, Gen=200
+Problems: 1.1
+================================================================================
+
+Starting Problem 1.1 at 01:07:23
+Structure: ((((....))))....(((((.......)))))............(((((...
+Sequence:  GARMUWYMNKKSSGMUCCKCYAGCNCMMNGAGKNCWAUKSKRUNCGNMYC...

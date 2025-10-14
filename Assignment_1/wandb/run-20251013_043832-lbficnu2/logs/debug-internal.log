@@ -1,0 +1,12 @@
+{"time":"2025-10-13T04:38:32.028309762-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.2"}
+{"time":"2025-10-13T04:38:32.184081081-04:00","level":"INFO","msg":"stream: created new stream","id":"lbficnu2"}
+{"time":"2025-10-13T04:38:32.184167306-04:00","level":"INFO","msg":"stream: started","id":"lbficnu2"}
+{"time":"2025-10-13T04:38:32.18418987-04:00","level":"INFO","msg":"handler: started","stream_id":"lbficnu2"}
+{"time":"2025-10-13T04:38:32.184211641-04:00","level":"INFO","msg":"writer: started","stream_id":"lbficnu2"}
+{"time":"2025-10-13T04:38:32.184201311-04:00","level":"INFO","msg":"sender: started","stream_id":"lbficnu2"}
+{"time":"2025-10-13T04:38:32.950379989-04:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"updating run metadata","runtime_seconds":0.546282044},{"desc":"uploading artifact run-lbficnu2-experiment_comparison","runtime_seconds":0.246779292},{"desc":"uploading wandb-metadata.json","runtime_seconds":0.23102254,"progress":"1.4KB/1.4KB"},{"desc":"uploading media/table/experiment_comparison_1_22b3285ef15141fe36c2.table.json","runtime_seconds":0.003830385,"progress":"167B/167B"}],"total_operations":4}}
+{"time":"2025-10-13T04:38:33.614593934-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-13T04:38:33.726556483-04:00","level":"INFO","msg":"stream: closing","id":"lbficnu2"}
+{"time":"2025-10-13T04:38:33.726567494-04:00","level":"INFO","msg":"handler: closed","stream_id":"lbficnu2"}
+{"time":"2025-10-13T04:38:33.726606869-04:00","level":"INFO","msg":"sender: closed","stream_id":"lbficnu2"}
+{"time":"2025-10-13T04:38:33.726609925-04:00","level":"INFO","msg":"stream: closed","id":"lbficnu2"}

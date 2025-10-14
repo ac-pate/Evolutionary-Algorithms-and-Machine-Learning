@@ -1,0 +1,43 @@
+Initialized wandb tracking: odin_1000_individuals_problem_1.1_run001_20251013_044709
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Starting evolution: 100 individuals, 20 generations
+Sequence constraint length: 78
+Structure constraint: ((((....))))....(((((.......)))))............(((((...
+EA Progress Monitoring Started
+==================================================
+Initializing population...
+Initialized population with 100 individuals
+Gen   1/20 (  5.0%) | Best: 0.6795, Avg: 0.3609, Diversity: 0.3312 | Time: 0.0min, ETA: calculating...
+Gen   2/20 ( 10.0%) | Best: 0.6795, Avg: 0.3928, Diversity: 0.3244 | Time: 0.0min, ETA: 16s
+Gen   3/20 ( 15.0%) | Best: 0.6795, Avg: 0.4006, Diversity: 0.3234 | Time: 0.0min, ETA: 16s
+Gen   4/20 ( 20.0%) | Best: 0.6795, Avg: 0.3901, Diversity: 0.3251 | Time: 0.1min, ETA: 15s
+Gen   5/20 ( 25.0%) | Best: 0.6795, Avg: 0.3876, Diversity: 0.3229 | Time: 0.1min, ETA: 14s
+Gen   6/20 ( 30.0%) | Best: 0.6795, Avg: 0.4103, Diversity: 0.3229 | Time: 0.1min, ETA: 13s
+Gen   7/20 ( 35.0%) | Best: 0.6795, Avg: 0.3964, Diversity: 0.3242 | Time: 0.1min, ETA: 12s
+Gen   8/20 ( 40.0%) | Best: 0.6795, Avg: 0.4126, Diversity: 0.3208 | Time: 0.1min, ETA: 11s
+Gen   9/20 ( 45.0%) | Best: 0.7308, Avg: 0.3977, Diversity: 0.3215 | Time: 0.1min, ETA: 10s
+Gen  10/20 ( 50.0%) | Best: 0.7308, Avg: 0.3942, Diversity: 0.3221 | Time: 0.2min, ETA: 9s
+Gen  11/20 ( 55.0%) | Best: 0.7308, Avg: 0.4297, Diversity: 0.3243 | Time: 0.2min, ETA: 8s
+Gen  12/20 ( 60.0%) | Best: 0.7308, Avg: 0.4046, Diversity: 0.3237 | Time: 0.2min, ETA: 7s
+Gen  13/20 ( 65.0%) | Best: 0.7308, Avg: 0.4162, Diversity: 0.3248 | Time: 0.2min, ETA: 7s
+Gen  14/20 ( 70.0%) | Best: 0.7308, Avg: 0.4165, Diversity: 0.3261 | Time: 0.2min, ETA: 6s
+Gen  15/20 ( 75.0%) | Best: 0.7308, Avg: 0.4035, Diversity: 0.3231 | Time: 0.2min, ETA: 5s
+Gen  16/20 ( 80.0%) | Best: 0.7308, Avg: 0.4013, Diversity: 0.3250 | Time: 0.3min, ETA: 4s
+Gen  17/20 ( 85.0%) | Best: 0.7308, Avg: 0.4096, Diversity: 0.3253 | Time: 0.3min, ETA: 3s
+Gen  18/20 ( 90.0%) | Best: 0.7308, Avg: 0.4217, Diversity: 0.3239 | Time: 0.3min, ETA: 2s
+Gen  19/20 ( 95.0%) | Best: 0.7308, Avg: 0.4083, Diversity: 0.3213 | Time: 0.3min, ETA: 1s
+Gen  20/20 (100.0%) | Best: 0.7308, Avg: 0.4029, Diversity: 0.3224 | Time: 0.3min, ETA: 0s
+
+=== FINAL ANALYSIS ===
+Found 0 unique high-quality sequences
+
+==================================================
+EA Execution Completed!
+Total Runtime: 0.32 minutes
+Final Best Fitness: 0.7308
+Total Improvement: 0.0513
+Solutions Found: 0
+Generate plots with: ./generate_plots.sh
+==================================================
+Logged final results to wandb for problem 1.1

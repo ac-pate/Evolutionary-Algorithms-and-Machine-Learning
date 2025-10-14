@@ -1,0 +1,1 @@
+{"total_runtime_minutes":3.7974497278531394,"_step":0,"device":"odin","_timestamp":1.7603710159050407e+09,"_wandb":{"runtime":0},"experiment_name":"odin_pop_200_gen_150_mut_015","problems_solved":1,"max_fitness_achieved":0.8589743589743589,"_runtime":0,"avg_best_fitness":0.8589743589743589,"success_rate":0}

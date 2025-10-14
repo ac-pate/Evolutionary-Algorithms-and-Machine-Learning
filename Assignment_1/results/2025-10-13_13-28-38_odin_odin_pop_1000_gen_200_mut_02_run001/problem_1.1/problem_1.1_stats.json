@@ -1,0 +1,263 @@
+{
+  "problem_id": "1.1",
+  "best_fitness": 1.0,
+  "generation_found": 17,
+  "avg_fitness_final": 0.5220628205128205,
+  "avg_diversity_final": 0.26574289674290114,
+  "total_time": 342.71790409088135,
+  "top_sequences": [
+    "GAACUAUAGUUCCGCUCCUCCAGCUCAAGGAGGUCAAUUCGAUACGACCCUAAGCUCUCCCGUGGGUCAACGGGACCC",
+    "GAACUUUAGUUCGGCUCCUCUAGCACCCAGAGGUCAAUUCGGUCCGGCCCAAAGCGCUCCCGUGGGUCAACGGGAACA",
+    "GAACUUUAGUUCCGCUCCUCCAGCUCAAGGAGGCCAAUUCUAUCCGACUCAAAGCUCUCCCGUGGGUCAACGGGACCG",
+    "GAACUAUAGUUCCGAUCCUCCAGCUCCAGGAGGCCAAUUCGAUGCGGCCCAAUCCUCUCCCGUGGGUCAACGGGAACA",
+    "GAACUACAGUUCCGAUCCUCCAGCACCCGGAGGUCAAUUCGAUCCGGCCCAAUGCGCUCCCGUGGGUCAACGGGACCC"
+  ],
+  "top_sequences_with_fitness": [
+    {
+      "sequence": "GAACUAUAGUUCCGCUCCUCCAGCUCAAGGAGGUCAAUUCGAUACGACCCUAAGCUCUCCCGUGGGUCAACGGGACCC",
+      "fitness": 1.0
+    },
+    {
+      "sequence": "GAACUUUAGUUCGGCUCCUCUAGCACCCAGAGGUCAAUUCGGUCCGGCCCAAAGCGCUCCCGUGGGUCAACGGGAACA",
+      "fitness": 1.0
+    },
+    {
+      "sequence": "GAACUUUAGUUCCGCUCCUCCAGCUCAAGGAGGCCAAUUCUAUCCGACUCAAAGCUCUCCCGUGGGUCAACGGGACCG",
+      "fitness": 1.0
+    },
+    {
+      "sequence": "GAACUAUAGUUCCGAUCCUCCAGCUCCAGGAGGCCAAUUCGAUGCGGCCCAAUCCUCUCCCGUGGGUCAACGGGAACA",
+      "fitness": 1.0
+    },
+    {
+      "sequence": "GAACUACAGUUCCGAUCCUCCAGCACCCGGAGGUCAAUUCGAUCCGGCCCAAUGCGCUCCCGUGGGUCAACGGGACCC",
+      "fitness": 1.0
+    },
+    {
+      "sequence": "GAACUAUAGUUCCGAUCCUCCAGCUCCAGGAGGCCAAUUCGAUGCGGCCCAAUCCUCUCCCGUGGGUCAACGGGAACA",
+      "fitness": 1.0
+    },
+    {
+      "sequence": "GAACUACAGUUCCGCUCCUCCAGCUCCAGGAGGCCUAUUCGAUGCGGCCCCAACCUCUCCCGUGGGUCAACGGGAACA",
+      "fitness": 1.0
+    },
+    {
+      "sequence": "GAACUACCGUUCCGCUCCUCCAGCUCAAGGAGGUCAAUUGUGUACGACUCAAAGCUCUCCCGUGGGUCAACGGGAACA",
+      "fitness": 1.0
+    },
+    {
+      "sequence": "GAACUUCAGUUCCGAUCCUCCAGCUCCAGGAGGCCUAUUCUGUCCGACUCAAUCCUCUCCCGUGGGUCAACGGGAACA",
+      "fitness": 1.0
+    },
+    {
+      "sequence": "GAACUAUAGUUCCGAUCCUCUAGCUCCAGGAGGCCUAUUCGAUGCGACCCAAUCCGCUCCCGUGGGUCAACGGGACCC",
+      "fitness": 1.0
+    }
+  ],
+  "fitness_history": [
+    [
+      0,
+      0.7564102564102564,
+      0.36541025641025643
+    ],
+    [
+      1,
+      0.7307692307692307,
+      0.3967307692307692
+    ],
+    [
+      2,
+      0.8205128205128205,
+      0.4328333333333333
+    ],
+    [
+      3,
+      0.7692307692307693,
+      0.45242307692307693
+    ],
+    [
+      4,
+      0.7948717948717948,
+      0.46994871794871795
+    ],
+    [
+      5,
+      0.8205128205128205,
+      0.49029487179487174
+    ],
+    [
+      6,
+      0.8717948717948718,
+      0.5115641025641026
+    ],
+    [
+      7,
+      0.8205128205128205,
+      0.5192307692307693
+    ],
+    [
+      8,
+      0.8974358974358975,
+      0.5280128205128205
+    ],
+    [
+      9,
+      0.8974358974358975,
+      0.5421666666666666
+    ],
+    [
+      10,
+      0.8974358974358975,
+      0.5424615384615384
+    ],
+    [
+      11,
+      0.9743589743589743,
+      0.5532179487179487
+    ],
+    [
+      12,
+      0.9743589743589743,
+      0.5625641025641025
+    ],
+    [
+      13,
+      0.9743589743589743,
+      0.5747179487179487
+    ],
+    [
+      14,
+      0.9487179487179487,
+      0.5731666666666666
+    ],
+    [
+      15,
+      0.9743589743589743,
+      0.5902307692307693
+    ],
+    [
+      16,
+      0.9743589743589743,
+      0.6074487179487179
+    ],
+    [
+      17,
+      1.0,
+      0.6177307692307693
+    ],
+    [
+      18,
+      0.9743589743589743,
+      0.6303974358974359
+    ],
+    [
+      19,
+      0.9743589743589743,
+      0.6438589743589743
+    ],
+    [
+      20,
+      0.9743589743589743,
+      0.6638717948717949
+    ],
+    [
+      21,
+      0.9743589743589743,
+      0.6568205128205128
+    ],
+    [
+      22,
+      1.0,
+      0.663474358974359
+    ],
+    [
+      23,
+      1.0,
+      0.6606923076923077
+    ],
+    [
+      24,
+      1.0,
+      0.5721025641025641
+    ],
+    [
+      25,
+      0.9743589743589743,
+      0.564602564102564
+    ],
+    [
+      26,
+      0.9743589743589743,
+      0.572025641025641
+    ],
+    [
+      27,
+      1.0,
+      0.5697435897435897
+    ],
+    [
+      28,
+      1.0,
+      0.5680769230769231
+    ],
+    [
+      29,
+      1.0,
+      0.5490897435897435
+    ],
+    [
+      30,
+      1.0,
+      0.546923076923077
+    ],
+    [
+      31,
+      1.0,
+      0.5437051282051282
+    ],
+    [
+      32,
+      1.0,
+      0.5426666666666666
+    ],
+    [
+      33,
+      1.0,
+      0.5325641025641026
+    ],
+    [
+      34,
+      1.0,
+      0.5280641025641025
+    ],
+    [
+      35,
+      1.0,
+      0.5189230769230769
+    ],
+    [
+      36,
+      1.0,
+      0.5117051282051283
+    ],
+    [
+      37,
+      0.9743589743589743,
+      0.5080897435897436
+    ],
+    [
+      38,
+      0.9743589743589743,
+      0.49874358974358973
+    ],
+    [
+      39,
+      1.0,
+      0.4892435897435897
+    ]
+  ],
+  "early_terminated": true,
+  "termination_reason": "Early termination: fitness >=0.95 for 25 generations",
+  "elite_percentage": 0.08,
+  "elitism_count": 80
+}

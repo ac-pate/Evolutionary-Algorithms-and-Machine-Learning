@@ -1,0 +1,60 @@
+Initialized wandb tracking: odin_pop_300_gen_100_mut_020_problem_2.1_run001_20251013_064932
+Added wandb logging callback to EA
+Enhanced progress monitoring enabled
+Progress monitoring enabled for 200 individuals, 100 generations
+EA Progress Monitoring Started
+==================================================
+Starting evolution: 200 individuals, 100 generations
+Using 28 parallel workers for fitness evaluation
+Sequence constraint: UUAWUARWUAMAGSGCSNNUSNANWRUACNNMWAUAGNUAUNNAGUAUYAAAAGUNANRNURGUNNARSYUUUAURGAKAAYGNUUUGGRUNYUGUNGMCRNGGWNNRKAKWGAUCKMAYCAGAUCKRCGNAKGCURUNCSSSAUGYGRCACMUNCGNYRGCUUMUUAWGWARWKCAWURAGGUNACNUMRWGKMCNWRGWUWWUAAGAUCGCNAAAY
+Structure constraint: ...................((((((((..((((((.((((((......((((((((..........))))))))..)))))).))))))))))))))........((((((([[[((......]]]..))...)))))))((((((.[[[.))))))....((((((((.....((((((((....))))))))......))))))))...]]].....
+Initializing population...
+Initialized population with 200 individuals
+Gen   1/100 (  1.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2410 | Time: 0.1min, ETA: calculating...
+Gen   2/100 (  2.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2400 | Time: 0.2min, ETA: 8.5min
+Gen   3/100 (  3.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2389 | Time: 0.3min, ETA: 8.5min
+Gen   4/100 (  4.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2372 | Time: 0.3min, ETA: 8.4min
+Gen   5/100 (  5.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2361 | Time: 0.4min, ETA: 8.1min
+Gen   6/100 (  6.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2349 (stagnant: 6) | Time: 0.5min, ETA: 8.0min
+Gen   7/100 (  7.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2375 (stagnant: 7) | Time: 1.0min, ETA: 13.9min
+Gen   8/100 (  8.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2376 (stagnant: 8) | Time: 1.6min, ETA: 18.2min
+Gen   9/100 (  9.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2372 (stagnant: 9) | Time: 2.1min, ETA: 21.4min
+Gen  10/100 ( 10.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2378 (stagnant: 10) | Time: 2.7min, ETA: 23.9min
+Gen  11/100 ( 11.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2368 (stagnant: 11) | Time: 3.2min, ETA: 26.1min
+Gen  12/100 ( 12.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2381 (stagnant: 12) | Time: 3.7min, ETA: 27.4min
+Gen  13/100 ( 13.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2379 (stagnant: 13) | Time: 4.3min, ETA: 28.9min
+Gen  14/100 ( 14.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2374 (stagnant: 14) | Time: 4.8min, ETA: 29.7min
+Stagnation Detected: Restarted 60 individuals
+Gen  15/100 ( 15.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2394 | Time: 5.4min, ETA: 30.8min
+Gen  16/100 ( 16.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2384 | Time: 5.5min, ETA: 29.0min
+Gen  17/100 ( 17.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2371 | Time: 5.6min, ETA: 27.5min
+Gen  18/100 ( 18.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2345 | Time: 5.7min, ETA: 26.0min
+Gen  19/100 ( 19.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2338 | Time: 5.8min, ETA: 24.8min
+Gen  20/100 ( 20.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2327 | Time: 5.9min, ETA: 23.6min
+Gen  21/100 ( 21.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2307 (stagnant: 6) | Time: 6.0min, ETA: 22.6min
+Gen  22/100 ( 22.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2342 (stagnant: 7) | Time: 6.5min, ETA: 23.1min
+Gen  23/100 ( 23.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2350 (stagnant: 8) | Time: 7.1min, ETA: 23.7min
+Gen  24/100 ( 24.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2349 (stagnant: 9) | Time: 7.6min, ETA: 24.1min
+Gen  25/100 ( 25.0%) | Best: 0.0000, Avg: 0.0000, Diversity: 0.2335 (stagnant: 10) | Time: 8.1min, ETA: 24.4min
+Traceback (most recent call last):
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 734, in <module>
+    main()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 678, in main
+    run_experiment(experiment, device=args.device, problems_to_run=problems_to_run, run_number=args.run, enable_wandb=enable_wandb)
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 579, in run_experiment
+    result = run_single_problem(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/ea_runner.py", line 411, in run_single_problem
+    ea.run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/progress_monitor.py", line 138, in enhanced_run_evolution
+    original_run_evolution()
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 547, in run_evolution
+    parent1 = self.diversity_aware_selection(fitness_scores)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 409, in diversity_aware_selection
+    hamming_dist = sum(1 for a, b in zip(seq, other_seq) if a != b)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/odin/achal/Evolutionary-Algorithms-and-Machine-Learning/Assignment_1/src/rna_folding_ea.py", line 409, in <genexpr>
+    hamming_dist = sum(1 for a, b in zip(seq, other_seq) if a != b)
+                                                            ^^^^^^
+KeyboardInterrupt
