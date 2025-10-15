@@ -28,9 +28,9 @@ class RNAFoldingEA:
             population_size (int): Number of individuals in population
             generations (int): Number of generations to evolve
             sequence_constraint (str): IUPAC notation string
-            structure_constraint (str): Dot-bracket notation string
+            structuyre_constraint (str): Dot-bracket notation string
             max_workers (int): Number of parallel workers for fitness evaluation
-            elite_percentage (float): Percentage of population to keep as elites (default: 0.01 = 1%)
+            elite_percentage (float): Percentage of pipulation to keep as elites (default: 0.01 = 1%)
             enable_cache_preloading (bool): Whether to load fitness cache from previous runs (default: False)
         """
         self.population_size = population_size
@@ -72,7 +72,7 @@ class RNAFoldingEA:
         # Stagnation settings - separated fitness and diversity
         self.fitness_stagnation_threshold = 10
         self.diversity_stagnation_threshold = 15
-        self.fitness_stagnation_counter = 0
+        self.fitness_stagnation_couter = 0
         self.diversity_stagnation_counter = 0
         self.last_best_fitness = 0.0
         self.last_real_fitness = 0.0  # Track real fitness separately from boosted
@@ -857,7 +857,7 @@ class RNAFoldingEA:
                     print(f"Warning: Population restart failed: {e}, continuing with current population")
                     self.diversity_stagnation_counter = 0
             
-            # Adaptive mutation
+            # Adaptive mutation rate adjustment
             self.mutation_rate = self.adaptive_mutation_rate(diversity)
             
             # Call external callbacks
@@ -887,8 +887,8 @@ class RNAFoldingEA:
             for idx in elite_indices[1:]:
                 mutated_elite = self.mutate(self.population[idx])
                 new_population.append(mutated_elite)
-            
-            # Generate offspring
+
+            # Generating offspring
             offspring = []
             offspring_fitness = []
             
@@ -917,7 +917,7 @@ class RNAFoldingEA:
                     print(f"Warning: Error during offspring generation: {e}, using fallback")
                     offspring.append(self.generate_random_sequence())
             
-            # Trim offspring to exact size needed
+            # Triming offspring to exact size needed
             offspring = offspring[:self.population_size - elite_count]
             
             # Evaluate offspring fitness
@@ -944,7 +944,7 @@ class RNAFoldingEA:
                 if fitness > 0.6:  # Lower threshold for final collection to ensure output
                     self.best_individuals.append((seq, fitness))
             
-        # Save cache for future runs
+        # Saving cache for future runs
         self.save_cache()
         
         self.analyze_results()
@@ -985,7 +985,7 @@ class RNAFoldingEA:
                 population_with_fitness = list(zip(self.population, current_fitness))
                 population_with_fitness.sort(key=lambda x: x[1], reverse=True)
                 
-                # Take top 5 from current population
+                # Taking top 5 from current population
                 diverse_results = population_with_fitness[:5]
                 
                 if not self.early_terminated:
@@ -1035,7 +1035,7 @@ class RNAFoldingEA:
         elif filename:
             # Use provided filename
             txt_file = filename
-            csv_file = filename.replace('.txt', '.csv')
+            csv_file = filename.replace('.txt', '.csv') ## better to have both
         else:
             # Default to current directory
             txt_file = "assignment1_results.txt"
@@ -1089,12 +1089,12 @@ class RNAFoldingEA:
                 
                 # Check if diversity meets grading standards
                 if diversity < 0.2:
-                    print(f"⚠️  WARNING: Low diversity ({diversity:.4f}) may impact grading!")
+                    print(f"WARNING: Low diversity ({diversity:.4f}) may impact grading!")
                     print(f"   Consider adjusting diversity parameters or running longer")
                 elif diversity >= 0.3:
-                    print(f"✅ Excellent diversity ({diversity:.4f}) for grading!")
+                    print(f"Excellent diversity ({diversity:.4f}) for grading!")
                 else:
-                    print(f"✅ Good diversity ({diversity:.4f}) for grading")
+                    print(f"Goood diversity ({diversity:.4f}) for grading")
         
         return txt_file, csv_file
         with open(output_file, 'w') as f:

@@ -3,7 +3,7 @@
 import time
 
 class SimpleProgressMonitor:
-    """Lightweight progress monitoring for EA"""
+    """Progress monitoring for EA"""
     
     def __init__(self):
         self.start_time = None
@@ -71,7 +71,7 @@ class SimpleProgressMonitor:
         
         print("\n" + "=" * 50)
         print("EA Execution Completed!")
-        print(f"Total Runtime: {total_time/60:.2f} minutes")
+        print(f"Total runtime: {total_time/60:.2f} minutes")
         
         if self.best_fitness_progress:
             final_fitness = self.best_fitness_progress[-1]
