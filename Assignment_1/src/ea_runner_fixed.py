@@ -90,53 +90,6 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
                          problem_instance['iupac'], problem_instance['structure'], 
                          max_workers=device_config['max_workers'], elite_percentage=0.01)
         
-        # Add progress monitoring callback for proper time tracking
-        start_time = time.time()
-        generation_times = []
-        
-        def progress_callback(generation, best_fitness, avg_fitness, diversity):
-            """Enhanced progress callback with proper time calculation"""
-            current_time = time.time()
-            elapsed = current_time - start_time
-            generation_times.append(elapsed)
-            
-            progress = (generation + 1) / device_config['generations'] * 100
-            
-            # Calculate ETA properly
-            if generation > 0 and elapsed > 0:
-                avg_gen_time = elapsed / (generation + 1)
-                remaining_gens = device_config['generations'] - (generation + 1)
-                eta_seconds = avg_gen_time * remaining_gens
-                
-                if eta_seconds > 60:
-                    eta_str = f"{eta_seconds/60:.1f}min"
-                elif eta_seconds > 0:
-                    eta_str = f"{eta_seconds:.0f}s"
-                else:
-                    eta_str = "0s"
-            else:
-                eta_str = "0s"
-            
-            # Get stagnation info
-            fitness_stag = getattr(ea, 'fitness_stagnation_counter', 0)
-            diversity_stag = getattr(ea, 'diversity_stagnation_counter', 0)
-            
-            stagnation_info = []
-            if fitness_stag > 5:
-                stagnation_info.append(f"f_stag: {fitness_stag}")
-            if diversity_stag > 5:
-                stagnation_info.append(f"d_stag: {diversity_stag}")
-            
-            stag_str = f" ({', '.join(stagnation_info)})" if stagnation_info else ""
-            
-            # Print progress with proper formatting
-            print(f"Gen {generation+1:3d}/{device_config['generations']} ({progress:5.1f}%) | "
-                  f"Best: {best_fitness:.4f}, Avg: {avg_fitness:.4f}, Diversity: {diversity:.4f}{stag_str} | "
-                  f"Time: {elapsed/60:.1f}min, ETA: {eta_str}", flush=True)
-        
-        # Add the progress callback
-        ea.add_callback(progress_callback)
-        
         # Add wandb callback for real-time logging if enabled
         if wandb_run:
             def wandb_callback(generation, best_fitness, avg_fitness, diversity):
@@ -152,7 +105,7 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
             print(f"Added wandb real-time logging for problem {problem_id}")
         
         # Run evolution
-        print(f"Starting evolution for problem {problem_id}...")
+        start_time = time.time()
         ea.run_evolution()
         runtime = time.time() - start_time
         

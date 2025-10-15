@@ -93,6 +93,5 @@ CSV_IUPAC_COLUMN = "IUPAC"
 # LOGGING AND DEBUG
 
 # Debug and logging settings
-VERBOSE_OUTPUT = True  # Print detailed progress information
 LOG_LEVEL = "INFO"  # Logging level
 SAVE_INTERMEDIATE_RESULTS = False  # Save results after each generation

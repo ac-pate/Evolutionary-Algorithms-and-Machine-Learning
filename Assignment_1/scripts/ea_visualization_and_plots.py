@@ -14,13 +14,15 @@ class EAVisualizer:
     
     def __init__(self, stats_files=None, output_dir="plots"):
         self.stats_files = stats_files or []
-        self.output_dir = Path(output_dir)
-        self.output_dir.mkdir(exist_ok=True)
+        self.base_output_dir = Path(output_dir)
+        self.base_output_dir.mkdir(exist_ok=True)
+        self.output_dir = self.base_output_dir  # Default to base, will update per experiment
         
         plt.style.use('seaborn-v0_8')
         sns.set_palette("husl")
         
         self.data = {}
+        self.experiment_names = set()
         if self.stats_files:
             self.load_data()
     
@@ -32,11 +34,107 @@ class EAVisualizer:
             try:
                 with open(stats_file, 'r') as f:
                     data = json.load(f)
-                    experiment_name = data.get('name', Path(stats_file).stem)
-                    self.data[experiment_name] = data
-                    print(f"✓ Loaded {experiment_name}")
+                    
+                    # Extract experiment name from file path
+                    # e.g., results/2025-10-12_23-38-43_odin_odin_powerhouse/problem_1.1_stats.json
+                    # -> experiment name: odin_powerhouse
+                    path_parts = Path(stats_file).parts
+                    if 'results' in path_parts:
+                        results_idx = path_parts.index('results')
+                        if results_idx + 1 < len(path_parts):
+                            experiment_folder = path_parts[results_idx + 1]
+                            # Extract meaningful part from timestamp_device_config format
+                            parts = experiment_folder.split('_')
+                            if len(parts) >= 4:
+                                # Take device and config parts (skip timestamp)
+                                experiment_name = '_'.join(parts[3:])
+                            else:
+                                experiment_name = experiment_folder
+                        else:
+                            experiment_name = "default"
+                    else:
+                        experiment_name = "default"
+                    
+                    self.experiment_names.add(experiment_name)
+                    
+                    # Use file stem as key for individual stats
+                    key = Path(stats_file).stem
+                    data['experiment_name'] = experiment_name
+                    data['stats_file'] = stats_file
+                    
+                    self.data[key] = data
+                    print(f"✓ Loaded {key}")
             except Exception as e:
                 print(f"✗ Failed to load {stats_file}: {e}")
+    
+    def generate_all_plots_by_experiment(self):
+        """Generate all plots organized by experiment name"""
+        if not self.experiment_names:
+            print("No experiments found, using default directory")
+            self.plot_fitness_evolution()
+            self.plot_parameter_comparison()
+            self.plot_convergence_analysis()
+            self.plot_sequence_diversity_analysis()
+            self.plot_performance_summary()
+            self.plot_six_constraint_grid()
+            return
+        
+        # Generate plots for each experiment
+        for exp_name in sorted(self.experiment_names):
+            print(f"\n{'='*60}")
+            print(f"Generating plots for experiment: {exp_name}")
+            print(f"{'='*60}")
+            
+            # Set experiment-specific output directory
+            exp_output_dir = self.set_experiment_output_dir(exp_name)
+            
+            # Filter data for this experiment
+            exp_data = {k: v for k, v in self.data.items() 
+                       if v.get('experiment_name') == exp_name}
+            
+            if not exp_data:
+                print(f"No data found for experiment: {exp_name}")
+                continue
+            
+            # Temporarily store original data and use experiment-specific data
+            original_data = self.data
+            self.data = exp_data
+            
+            try:
+                # Generate all plots for this experiment
+                self.plot_fitness_evolution()
+                self.plot_parameter_comparison()
+                self.plot_convergence_analysis()
+                self.plot_sequence_diversity_analysis()
+                self.plot_performance_summary()
+                self.plot_six_constraint_grid()
+                
+                print(f"✓ All plots saved to: {exp_output_dir}")
+                
+            except Exception as e:
+                print(f"✗ Error generating plots for {exp_name}: {e}")
+            finally:
+                # Restore original data
+                self.data = original_data
+        
+        # Generate combined plots in main directory
+        print(f"\n{'='*60}")
+        print("Generating combined plots for all experiments")
+        print(f"{'='*60}")
+        self.output_dir = self.base_output_dir
+        self.plot_fitness_evolution()
+        self.plot_parameter_comparison()
+        self.plot_convergence_analysis()
+        self.plot_sequence_diversity_analysis()
+        self.plot_performance_summary()
+        self.plot_six_constraint_grid()
+        print(f"✓ Combined plots saved to: {self.base_output_dir}")
+
+    def set_experiment_output_dir(self, experiment_name):
+        """Set output directory for specific experiment"""
+        self.output_dir = self.base_output_dir / experiment_name
+        self.output_dir.mkdir(exist_ok=True)
+        return self.output_dir
     
     def plot_fitness_evolution(self, save=True, show=True):
         """Plot fitness evolution over generations for all experiments"""
@@ -110,11 +208,11 @@ class EAVisualizer:
                 avg_fitness_values.append(0)
                 final_generations.append(0)
             
-            # Get parameters
+            # Get parameters with defaults
             params = data.get('parameters', {})
-            population_sizes.append(params.get('population_size', 0))
-            mutation_rates.append(params.get('mutation_rate', 0))
-            crossover_rates.append(params.get('crossover_rate', 0))
+            population_sizes.append(params.get('population_size', 300))  # default values
+            mutation_rates.append(params.get('mutation_rate', 0.02))
+            crossover_rates.append(params.get('crossover_rate', 0.8))
         
         # Plot 1: Final Fitness Comparison
         x_pos = np.arange(len(experiments))
@@ -292,108 +390,157 @@ class EAVisualizer:
         
         all_sequences = {}
         
-        # Load sequences from results files
+        # Load sequences from results files and group by problem
+        all_sequences = {}
+        problem_sequences = {'1.1': [], '1.2': [], '2.1': [], '2.2': [], '3.1': [], '3.2': []}
+        
         for results_file in results_files:
             try:
                 exp_name = Path(results_file).stem.replace('results_', '')
+                
+                # Extract problem ID from file path
+                problem_id = None
+                for pid in ['1.1', '1.2', '2.1', '2.2', '3.1', '3.2']:
+                    if f"problem_{pid}" in results_file:
+                        problem_id = pid
+                        break
+                
                 with open(results_file, 'r') as f:
                     sequences = [line.strip() for line in f if line.strip()]
-                all_sequences[exp_name] = sequences
-                print(f"✓ Loaded {len(sequences)} sequences from {exp_name}")
+                
+                if sequences:
+                    all_sequences[exp_name] = sequences
+                    if problem_id:
+                        problem_sequences[problem_id].extend(sequences)
+                        print(f"✓ Loaded {len(sequences)} sequences from {exp_name} (Problem {problem_id})")
+                    else:
+                        print(f"✓ Loaded {len(sequences)} sequences from {exp_name} (Unknown problem)")
+                
             except Exception as e:
                 print(f"✗ Failed to load {results_file}: {e}")
         
-        if not all_sequences:
+        if not any(problem_sequences.values()):
             print("No sequences loaded for diversity analysis")
             return
         
-        # Calculate diversity metrics
+        # Calculate diversity metrics for each problem
         diversity_scores = {}
         sequence_lengths = {}
         gc_content = {}
         unique_counts = {}
         
-        for exp_name, sequences in all_sequences.items():
+        # Calculate for each problem separately
+        for problem_id, sequences in problem_sequences.items():
             if not sequences:
+                diversity_scores[f"Problem {problem_id}"] = 0
+                sequence_lengths[f"Problem {problem_id}"] = []
+                gc_content[f"Problem {problem_id}"] = []
+                unique_counts[f"Problem {problem_id}"] = 0
                 continue
+            
+            # Remove duplicates for diversity calculation
+            unique_sequences = list(set(sequences))
+            
+            # Sample sequences if too many (for performance)
+            if len(unique_sequences) > 100:
+                unique_sequences = np.random.choice(unique_sequences, 100, replace=False).tolist()
             
             # Calculate pairwise Hamming distances
             distances = []
-            for i in range(len(sequences)):
-                for j in range(i + 1, len(sequences)):
-                    if len(sequences[i]) == len(sequences[j]):
-                        hamming_dist = sum(1 for a, b in zip(sequences[i], sequences[j]) if a != b)
-                        normalized_dist = hamming_dist / len(sequences[i])
+            for i in range(len(unique_sequences)):
+                for j in range(i + 1, min(len(unique_sequences), i + 50)):  # Limit comparisons
+                    if len(unique_sequences[i]) == len(unique_sequences[j]):
+                        hamming_dist = sum(1 for a, b in zip(unique_sequences[i], unique_sequences[j]) if a != b)
+                        normalized_dist = hamming_dist / len(unique_sequences[i])
                         distances.append(normalized_dist)
             
-            diversity_scores[exp_name] = np.mean(distances) if distances else 0
+            diversity_scores[f"Problem {problem_id}"] = np.mean(distances) if distances else 0
             
             # Sequence length distribution
             lengths = [len(seq) for seq in sequences]
-            sequence_lengths[exp_name] = lengths
+            sequence_lengths[f"Problem {problem_id}"] = lengths
             
             # GC content analysis
             gc_contents = []
             for seq in sequences:
                 gc_count = seq.count('G') + seq.count('C')
                 gc_contents.append(gc_count / len(seq) if len(seq) > 0 else 0)
-            gc_content[exp_name] = gc_contents
+            gc_content[f"Problem {problem_id}"] = gc_contents
             
             # Unique sequence count
-            unique_counts[exp_name] = len(set(sequences))
+            unique_counts[f"Problem {problem_id}"] = len(unique_sequences)
         
-        # Plot 1: Diversity Scores Comparison
-        exp_names = list(diversity_scores.keys())
-        diversity_values = list(diversity_scores.values())
+        # Plot 1: Diversity Scores Comparison for All 6 Problems
+        problem_ids = ['1.1', '1.2', '2.1', '2.2', '3.1', '3.2']
+        exp_names = [f"Problem {pid}" for pid in problem_ids]
+        diversity_values = [diversity_scores.get(name, 0) for name in exp_names]
         
-        bars = ax1.bar(exp_names, diversity_values, alpha=0.8, color=plt.cm.viridis(np.linspace(0, 1, len(exp_names))))
-        ax1.set_xlabel('Experiment')
+        # Create colors for each problem
+        colors = plt.cm.Set3(np.linspace(0, 1, 6))
+        bars = ax1.bar(exp_names, diversity_values, alpha=0.8, color=colors)
+        ax1.set_xlabel('Problem')
         ax1.set_ylabel('Average Normalized Hamming Distance')
-        ax1.set_title('Sequence Diversity Comparison', fontweight='bold')
+        ax1.set_title('Sequence Diversity Comparison Across All 6 Problems', fontweight='bold')
         ax1.tick_params(axis='x', rotation=45)
         ax1.grid(True, alpha=0.3)
         
         # Add value labels on bars
         for bar, value in zip(bars, diversity_values):
-            ax1.annotate(f'{value:.3f}', xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
-                        xytext=(0, 3), textcoords="offset points", ha='center', va='bottom')
+            if value > 0:
+                ax1.annotate(f'{value:.3f}', xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
+                            xytext=(0, 3), textcoords="offset points", ha='center', va='bottom')
         
-        # Plot 2: Sequence Length Distribution
-        for exp_name, lengths in sequence_lengths.items():
-            ax2.hist(lengths, alpha=0.7, label=exp_name, bins=20)
+        # Plot 2: Sequence Length Distribution for All Problems
+        for problem_id in problem_ids:
+            problem_name = f"Problem {problem_id}"
+            lengths = sequence_lengths.get(problem_name, [])
+            if lengths:
+                ax2.hist(lengths, alpha=0.7, label=problem_id, bins=20)
         ax2.set_xlabel('Sequence Length')
         ax2.set_ylabel('Frequency')
-        ax2.set_title('Sequence Length Distribution', fontweight='bold')
+        ax2.set_title('Sequence Length Distribution Across All Problems', fontweight='bold')
         ax2.legend()
         ax2.grid(True, alpha=0.3)
         
-        # Plot 3: GC Content Distribution
-        for exp_name, gc_values in gc_content.items():
-            ax3.hist(gc_values, alpha=0.7, label=exp_name, bins=20)
+        # Plot 3: GC Content Distribution for All Problems
+        for problem_id in problem_ids:
+            problem_name = f"Problem {problem_id}"
+            gc_values = gc_content.get(problem_name, [])
+            if gc_values:
+                ax3.hist(gc_values, alpha=0.7, label=problem_id, bins=20)
         ax3.set_xlabel('GC Content')
         ax3.set_ylabel('Frequency')
-        ax3.set_title('GC Content Distribution', fontweight='bold')
+        ax3.set_title('GC Content Distribution Across All Problems', fontweight='bold')
         ax3.legend()
         ax3.grid(True, alpha=0.3)
         
-        # Plot 4: Unique Sequences Count
-        unique_names = list(unique_counts.keys())
-        unique_values = list(unique_counts.values())
-        total_values = [len(all_sequences[name]) for name in unique_names]
+        # Plot 4: Sequence Count and Uniqueness for All Problems
+        unique_names = [f"Problem {pid}" for pid in problem_ids]
+        unique_values = [unique_counts.get(name, 0) for name in unique_names]
+        total_values = [len(problem_sequences.get(pid, [])) for pid in problem_ids]
         
         x_pos = np.arange(len(unique_names))
         width = 0.35
         
-        ax4.bar(x_pos - width/2, total_values, width, label='Total Sequences', alpha=0.8)
-        ax4.bar(x_pos + width/2, unique_values, width, label='Unique Sequences', alpha=0.8)
+        ax4.bar(x_pos - width/2, total_values, width, label='Total Sequences', alpha=0.8, color='lightblue')
+        ax4.bar(x_pos + width/2, unique_values, width, label='Unique Sequences', alpha=0.8, color='orange')
         
-        ax4.set_xlabel('Experiment')
+        ax4.set_xlabel('Problem')
         ax4.set_ylabel('Number of Sequences')
-        ax4.set_title('Sequence Uniqueness', fontweight='bold')
+        ax4.set_title('Sequence Count and Uniqueness Across All Problems', fontweight='bold')
         ax4.set_xticks(x_pos)
-        ax4.set_xticklabels(unique_names, rotation=45)
+        ax4.set_xticklabels([f"Problem {pid}" for pid in problem_ids], rotation=45)
         ax4.legend()
         ax4.grid(True, alpha=0.3)
+        
+        # Add count labels on bars
+        for i, (total, unique) in enumerate(zip(total_values, unique_values)):
+            if total > 0:
+                ax4.annotate(f'{total}', xy=(i - width/2, total),
+                            xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
+            if unique > 0:
+                ax4.annotate(f'{unique}', xy=(i + width/2, unique),
+                            xytext=(0, 3), textcoords="offset points", ha='center', va='bottom', fontsize=8)
         
         plt.tight_layout()
         
@@ -551,6 +698,7 @@ class EAVisualizer:
         self.plot_parameter_comparison(show=False)
         self.plot_convergence_analysis(show=False)
         self.plot_performance_summary(show=False)
+        self.plot_six_constraint_grid(show=False)  # Add the new 6-constraint grid
         
         if results_files:
             self.plot_sequence_diversity_analysis(results_files, show=False)
@@ -559,49 +707,143 @@ class EAVisualizer:
         print("Ready for report integration!")
 
 
-    def plot_six_constraint_grid(self, problem_results, save=True, show=True):
-        """Create 2x3 grid showing results for all 6 constraint problems"""
-        fig, axes = plt.subplots(2, 3, figsize=(18, 12))
+    def plot_six_constraint_grid(self, save=True, show=True):
+        """Create 2x3 grid showing fitness and diversity evolution for all 6 constraint problems"""
+        fig, axes = plt.subplots(2, 3, figsize=(20, 12))
         axes = axes.flatten()
         
         problem_ids = ['1.1', '1.2', '2.1', '2.2', '3.1', '3.2']
         
+        # Group data by problem ID
+        problem_data = {}
+        for exp_name, data in self.data.items():
+            # Extract problem ID from experiment name
+            for pid in problem_ids:
+                if f"problem_{pid}" in exp_name:
+                    if pid not in problem_data:
+                        problem_data[pid] = []
+                    problem_data[pid].append(data)
+                    break
+        
         for i, problem_id in enumerate(problem_ids):
             ax = axes[i]
+            ax2 = ax.twinx()  # Create secondary y-axis for diversity
             
-            if problem_id in problem_results:
-                data = problem_results[problem_id]
-                fitness_history = data.get('fitness_history', [])
+            if problem_id in problem_data and problem_data[problem_id]:
+                # Plot data for this problem
+                all_experiments = problem_data[problem_id]
+                colors = plt.cm.viridis(np.linspace(0, 1, len(all_experiments)))
                 
-                if fitness_history:
-                    generations = [entry[0] for entry in fitness_history]
-                    max_fitness = [entry[1] for entry in fitness_history]
-                    avg_fitness = [entry[2] for entry in fitness_history]
+                best_fitness = 0
+                best_experiment = None
+                
+                for j, data in enumerate(all_experiments):
+                    fitness_history = data.get('fitness_history', [])
+                    diversity_history = data.get('diversity_history', [])
                     
-                    ax.plot(generations, max_fitness, 'b-', linewidth=2, label='Max Fitness')
-                    ax.plot(generations, avg_fitness, 'r--', linewidth=1.5, label='Avg Fitness')
+                    if fitness_history:
+                        generations = [entry[0] for entry in fitness_history]
+                        max_fitness = [entry[1] for entry in fitness_history]
+                        
+                        # Track best experiment
+                        final_fitness = max_fitness[-1] if max_fitness else 0
+                        if final_fitness > best_fitness:
+                            best_fitness = final_fitness
+                            best_experiment = j
+                        
+                        # Plot fitness line with transparency if multiple experiments
+                        alpha = 0.7 if len(all_experiments) > 1 else 1.0
+                        linewidth = 2 if j == best_experiment else 1
+                        
+                        ax.plot(generations, max_fitness, 
+                               color=colors[j], alpha=alpha, linewidth=linewidth,
+                               linestyle='-', label=f'Fitness' if j == 0 else '')
                     
-                    ax.set_title(f'Problem {problem_id}', fontsize=12, fontweight='bold')
-                    ax.set_xlabel('Generation')
-                    ax.set_ylabel('Fitness')
-                    ax.grid(True, alpha=0.3)
-                    ax.set_ylim(0, 1.05)
-                    ax.legend()
+                    # Plot diversity history if available
+                    if diversity_history:
+                        div_generations = list(range(len(diversity_history)))
+                        alpha = 0.5 if len(all_experiments) > 1 else 0.8
+                        linewidth = 2 if j == best_experiment else 1
+                        
+                        ax2.plot(div_generations, diversity_history,
+                                color=colors[j], alpha=alpha, linewidth=linewidth,
+                                linestyle='--', label=f'Diversity' if j == 0 else '')
+                
+                # Highlight best experiment if multiple
+                if best_experiment is not None and len(all_experiments) > 1:
+                    best_data = all_experiments[best_experiment]
+                    best_fitness_history = best_data.get('fitness_history', [])
+                    best_diversity_history = best_data.get('diversity_history', [])
                     
-                    # Add final fitness annotation
-                    final_fitness = max_fitness[-1] if max_fitness else 0
-                    ax.text(0.02, 0.95, f'Final: {final_fitness:.3f}', 
-                           transform=ax.transAxes, fontsize=10, 
-                           bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-                else:
-                    ax.text(0.5, 0.5, 'No Data', ha='center', va='center', 
-                           transform=ax.transAxes, fontsize=14)
-                    ax.set_title(f'Problem {problem_id}', fontsize=12, fontweight='bold')
+                    if best_fitness_history:
+                        best_generations = [entry[0] for entry in best_fitness_history]
+                        best_max_fitness = [entry[1] for entry in best_fitness_history]
+                        ax.plot(best_generations, best_max_fitness, 
+                               'red', linewidth=3, alpha=0.9, linestyle='-', label='Best Fitness')
+                    
+                    if best_diversity_history:
+                        best_div_generations = list(range(len(best_diversity_history)))
+                        ax2.plot(best_div_generations, best_diversity_history,
+                                'orange', linewidth=3, alpha=0.9, linestyle='--', label='Best Diversity')
+                
+                ax.set_title(f'Problem {problem_id} ({len(all_experiments)} runs)', 
+                           fontsize=12, fontweight='bold')
+                ax.set_xlabel('Generation')
+                ax.set_ylabel('Fitness', color='blue')
+                ax2.set_ylabel('Diversity', color='orange')
+                ax.grid(True, alpha=0.3)
+                ax.set_ylim(0, 1.05)
+                ax2.set_ylim(0, 1.05)
+                
+                # Color the y-axis labels
+                ax.tick_params(axis='y', labelcolor='blue')
+                ax2.tick_params(axis='y', labelcolor='orange')
+                
+                # Add statistics annotation
+                if problem_data[problem_id]:
+                    final_fitnesses = []
+                    final_diversities = []
+                    for data in problem_data[problem_id]:
+                        fitness_history = data.get('fitness_history', [])
+                        diversity_history = data.get('diversity_history', [])
+                        if fitness_history:
+                            final_fitnesses.append(fitness_history[-1][1])
+                        if diversity_history:
+                            final_diversities.append(diversity_history[-1])
+                    
+                    if final_fitnesses:
+                        avg_final_fitness = np.mean(final_fitnesses)
+                        max_final_fitness = max(final_fitnesses)
+                        
+                        ax.text(0.02, 0.95, f'Best: {max_final_fitness:.3f}', 
+                               transform=ax.transAxes, fontsize=10, fontweight='bold',
+                               bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.8))
+                        ax.text(0.02, 0.85, f'Avg: {avg_final_fitness:.3f}', 
+                               transform=ax.transAxes, fontsize=10,
+                               bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.8))
+                    
+                    if final_diversities:
+                        avg_final_diversity = np.mean(final_diversities)
+                        ax.text(0.02, 0.75, f'Div: {avg_final_diversity:.3f}', 
+                               transform=ax.transAxes, fontsize=10,
+                               bbox=dict(boxstyle='round', facecolor='lightyellow', alpha=0.8))
+                
+                if i == 0:  # Add legend to first subplot
+                    lines1, labels1 = ax.get_legend_handles_labels()
+                    lines2, labels2 = ax2.get_legend_handles_labels()
+                    ax.legend(lines1 + lines2, labels1 + labels2, loc='lower right')
+                    
             else:
-                ax.text(0.5, 0.5, 'No Data', ha='center', va='center', 
-                       transform=ax.transAxes, fontsize=14)
+                ax.text(0.5, 0.5, 'No Data Available', ha='center', va='center', 
+                       transform=ax.transAxes, fontsize=14, color='red')
                 ax.set_title(f'Problem {problem_id}', fontsize=12, fontweight='bold')
+                ax.set_xlabel('Generation')
+                ax.set_ylabel('Fitness', color='blue')
+                ax2.set_ylabel('Diversity', color='orange')
+                ax.grid(True, alpha=0.3)
         
+        plt.suptitle('Evolutionary Algorithm Performance: Fitness (solid) & Diversity (dashed) vs Generation', 
+                    fontsize=16, fontweight='bold', y=0.98)
         plt.tight_layout()
         
         if save:
@@ -631,13 +873,9 @@ def load_and_visualize(results_dir="results", stats_pattern="**/*stats.json"):
         print("No stats files found! Make sure to run experiments first.")
         return None
     
-    # Create visualizer and generate plots
+    # Create visualizer and generate plots organized by experiment
     visualizer = EAVisualizer(stats_files)
-    visualizer.plot_fitness_evolution()
-    visualizer.plot_parameter_comparison()
-    visualizer.plot_convergence_analysis()
-    visualizer.plot_sequence_diversity()
-    visualizer.plot_performance_summary()
+    visualizer.generate_all_plots_by_experiment()
     
     return visualizer
 
