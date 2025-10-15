@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-RNA Folding EA - Assignment Runner (Fixed Version)
+RNA Folding EA - Assignment Runner
 Processes CSV input file and produces CSV output file as required
 Achal Patel - 40227663
 """
@@ -37,7 +37,7 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
         problem_instance: Dict with 'id', 'structure', 'iupac'
         run_id: Optional run identifier
         device_config: Optional device configuration override
-        enable_wandb: Enable wandb tracking
+         enable_wandb: Enable wandb tracking
         
     Returns:
         Dict with results: {'id': str, 'sequences': List[str], 'fitness_scores': List[float]}
@@ -50,17 +50,34 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
             'max_workers': config.MAX_WORKERS
         }
     problem_id = problem_instance['id']
+    structure_constraint = problem_instance['structure']
+    sequence_constraint = problem_instance['iupac']
     
-    print(f"{'='*60}")
-    print(f"SOLVING PROBLEM {problem_id}")
-    print(f"Sequence length: {len(problem_instance['iupac'])}")
-    print(f"Structure length: {len(problem_instance['structure'])}")
-    print(f"Population: {device_config['population_size']}")
-    print(f"Generations: {device_config['generations']}")
-    print(f"Workers: {device_config['max_workers']}")
+    print(f"\n{'='*60}")
+    print(f"SOLVING PROBLEM: {problem_id}")
+    print(f"Structure: {structure_constraint}")
+    print(f"IUPAC:     {sequence_constraint}")
+    print(f"Length:    {len(structure_constraint)}")
     print(f"{'='*60}")
     
-    # Initialize wandb if available and requested
+    # Create and run EA
+    ea = RNAFoldingEA(device_config['population_size'], device_config['generations'], 
+                     problem_instance['iupac'], problem_instance['structure'], 
+                     max_workers=device_config['max_workers'], elite_percentage=0.01)
+    
+    
+    # Run evolution
+    start_time = time.time()
+    ea.run_evolution()
+    runtime = time.time() - start_time    # Set additional parameters from config
+    ea.mutation_rate = config.MUTATION_RATE
+    ea.early_termination_fitness = config.EARLY_TERMINATION_FITNESS
+    ea.high_fitness_streak_threshold = config.HIGH_FITNESS_STREAK_THRESHOLD
+    ea.mutation_rate_boost_factor = config.MUTATION_RATE_BOOST_FACTOR
+    ea.mutation_boost_generations = config.MUTATION_BOOST_GENERATIONS
+    ea.fitness_threshold_for_boost = config.FITNESS_THRESHOLD_FOR_BOOST
+    
+        # Initialize wandb if available and requested
     wandb_run = None
     if WANDB_AVAILABLE and enable_wandb:
         try:
@@ -83,79 +100,50 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
             wandb_run = None
     elif enable_wandb and not WANDB_AVAILABLE:
         print("Warning: Wandb requested but not available. Install with: pip install wandb")
+    elif enable_wandb:
+        print("Debug: Wandb flag enabled but WANDB_AVAILABLE is False")
     
+    # Add wandb callback for real-time logging if enabled
+    if wandb_run:
+        def wandb_callback(generation, best_fitness, avg_fitness, diversity):
+            wandb.log({
+                "generation": generation,
+                "best_fitness": best_fitness,
+                "avg_fitness": avg_fitness,
+                "diversity": diversity,
+                "problem_id": problem_id
+            })
+        
+        ea.add_callback(wandb_callback)
+        print(f"Added wandb real-time logging for problem {problem_id}")
     try:
-        # Create and run EA
-        ea = RNAFoldingEA(device_config['population_size'], device_config['generations'], 
-                         problem_instance['iupac'], problem_instance['structure'], 
-                         max_workers=device_config['max_workers'], elite_percentage=0.01)
-        
-        # Add progress monitoring callback for proper time tracking
+        # Run the evolutionary algorithm
         start_time = time.time()
-        generation_times = []
-        
-        def progress_callback(generation, best_fitness, avg_fitness, diversity):
-            """Enhanced progress callback with proper time calculation"""
-            current_time = time.time()
-            elapsed = current_time - start_time
-            generation_times.append(elapsed)
-            
-            progress = (generation + 1) / device_config['generations'] * 100
-            
-            # Calculate ETA properly
-            if generation > 0 and elapsed > 0:
-                avg_gen_time = elapsed / (generation + 1)
-                remaining_gens = device_config['generations'] - (generation + 1)
-                eta_seconds = avg_gen_time * remaining_gens
-                
-                if eta_seconds > 60:
-                    eta_str = f"{eta_seconds/60:.1f}min"
-                elif eta_seconds > 0:
-                    eta_str = f"{eta_seconds:.0f}s"
-                else:
-                    eta_str = "0s"
-            else:
-                eta_str = "0s"
-            
-            # Get stagnation info
-            fitness_stag = getattr(ea, 'fitness_stagnation_counter', 0)
-            diversity_stag = getattr(ea, 'diversity_stagnation_counter', 0)
-            
-            stagnation_info = []
-            if fitness_stag > 5:
-                stagnation_info.append(f"f_stag: {fitness_stag}")
-            if diversity_stag > 5:
-                stagnation_info.append(f"d_stag: {diversity_stag}")
-            
-            stag_str = f" ({', '.join(stagnation_info)})" if stagnation_info else ""
-            
-            # Print progress with proper formatting
-            print(f"Gen {generation+1:3d}/{device_config['generations']} ({progress:5.1f}%) | "
-                  f"Best: {best_fitness:.4f}, Avg: {avg_fitness:.4f}, Diversity: {diversity:.4f}{stag_str} | "
-                  f"Time: {elapsed/60:.1f}min, ETA: {eta_str}", flush=True)
-        
-        # Add the progress callback
-        ea.add_callback(progress_callback)
-        
-        # Add wandb callback for real-time logging if enabled
-        if wandb_run:
-            def wandb_callback(generation, best_fitness, avg_fitness, diversity):
-                wandb.log({
-                    "generation": generation,
-                    "best_fitness": best_fitness,
-                    "avg_fitness": avg_fitness,
-                    "diversity": diversity,
-                    "problem_id": problem_id
-                })
-            
-            ea.add_callback(wandb_callback)
-            print(f"Added wandb real-time logging for problem {problem_id}")
-        
-        # Run evolution
-        print(f"Starting evolution for problem {problem_id}...")
         ea.run_evolution()
-        runtime = time.time() - start_time
+        end_time = time.time()
         
+        # Get diverse results
+        diverse_results = ea.get_diverse_top_sequences(
+            num_sequences=config.NUM_DIVERSE_SEQUENCES,
+            min_diversity_threshold=config.MIN_DIVERSITY_THRESHOLD,
+            verbose=False
+        )
+        
+        if not diverse_results:
+            print(f"Warning: No valid results found for problem {problem_id}")
+            return {
+                'id': problem_id,
+                'sequences': [],
+                'fitness_scores': []
+            }
+        
+        # Extract sequences and fitness scores
+        sequences = [seq for seq, _ in diverse_results]
+        fitness_scores = [fitness for _, fitness in diverse_results]
+        
+        # Log results
+        runtime = end_time - start_time
+        print(f"\nPROBLEM {problem_id} COMPLETED:")
         # Get final results
         diverse_results = ea.get_diverse_top_sequences(num_sequences=5, verbose=False)
         sequences = [seq for seq, _ in diverse_results]
@@ -198,32 +186,30 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
         with open(stats_file, 'w') as f:
             json.dump(stats, f, indent=2)
         
-        print(f"✓ Stats saved to: {stats_file}")
+        print(f"Stats saved to: {stats_file}")
         
         print(f"Runtime: {runtime:.2f} seconds")
         print(f"Found {len(sequences)} diverse sequences")
         if fitness_scores:
             print(f"Best fitness: {max(fitness_scores):.4f}")
-            print(f"Diversity: {ea.calculate_diversity(sequences):.4f}")
-        
-        # Log to wandb if available
-        if wandb_run:
-            wandb.log({
-                "runtime": runtime,
-                "best_fitness": max(fitness_scores) if fitness_scores else 0,
-                "num_sequences": len(sequences),
-                "diversity": ea.calculate_diversity(sequences) if len(sequences) > 1 else 0,
-                "termination_reason": getattr(ea, 'termination_reason', 'Normal completion')
-            })
-            wandb.finish()
-        
-        return {
-            'id': problem_id,
-            'sequences': sequences,
-            'fitness_scores': fitness_scores,
-            'runtime': runtime,
-            'termination_reason': getattr(ea, 'termination_reason', 'Normal completion')
-        }
+            print(f"Diversity: {ea.calculate_diversity(sequences):.4f}")        # Log to wandb if available
+            if wandb_run:
+                wandb.log({
+                    "runtime": runtime,
+                    "best_fitness": max(fitness_scores),
+                    "num_sequences": len(sequences),
+                    "diversity": ea.calculate_diversity(sequences),
+                    "termination_reason": getattr(ea, 'termination_reason', 'Normal completion')
+                })
+                wandb.finish()
+            
+            return {
+                'id': problem_id,
+                'sequences': sequences,
+                'fitness_scores': fitness_scores,
+                'runtime': runtime,
+                'termination_reason': getattr(ea, 'termination_reason', 'Normal completion')
+            }
         
     except Exception as e:
         print(f"Error solving problem {problem_id}: {e}")
@@ -238,7 +224,7 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
 
 def main():
     """Main function to process CSV input and produce CSV output"""
-    parser = argparse.ArgumentParser(description='RNA Folding EA - Assignment Runner (Fixed)')
+    parser = argparse.ArgumentParser(description='RNA Folding EA - Assignment Runner')
     parser.add_argument('--input', '-i', 
                        default=config.INPUT_CSV_FILE,
                        help=f'Input CSV file (default: {config.INPUT_CSV_FILE})')
@@ -263,9 +249,9 @@ def main():
     if args.wandb_enable:
         print(f"✓ Wandb experiment tracking ENABLED")
         if not WANDB_AVAILABLE:
-            print(f"⚠️  Warning: Wandb requested but not installed. Install with: pip install wandb")
+            print(f" Warning: Wandb requested but not installed. Install with: pip install wandb")
     else:
-        print(f"ℹ️  Wandb experiment tracking disabled (use --wandb-enable to enable)")
+        print(f" Wandb experiment tracking disabled (use --wandb-enable to enable)")
     
     # Apply device-specific configuration if specified
     current_config = {
@@ -278,15 +264,16 @@ def main():
         device_config = config.DEVICE_CONFIGURATIONS[args.device]
         current_config.update(device_config)
         print(f"Using device configuration for '{args.device.upper()}':")
-        for key, value in device_config.items():
-            print(f"  {key}: {value}")
+        print(f"  - Max workers: {current_config['max_workers']}")
+        print(f"  - Population size: {current_config['population_size']}")
+        print(f"  - Generations: {current_config['generations']}")
     
     # Auto-generate output filename based on experiment name and timestamp
     output_filename = f"EA_Assignment_1_output-sheet1_{args.experiment}_{args.run_id}.csv"
     output_path = os.path.join("output", output_filename)
     
     print("="*80)
-    print("RNA FOLDING EVOLUTIONARY ALGORITHM - ASSIGNMENT RUNNER (FIXED)")
+    print("RNA FOLDING EVOLUTIONARY ALGORITHM - ASSIGNMENT RUNNER")
     print("Achal Patel - 40227663")
     print("="*80)
     print(f"Input file: {args.input}")

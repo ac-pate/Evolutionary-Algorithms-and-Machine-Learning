@@ -1,0 +1,36 @@
+[33m4ab8d964[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{0}: commit: ignore cache folder
+[33mfb51b3b5[m HEAD@{1}: commit: finalish commit
+[33m388a161e[m HEAD@{2}: commit: remove large cache file from git tracking
+[33m8d229c87[m HEAD@{3}: commit: everythign before submission
+[33mefa15807[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{4}: commit: odin: fix setup script
+[33mbefcd66b[m HEAD@{5}: commit: add space at final most fit value
+[33m7e3393d6[m HEAD@{6}: commit: Odin: Added CSV support and Diversity check for Fittest Seq
+[33m4b7243af[m HEAD@{7}: commit: Odin: Feat- Cache Preloading support for faster cache hits
+[33mce278baa[m HEAD@{8}: commit: Odin: FIXED - 2.1, 2.2 structal constraint typo
+[33ma2f0835f[m HEAD@{9}: pull origin main: Fast-forward
+[33m2e39e379[m HEAD@{10}: pull origin main: Fast-forward
+[33m82a9d24b[m HEAD@{11}: reset: moving to origin/main
+[33m56c4525e[m HEAD@{12}: reset: moving to HEAD
+[33m56c4525e[m HEAD@{13}: commit: new file structure
+[33m06108432[m HEAD@{14}: checkout: moving from restore-pre-vscode to main
+[33ma6e13290[m[33m ([m[1;32mrestore-pre-vscode[m[33m)[m HEAD@{15}: checkout: moving from main to restore-pre-vscode
+[33ma6e13290[m[33m ([m[1;32mrestore-pre-vscode[m[33m)[m HEAD@{16}: checkout: moving from 06108432972d0a533621c8646c71b86118c36f93 to main
+[33m06108432[m HEAD@{17}: commit: all of the files before vscode reinstall
+[33m627423e4[m HEAD@{18}: reset: moving to 627423e
+[33ma6e13290[m[33m ([m[1;32mrestore-pre-vscode[m[33m)[m HEAD@{19}: reset: moving to origin/main
+[33m627423e4[m HEAD@{20}: commit: fixed the streak numer, and the restart_rate
+[33m9c885457[m HEAD@{21}: commit: fixed the streak numer, and the restart_rate
+[33ma6e13290[m[33m ([m[1;32mrestore-pre-vscode[m[33m)[m HEAD@{22}: checkout: moving from main to a6e1329
+[33ma6e13290[m[33m ([m[1;32mrestore-pre-vscode[m[33m)[m HEAD@{23}: commit: good diversity, slow fitness
+[33ma0044ddb[m HEAD@{24}: commit: too elite based
+[33mec74e7d7[m HEAD@{25}: commit: Stagnation Solver: diversity and fitness based
+[33m107a42f7[m HEAD@{26}: commit: Stagnation Solver: diversity and fitness based
+[33ma6581965[m HEAD@{27}: commit: Stagnation Solver: diversity and fitness based
+[33m93665f7d[m HEAD@{28}: commit: workin ea - no optimization for diversity maintaince
+[33m4679c0c3[m HEAD@{29}: commit: updated wandb logging
+[33md073caa6[m HEAD@{30}: commit: updated wandb logging
+[33m0c91762a[m HEAD@{31}: commit: adds: requirement.txt for venv
+[33md28d4c74[m HEAD@{32}: commit: ADD: Constraint Config, Wandb support, Data loggin
+[33ma83ccf20[m HEAD@{33}: commit: ADD: multi device support & Progress Monitor
+[33m67ed4aab[m HEAD@{34}: pull origin main: Fast-forward
+[33m385b3393[m HEAD@{35}: clone: from https://github.com/ac-pate/Evolutionary-Algorithms-and-Machine-Learning

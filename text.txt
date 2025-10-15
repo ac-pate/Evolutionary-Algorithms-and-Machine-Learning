@@ -1,0 +1,7 @@
+right now you are dealign with stagnation recovery teh saem way fro fitness and diversity 
+since we have two coutners f_stag and d_stag,
+comvat stagatino sepertaaly for each 
+keep the current implimentaion for d_stag
+for f_stag, come up with a way to boost the fitnees if its stuck a lot 
+
+

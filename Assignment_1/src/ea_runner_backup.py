@@ -37,6 +37,7 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
         problem_instance: Dict with 'id', 'structure', 'iupac'
         run_id: Optional run identifier
         device_config: Optional device configuration override
+         enable_wandb: Enable wandb tracking
         
     Returns:
         Dict with results: {'id': str, 'sequences': List[str], 'fitness_scores': List[float]}
