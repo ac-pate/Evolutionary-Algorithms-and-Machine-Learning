@@ -7,7 +7,6 @@ Achal Patel - 40227663
 # CSV Processing made with help of LLM tools
 import csv
 import os
-import pandas as pd
 from typing import List, Dict, Tuple
 
 # Add project root to path for config import
@@ -167,7 +166,7 @@ class CSVProcessor:
                 return False, f"Invalid characters in structure: {set(structure) - valid_structure_chars}"
             
             # Check valid IUPAC characters
-            valid_iupac_chars = set('AUGCRYSWKMBDHVNAUGC')
+            valid_iupac_chars = set('AUGCRYSWKMBDHVN')
             if not all(c in valid_iupac_chars for c in iupac.upper()):
                 return False, f"Invalid characters in IUPAC: {set(iupac.upper()) - valid_iupac_chars}"
             

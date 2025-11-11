@@ -45,7 +45,7 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
     # Use device config if provided, otherwise use default config
     if device_config is None:
         device_config = {
-            'population_size': config.POPULATION_SIZE,
+            'population_size': config.POPULATION_SIZpython3 src/ea_runner.py --experiment my_testE,
             'generations': config.GENERATIONS,
             'max_workers': config.MAX_WORKERS
         }
@@ -155,7 +155,7 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
             'best_fitness': max(fitness_scores) if fitness_scores else 0.0,
             'generation_found': len(ea.fitness_history) if hasattr(ea, 'fitness_history') else 0,
             'avg_fitness_final': sum(fitness_scores) / len(fitness_scores) if fitness_scores else 0.0,
-            'avg_divesity_final': ea.calculate_diversity(sequences) if len(sequences) > 1 else 0.0,
+            'avg_diversity_final': ea.calculate_diversity(sequences) if len(sequences) > 1 else 0.0,
             'total_time': runtime,
             'top_sequences': [{'sequence': seq, 'fitness': fit} for seq, fit in diverse_results],
             'fitness_history': getattr(ea, 'fitness_history', []),
@@ -186,7 +186,7 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
         with open(stats_file, 'w') as f:
             json.dump(stats, f, indent=2)
         
-        print(f"Stats s aved to: {stats_file}")
+        print(f"Stats saved to: {stats_file}")
         
         print(f"Runtime: {runtime:.2f} seconds")
         print(f"Found {len(sequences)} diverse sequences")
@@ -199,7 +199,7 @@ def run_single_problem(problem_instance: dict, run_id: str = None, device_config
                     "best_fitness": max(fitness_scores),
                     "num_sequences": len(sequences),
                     "diversity": ea.calculate_diversity(sequences),
-                    "termintion_reason": getattr(ea, 'termination_reason', 'Normal completion')
+                    "termination_reason": getattr(ea, 'termination_reason', 'Normal completion')
                 })
                 wandb.finish()
             
@@ -251,7 +251,7 @@ def main():
         if not WANDB_AVAILABLE:
             print(f" Warning: Wandb requested but not installed. Install with: pip install wandb")
     else:
-        print(f" Wandb  exeriment tracking disabled (use --wandb-enable to enable)")
+        print(f" Wandb experiment tracking disabled (use --wandb-enable to enable)")
     
     # Apply device-specific configuration if specified
     current_config = {

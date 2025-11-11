@@ -1,7 +1,6 @@
 # Achal Patel - 40227663
 
 import random
-import numpy as np
 import subprocess
 import tempfile
 import os
@@ -28,7 +27,7 @@ class RNAFoldingEA:
             population_size (int): Number of individuals in population
             generations (int): Number of generations to evolve
             sequence_constraint (str): IUPAC notation string
-            structuyre_constraint (str): Dot-bracket notation string
+            structure_constraint (str): Dot-bracket notation string
             max_workers (int): Number of parallel workers for fitness evaluation
             elite_percentage (float): Percentage of pipulation to keep as elites (default: 0.01 = 1%)
             enable_cache_preloading (bool): Whether to load fitness cache from previous runs (default: False)
@@ -72,7 +71,7 @@ class RNAFoldingEA:
         # Stagnation settings - separated fitness and diversity
         self.fitness_stagnation_threshold = 10
         self.diversity_stagnation_threshold = 15
-        self.fitness_stagnation_couter = 0
+        self.fitness_stagnation_counter = 0
         self.diversity_stagnation_counter = 0
         self.last_best_fitness = 0.0
         self.last_real_fitness = 0.0  # Track real fitness separately from boosted
@@ -1094,7 +1093,7 @@ class RNAFoldingEA:
                 elif diversity >= 0.3:
                     print(f"Excellent diversity ({diversity:.4f}) for grading!")
                 else:
-                    print(f"Goood diversity ({diversity:.4f}) for grading")
+                    print(f"Good diversity ({diversity:.4f}) for grading")
         
         return txt_file, csv_file
         with open(output_file, 'w') as f:
