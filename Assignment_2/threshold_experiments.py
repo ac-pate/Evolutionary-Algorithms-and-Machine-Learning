@@ -36,8 +36,8 @@ num_epochs = 20
 MAX_LEN = 128
 BATCH_SIZE = 128
 THRESHOLD = 0.5
-POS_WEIGHT_START = 2
-POS_WEIGHT_END = 15
+POS_WEIGHT_START = 5
+POS_WEIGHT_END = 12
 RUNS_PER_WEIGHT = 3
 
 print("="*70)
@@ -200,7 +200,7 @@ def train_model(pos_weight_value, device, run_number):
     model = RNAFoldingCNN(input_channels=8).to(device)
     pos_weight = torch.tensor([pos_weight_value]).to(device)
     criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
-    optimizer = optim.Adam(model.parameters(), lr=0.0001)
+    optimizer = optim.Adam(model.parameters(), lr=0.001)
     
     # Training metrics
     train_losses = []
@@ -361,7 +361,7 @@ def run_experiments():
     
     # Create results directory
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    results_dir = os.path.join("Results", f"threshold_experiments_batch_s_{BATCH_SIZE}_{timestamp}")
+    results_dir = os.path.join("Results", f"threshold_experiments_batch_s_{BATCH_SIZE}_learning_rate_0-0001_{timestamp}")
     os.makedirs(results_dir, exist_ok=True)
     print(f"Results will be saved to: {results_dir}\n")
     
