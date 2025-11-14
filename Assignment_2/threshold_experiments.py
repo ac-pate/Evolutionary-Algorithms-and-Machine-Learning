@@ -34,7 +34,7 @@ if torch.cuda.is_available():
 # ============================================================================
 num_epochs = 20
 MAX_LEN = 128
-BATCH_SIZE = 128
+BATCH_SIZE = 64
 THRESHOLD = 0.5
 POS_WEIGHT_START = 5
 POS_WEIGHT_END = 12
@@ -273,7 +273,7 @@ def train_model(pos_weight_value, device, run_number):
         
         # Print epoch summary
         print(f"  Epoch {epoch+1:2d}: Train Loss={avg_train_loss:.4f}, Val Loss={avg_val_loss:.4f}, "
-              f"Val F1={avg_val_f1:.4f}, Val AUC={avg_val_auc:.4f}")
+              f"Val F1={avg_val_f1:.4f}, Val Recall={avg_val_recall:.4f}, Val AUC={avg_val_auc:.4f}")
         
         # Clear cache after each epoch
         if torch.cuda.is_available():
@@ -361,7 +361,7 @@ def run_experiments():
     
     # Create results directory
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    results_dir = os.path.join("Results", f"threshold_experiments_batch_s_{BATCH_SIZE}_learning_rate_0-0001_{timestamp}")
+    results_dir = os.path.join("Results", f"threshold_experiments_batch_s_{BATCH_SIZE}_{timestamp}")
     os.makedirs(results_dir, exist_ok=True)
     print(f"Results will be saved to: {results_dir}\n")
     
