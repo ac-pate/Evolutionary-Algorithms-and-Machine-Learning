@@ -1,0 +1,24 @@
+{
+  "num_epochs": 20,
+  "max_len": 128,
+  "batch_size": 128,
+  "runs_per_value": 3,
+  "experiment1": {
+    "name": "pos_weight_sweep",
+    "pos_weight_range": [
+      1,
+      10
+    ],
+    "fixed_threshold": 0.5
+  },
+  "experiment2": {
+    "name": "threshold_sweep",
+    "threshold_range": [
+      0.3,
+      0.7
+    ],
+    "threshold_step": 0.1,
+    "fixed_pos_weight": 5
+  },
+  "timestamp": "20251115_162709"
+}
